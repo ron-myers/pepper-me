@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Panel } from '@/components/Panel'
 import { Heat } from '@/components/Heat'
 import { HeroInstall } from '@/components/HeroInstall'
+import { ChatWindow } from '@/components/ChatWindow'
 import { Transcript } from '@/components/Transcript'
 import { BriefSwitch } from '@/components/BriefSwitch'
 import { InstallTabs } from '@/components/InstallTabs'
@@ -28,20 +29,7 @@ export default function Home() {
               <a href={REPO_URL}>See it on GitHub</a>
             </p>
           </div>
-          <div className="agentreply" aria-hidden="true">
-            <p className="agent-label">agent&gt;</p>
-            <p>Here&apos;s what I think you want:</p>
-            <p>Goal: convert free users to the Pro plan</p>
-            <p>Audience: existing free users, not new visitors</p>
-            <p>Done: page live, linked from the upgrade banner</p>
-            <ul className="chips">
-              <li className="chip" data-rec>
-                Yes, keep going
-              </li>
-              <li className="chip">Mostly</li>
-              <li className="chip">No, start over</li>
-            </ul>
-          </div>
+          <ChatWindow />
         </div>
       </section>
 

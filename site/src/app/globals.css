@@ -80,11 +80,11 @@ h2 { font-size: clamp(2.6rem, 6.5vw, 5rem); line-height: 0.95; margin: 0 0 1.25r
 h2 + .grid, h2 + .narration { margin-top: 1.75rem; }
 
 /* ---------- hero ---------- */
-.hero { padding-top: 3.5rem; }
+.hero { padding-top: 2.5rem; }
 .hero h1 { display: block; max-width: none; }
-.voice-you { display: block; font-size: clamp(3.6rem, 12.5vw, 10.5rem); line-height: 0.88; letter-spacing: -0.005em; text-wrap: balance; }
+.voice-you { display: block; font-size: clamp(3.4rem, 10.5vw, 8.75rem); line-height: 0.88; letter-spacing: -0.005em; text-wrap: balance; }
 .voice-pepper { display: block; margin-top: 1.25rem; font-size: clamp(1.9rem, 5vw, 4rem); line-height: 0.98; color: var(--accent); }
-.hero-foot { display: grid; gap: 2.5rem 4rem; margin-top: 3.5rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.hero-foot { display: grid; gap: 2.5rem 4rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); align-items: start; }
 @media (min-width: 56rem) { .hero-foot { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
 .hero-cta .lede { font-size: 1.2rem; }
 .alt { margin: 1.25rem 0 0; font: 600 0.9rem var(--font-m); }
@@ -223,3 +223,29 @@ h2 + .grid, h2 + .narration { margin-top: 1.75rem; }
   .page { padding-top: 4.5rem; }
   .beat.agent { margin-left: 0; }
 }
+
+/* ---------- chat window ---------- */
+.chatwin { margin: 0; border: 1px solid var(--rule); background: var(--bg); }
+.chatbar { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; border-bottom: 1px solid var(--rule); background: var(--cell); font: 600 0.75rem/1 var(--font-m); text-transform: uppercase; letter-spacing: 0.08em; }
+.chatbar span:last-child { color: var(--accent); }
+.chatbody { padding: 1rem 1.25rem 0.75rem; display: grid; gap: 0.9rem; font: 0.95rem/1.55 var(--font-m); }
+.chat-you { margin: 0; font: 400 1.35rem/1 var(--font-d); text-transform: uppercase; }
+.chat-agent p { margin: 0 0 0.3rem; }
+.chat-agent dl { margin: 0.5rem 0 0; display: grid; gap: 0.4rem; }
+.chat-agent dt { font-weight: 700; display: inline; }
+.chat-agent dt::after { content: ': '; }
+.chat-agent dd { margin: 0; display: inline; }
+.ask { border: 1px solid var(--rule); margin: 0; padding: 0; min-width: 0; }
+.ask legend { padding: 0 0.5rem; margin-left: 0.75rem; font: 700 0.8rem var(--font-m); }
+.opt { display: flex; align-items: center; gap: 0.75rem; padding: 0.8rem 1rem; border-top: 1px solid var(--hair); cursor: pointer; min-height: 2.9rem; position: relative; }
+.opt:first-of-type { border-top: 0; }
+.opt:hover { background: var(--cell); }
+.opt input { appearance: none; width: 1rem; height: 1rem; border: 1.5px solid var(--fg); border-radius: 50%; margin: 0; flex: none; display: grid; place-content: center; }
+.opt input::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--on-accent); transform: scale(0); transition: transform 0.12s ease-out; }
+.opt input:checked { background: var(--accent); border-color: var(--accent); }
+.opt input:checked::before { transform: scale(1); }
+.opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: -3px; }
+.opt[data-rec] .opt-label { font-weight: 700; }
+.opt-rec { margin-left: auto; font: 600 0.72rem var(--font-m); color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.chat-status { margin: 0; min-height: 1.4em; font-size: 0.85rem; color: var(--muted); }
+.chatwin .fine { padding: 0.6rem 1.25rem 1rem; border-top: 1px solid var(--hair); }
