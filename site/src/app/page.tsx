@@ -132,6 +132,42 @@ export default function Home() {
           Then type <code>pepper me</code>. <Link href="/skills/pepper-me">Usage and options</Link>.
         </p>
       </section>
+
+      {/* 9. Configurable: answer once */}
+      <section className="page" id="remember" aria-labelledby="h-remember">
+        <h2 id="h-remember">Answer once. Pepper remembers.</h2>
+        <p className="lede">
+          You shouldn&apos;t answer the same questions every session. Run <code>pepper me init</code> once and your setup
+          is saved, and set your own defaults for how <code>pepper me</code> runs.
+        </p>
+        <ul className="grid skills">
+          <Panel
+            as="li"
+            tab="Per project"
+            tone="yellow"
+            title="Run init once"
+            summary="It reads your repo, asks only what it can't find, and writes PROJECT.md. pepper me reads that file first and never asks what it already answers."
+            extra={
+              <p className="meta">
+                <code>pepper me init</code>
+              </p>
+            }
+            action={{ href: '/skills/pepper-init', label: 'Read about pepper-init' }}
+          />
+          <Panel
+            as="li"
+            tab="Per person"
+            title="Set your defaults"
+            summary="Pick your default heat, tone and brief size in ~/.pepper-me/config.json. A .pepper/config.json in a project overrides it for that project."
+            extra={
+              <p className="meta">
+                <code>~/.pepper-me/config.json</code>
+              </p>
+            }
+            action={{ href: '/skills/pepper-me', label: 'See the options' }}
+          />
+        </ul>
+      </section>
     </>
   )
 }
