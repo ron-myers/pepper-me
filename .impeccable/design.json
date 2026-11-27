@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T00:00:00Z",
+  "title": "Design System: Pepper",
+  "extensions": {
+    "colorMeta": {
+      "process-red": { "role": "primary", "displayName": "Process Red", "canonical": "#c92a22", "tonalRamp": ["#3a0d0a", "#5e1510", "#8a1d17", "#c92a22", "#de5a52", "#ea8882", "#f3b5b1", "#fbe3e1"] },
+      "process-yellow": { "role": "secondary", "displayName": "Process Yellow", "canonical": "#f8c928", "tonalRamp": ["#3d3005", "#6b5409", "#9c7b0d", "#d2a417", "#f8c928", "#fad65f", "#fce597", "#fff4ce"] },
+      "process-cyan": { "role": "secondary", "displayName": "Process Cyan", "canonical": "#3a97d6", "tonalRamp": ["#0c2a3f", "#124466", "#1d6396", "#2a7fc0", "#3a97d6", "#6cb2e1", "#9dcded", "#d3e8f7"] },
+      "pulp-ground": { "role": "neutral", "displayName": "Pulp Ground", "canonical": "#f1e7c4", "tonalRamp": ["#2b2714", "#4f4727", "#7a6f3f", "#a89b5f", "#cfc08a", "#e0d3a6", "#f1e7c4", "#fbf6e3"] },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#17140f", "tonalRamp": ["#0a0907", "#17140f", "#2b2720", "#4d4636", "#756d58", "#9d9680", "#c9c3b0", "#ece8dc"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero lettering in the splash panel." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2 lettering." },
+      "title": { "displayName": "Title", "purpose": "Panel title bands." },
+      "body": { "displayName": "Body", "purpose": "Caption and prose text." },
+      "label": { "displayName": "Label", "purpose": "Speaker names, code bars, commands." }
+    },
+    "shadows": [
+      { "name": "misregistration-plate", "value": "pseudo-element: inset -3px; border: 3px solid #c92a22; transform: translate(6px, 5px); z-index: -1", "purpose": "Idle depth: a red plate half a dot off register. Snaps to translate(0,0) on hover or focus-within." }
+    ],
+    "motion": [
+      { "name": "ease-register", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Plate registration (0.18s), button lift (0.12s), beat arrival (0.26s)." },
+      { "name": "beat-arrival", "value": "opacity 0.22s ease-out, transform 0.26s ease-register from translate(8px, 6px)", "purpose": "Transcript bubbles land one at a time; disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "30rem" },
+      { "name": "md", "value": "40rem" },
+      { "name": "hero", "value": "52rem" },
+      { "name": "lg", "value": "64rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Copy Button",
+      "kind": "button",
+      "refersTo": "button-copy",
+      "description": "Primary action: copies the install command.",
+      "html": "<button class=\"ds-copy\">Copy</button>",
+      "css": ".ds-copy { font: 800 0.95rem/1 Georgia, serif; cursor: pointer; background: #c92a22; color: #fff; border: 3px solid #17140f; padding: 0.75rem 1.1rem; min-height: 2.75rem; transition: transform 0.12s cubic-bezier(0.22,1,0.36,1); } .ds-copy:hover { transform: translateY(-2px); } .ds-copy:active { transform: translateY(1px); } .ds-copy:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Repeating card: tab, toned title band with dots, summary, action.",
+      "html": "<article class=\"ds-panel\"><span class=\"ds-tab\">Step 1</span><h3>Ask first</h3><p>One short line of summary.</p></article>",
+      "css": ".ds-panel { position: relative; isolation: isolate; background: #fffbee; color: #17140f; border: 3px solid #17140f; margin: 6px 6px 6px 0; font: 1rem/1.55 Georgia, serif; } .ds-panel::before { content: ''; position: absolute; inset: -3px; border: 3px solid #c92a22; transform: translate(6px,5px); z-index: -1; transition: transform 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-panel:hover::before { transform: none; } .ds-panel h3 { margin: 0; font: 900 2rem/1 'Arial Narrow', sans-serif; text-transform: uppercase; padding: 2.4rem 1.1rem 1.1rem; border-bottom: 3px solid #17140f; background-color: #f8c928; background-image: radial-gradient(circle, rgb(23 20 15 / 0.2) 1.3px, transparent 1.7px); background-size: 9px 9px; } .ds-panel p { margin: 0; padding: 1rem 1.1rem 1.1rem; } .ds-tab { position: absolute; top: 0; left: 0.9rem; transform: translateY(-50%); z-index: 1; background: #17140f; color: #fffbee; font: 700 0.78rem/1 monospace; text-transform: uppercase; padding: 0.4rem 0.6rem; }"
+    },
+    {
+      "name": "Caption Box",
+      "kind": "custom",
+      "refersTo": "caption-box",
+      "description": "Paper-white keylined box that carries all prose.",
+      "html": "<p class=\"ds-cap\">Agents get the one-line ticket. Pepper gives them the kickoff meeting.</p>",
+      "css": ".ds-cap { background: #fffbee; color: #17140f; border: 3px solid #17140f; padding: 0.85rem 1.1rem; margin: 0; max-width: 62ch; font: 1.0625rem/1.6 Georgia, serif; }"
+    },
+    {
+      "name": "Speech Bubble",
+      "kind": "custom",
+      "refersTo": "bubble-you",
+      "description": "Transcript bubble with skewed tail; the you-bubble is oval, the agent bubble squarer.",
+      "html": "<p class=\"ds-bubble\">Fix the login bug.</p>",
+      "css": ".ds-bubble { position: relative; margin: 0 0 1.2rem; background: #fff; color: #17140f; border: 3px solid #17140f; border-radius: 1.6rem; padding: 0.85rem 1.1rem; font: 600 1.25rem/1.25 Georgia, serif; max-width: 17rem; } .ds-bubble::after { content: ''; position: absolute; right: 1.4rem; bottom: -1rem; width: 1rem; height: 1rem; background: #fff; border-right: 3px solid #17140f; border-bottom: 3px solid #17140f; transform: skewX(-30deg); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip-recommended",
+      "description": "Answer option pill; red when recommended.",
+      "html": "<span class=\"ds-chip\">Skip</span> <span class=\"ds-chip ds-chip-rec\">Recommended</span>",
+      "css": ".ds-chip { display: inline-block; border: 2px solid #17140f; border-radius: 999px; padding: 0.4rem 0.9rem; font: 700 0.9rem/1.2 Georgia, serif; background: #fff; color: #17140f; } .ds-chip-rec { background: #c92a22; color: #fff; }"
+    },
+    {
+      "name": "Tab",
+      "kind": "nav",
+      "refersTo": "tab-active",
+      "description": "Install method tabs; active is yellow.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-t\" aria-selected=\"true\">Plugin</button><button class=\"ds-t\">Manual</button></div>",
+      "css": ".ds-tabs { display: flex; gap: 0.35rem; } .ds-t { font: 700 0.95rem Georgia, serif; background: #fffbee; color: #17140f; border: 3px solid #17140f; border-bottom: 0; padding: 0.65rem 1rem; min-height: 2.75rem; cursor: pointer; } .ds-t[aria-selected='true'], .ds-t:hover { background: #f8c928; } .ds-t:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Heat",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Mild, medium, hot as one to three filled red dots.",
+      "html": "<span class=\"ds-heat\"><i data-on></i><i data-on></i><i></i></span>",
+      "css": ".ds-heat { display: inline-flex; gap: 0.3rem; } .ds-heat i { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 2px solid #17140f; background: transparent; } .ds-heat i[data-on] { background: #c92a22; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Kickoff, Inked",
+    "overview": "Pepper's site is a silver-age comic page. Panels are the repeating cards, speech bubbles are the transcript, and caption boxes carry every paragraph of prose. Flat process inks (cyan, red, yellow, black) fill panel fields over a pulp page in light mode and a black-ink flood in dark mode. Depth comes from a black keyline and a red misregistration plate, never from soft shadows.\n\nThe page is dense but ordered: a 76rem column, 3px keylines on everything that holds content, and display lettering in a heavy condensed face against a warm book serif for reading. Ben-day dot screens texture the colored fields, so flat color never sits bare.",
+    "keyCharacteristics": [
+      "3px ink keyline on every panel, caption, bubble, code block, and button.",
+      "Idle panels sit half a dot off register: a red outline plate offset 6px right, 5px down. Hover or focus-within snaps it to 0.",
+      "Prose lives in bleached-paper caption boxes; colored fields hold lettering and bubbles.",
+      "Red marks the recommended answer and the primary action only.",
+      "Corners are square except speech bubbles and chips."
+    ],
+    "rules": [
+      { "name": "The Red Is An Answer Rule", "body": "Red appears only where the visitor is being pointed: the recommended option, the primary action, the heat dots. Never as decoration on a panel field.", "section": "colors" },
+      { "name": "The Fields Stay Fixed Rule", "body": "Bubbles, caption boxes, and panel bodies keep paper-white fills with ink-black text in dark mode too; only the page ground, footer text, and focus ring invert.", "section": "colors" },
+      { "name": "The Lettering Rule", "body": "Every heading is uppercase Londrina at 900. Prose never is.", "section": "typography" },
+      { "name": "The Half-Dot Rule", "body": "Idle is off register; attention registers the plate. Do not add soft shadows or hard offset shadows in ink.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do wrap content in a 3px ink keyline and put prose in bleached-paper caption boxes.",
+      "Do texture every colored field with a ben-day dot screen (9 to 11px pitch, 0.2 to 0.28 alpha).",
+      "Do keep idle panels off register by (6px, 5px) in red and snap them on hover and focus.",
+      "Do reserve red for the recommended answer, the primary action, and heat dots.",
+      "Do keep a 3px focus ring (#0b3d91, yellow in dark) with 3px offset."
+    ],
+    "donts": [
+      "Don't use blur shadows or hard offset ink shadows; depth is keyline plus misregistration.",
+      "Don't set prose directly on a colored field; use a caption box or bubble.",
+      "Don't fill panels with flat unscreened color or introduce a fifth ink.",
+      "Don't put the page in a centered-hero-over-feature-cards SaaS layout."
+    ]
+  }
+}

@@ -3,3 +3,9 @@
 .conductor/
 node_modules/
 .candid/last-review.json
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/review/
+site/node_modules/
+site/.next/
+site/out/

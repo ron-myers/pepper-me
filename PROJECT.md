@@ -19,7 +19,7 @@ Winning means adoption by other developers.
 - Non-developers using agents, such as PMs and founders
 
 ## Stack and commands
-No build, test, lint or run commands exist. The repo is Markdown and JSON only.
+The skills are Markdown and JSON only. The marketing site lives in `site/` (Next.js, static export; `cd site && npm run build`). Skills have no build, test or lint commands.
 
 - Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-init/SKILL.md`, each with a `config.example.json`
 - Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.0

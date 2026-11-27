@@ -1,0 +1,27 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "site/src/app/globals.css"
+        ],
+        "createdAt": "2026-11-27T19:54:39.713Z",
+        "reason": "assistant: false positive; speech-bubble tail (L166) and table column dividers (L270)"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "site/src/app/globals.css"
+        ],
+        "createdAt": "2026-11-27T19:54:39.733Z",
+        "reason": "assistant: false positive; speech-bubble tail (L166) and table column dividers (L270)"
+      }
+    ]
+  }
+}
