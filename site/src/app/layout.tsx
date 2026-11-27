@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Londrina_Solid, Literata, JetBrains_Mono } from 'next/font/google'
+import { Anton, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Link from 'next/link'
 import { getVersion, REPO_URL, SITE_URL } from '@/lib/site'
 import './globals.css'
 
-const display = Londrina_Solid({ subsets: ['latin'], weight: ['400', '900'], variable: '--font-display', display: 'swap' })
-const body = Literata({ subsets: ['latin'], variable: '--font-body', display: 'swap' })
+const display = Anton({ subsets: ['latin'], weight: '400', variable: '--font-display', display: 'swap' })
+const body = Hanken_Grotesk({ subsets: ['latin'], variable: '--font-body', display: 'swap' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Pepper',
     title: 'Pepper: skills that give your agent context',
-    description: 'Agents get the one-line ticket. Pepper gives them the kickoff meeting.',
+    description: 'Agents get the one-line task. Pepper gives them the kickoff meeting.',
   },
   twitter: { card: 'summary_large_image' },
 }
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4ecd2' },
-    { media: '(prefers-color-scheme: dark)', color: '#14121a' },
+    { media: '(prefers-color-scheme: light)', color: '#fafaf7' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b0b0c' },
   ],
 }
 

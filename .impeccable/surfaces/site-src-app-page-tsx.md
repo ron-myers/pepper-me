@@ -11,10 +11,10 @@ Mode: Persuade. Audience: developers, teams, PMs/founders. Action: copy the inst
 
 ## Direction contract
 
-THESIS: A kickoff meeting told as a silver-age comic page. Speech bubbles are the transcript, panels are the repeating cards. Refuses the centred-hero-over-feature-cards SaaS page and the cream-serif editorial default.
-OWN-WORLD: CMYK process inks (cyan-blue, magenta-red, yellow, black) as full panel fields with visible ben-day dot screens and a half-dot misregistration offset on idle panels; a pale pulp page ground in light, black-ink flooded page in dark. Caption boxes (bleached white, black keyline) carry all prose. Red reserved for the recommended answer and primary action. Heat: mild/medium/hot as one/two/three ink dots. No hard offset shadows; depth is keyline and misregistration.
-STORY: Visitor sees agents get the one-line ticket, understands Pepper is the kickoff meeting, reads a real transcript in bubbles, copies the install command.
-FIRST VIEWPORT: Splash panel (yellow, ben-day dots) spanning ~60% width holds the hero lettering and the install command with copy button; at right two stacked blue panels show a ticket bubble and Pepper's question bubble; a thin caption strip below carries the one-line pitch. Install command in a red caption box, bottom-left of the splash.
-FORM: Silver-Age Comic Page, challenger pop-culture-shelf-benday-comic-page, won round 1 of the bolder re-roll; seed:f079bbb4b2918dcb.
-Signature interaction: transcript bubbles land one panel-beat at a time with a registration snap; active panel registers plates cleanly while idle panels sit half a dot off.
+THESIS: Two voices on one page. The user speaks in giant condensed type; the agent answers small, in monospace. Size is volume. Refuses the comic panels it replaces and the centred-hero-over-feature-cards template.
+OWN-WORLD: Black ink on white stock (near-black ink on near-black-free paper in light; off-white ink on near-black in dark). One hot red-orange carries the recommended answer, the primary action and the heat motif. Hairline rules and ruled cells, no shadows, no fills except ink blocks for code. Anton for the user's voice, a plain grotesque for prose, JetBrains Mono for the agent and code.
+STORY: Visitor hears the one-line ticket shout, sees the agent answer quietly with the questions that matter, understands Pepper is the kickoff meeting, copies the install command.
+FIRST VIEWPORT: The headline's first sentence fills the width in huge Anton; the second sentence sits beneath it in smaller red Anton. A small mono agent reply with answer chips sits right of centre under it. Install block with copy button anchored at the foot of the viewport, left.
+FORM: Two Voices, a grounded candidate (6 of 7) after a steered re-roll (close to Massin stage page, similar to agent-skill sites); seed:b7c806cef66af7f5.
+Signature interaction: transcript lines land one beat at a time; the user's line arrives large, the agent's reply types in small. Recommended chip is the only red filled object in the transcript.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

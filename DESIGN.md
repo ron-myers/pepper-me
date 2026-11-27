@@ -1,215 +1,233 @@
 ---
 name: Pepper
-description: A kickoff meeting told as a silver-age comic page: process inks, ben-day dots, keylines, and a misregistered red plate.
+description: Two voices on one page. The user shouts in giant condensed type; the agent answers small, in monospace. Black ink, white stock, one hot red, hairline rules.
 colors:
-  pulp-ground: "#f1e7c4"
-  ink-black: "#17140f"
-  muted-ink: "#4d4636"
-  bleached-paper: "#fffbee"
-  process-cyan: "#3a97d6"
-  process-red: "#c92a22"
-  process-yellow: "#f8c928"
+  paper: "#fafaf7"
+  ink: "#0b0b0b"
+  muted-ink: "#55524b"
+  hairline: "#cfcdc4"
+  cell: "#f1f0ea"
+  hot-red: "#c93418"
+  on-hot-red: "#ffffff"
   focus-blue: "#0b3d91"
-  night-ground: "#14121a"
-  night-paper-ink: "#f4ecd4"
-  night-ink: "#0a0910"
-  night-red: "#cf3228"
-  code-ground: "#1b1812"
-  code-text: "#f6ebc8"
+  night-paper: "#0b0b0c"
+  night-ink: "#f2f0e8"
+  night-muted-ink: "#a9a69c"
+  night-hairline: "#2e2e31"
+  night-cell: "#131315"
+  night-hot-red: "#ff6a45"
+  night-on-hot-red: "#0b0b0c"
+  night-focus-yellow: "#ffd84a"
+  code-ground: "#0b0b0b"
+  code-text: "#f2f0e8"
 typography:
   display:
-    fontFamily: "Londrina Solid, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.6rem, 7.2vw, 5.6rem)"
-    fontWeight: 900
-    lineHeight: 1.02
-    letterSpacing: "0.01em"
+    fontFamily: "Anton, Arial Narrow, sans-serif"
+    fontSize: "clamp(3.6rem, 12.5vw, 10.5rem)"
+    fontWeight: 400
+    lineHeight: 0.88
+    letterSpacing: "-0.005em"
   headline:
-    fontFamily: "Londrina Solid, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.1rem, 4.5vw, 3.4rem)"
-    fontWeight: 900
-    lineHeight: 0.98
-    letterSpacing: "0.01em"
+    fontFamily: "Anton, Arial Narrow, sans-serif"
+    fontSize: "clamp(2.6rem, 6.5vw, 5rem)"
+    fontWeight: 400
+    lineHeight: 0.95
+    letterSpacing: "0.005em"
   title:
-    fontFamily: "Londrina Solid, Arial Narrow, sans-serif"
-    fontSize: "clamp(1.7rem, 2.6vw, 2.2rem)"
-    fontWeight: 900
+    fontFamily: "Anton, Arial Narrow, sans-serif"
+    fontSize: "clamp(1.9rem, 2.8vw, 2.5rem)"
+    fontWeight: 400
     lineHeight: 1
-    letterSpacing: "0.01em"
+    letterSpacing: "0.005em"
   body:
-    fontFamily: "Literata, Georgia, serif"
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   label:
     fontFamily: "JetBrains Mono, ui-monospace, monospace"
-    fontSize: "0.78rem"
-    fontWeight: 700
-    letterSpacing: "0.06em"
+    fontSize: "0.85rem"
+    fontWeight: 600
+    lineHeight: 1.2
 rounded:
   none: "0px"
-  sm: "3px"
-  bubble: "0.5rem"
-  bubble-you: "1.6rem"
-  pill: "999px"
+  dot: "50%"
 spacing:
   xs: "0.5rem"
   sm: "1rem"
   md: "1.25rem"
-  lg: "1.75rem"
-  xl: "4rem"
+  lg: "2.5rem"
+  xl: "6rem"
 components:
-  panel:
-    backgroundColor: "{colors.bleached-paper}"
-    textColor: "{colors.ink-black}"
-    rounded: "{rounded.none}"
   button-copy:
-    backgroundColor: "{colors.process-red}"
-    textColor: "#ffffff"
+    backgroundColor: "{colors.hot-red}"
+    textColor: "{colors.on-hot-red}"
     rounded: "{rounded.none}"
     padding: "0.75rem 1.1rem"
     height: "2.75rem"
+    typography: "{typography.label}"
   button-copy-done:
-    backgroundColor: "{colors.process-cyan}"
-    textColor: "{colors.ink-black}"
-  caption-box:
-    backgroundColor: "{colors.bleached-paper}"
-    textColor: "{colors.ink-black}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+  button-replay:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.none}"
-    padding: "0.85rem 1.1rem"
-  bubble-you:
-    backgroundColor: "#ffffff"
-    textColor: "{colors.ink-black}"
-    rounded: "{rounded.bubble-you}"
-    padding: "0.85rem 1.1rem"
-  bubble-agent:
-    backgroundColor: "#ffffff"
-    textColor: "{colors.ink-black}"
-    rounded: "{rounded.bubble}"
-    padding: "0.85rem 1.1rem"
+    padding: "0.6rem 1.1rem"
+    height: "2.75rem"
+  button-replay-hover:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+  panel:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "1.25rem 1.25rem 1.4rem"
+  panel-hover:
+    backgroundColor: "{colors.cell}"
   chip:
-    backgroundColor: "#ffffff"
-    textColor: "{colors.ink-black}"
-    rounded: "{rounded.pill}"
-    padding: "0.4rem 0.9rem"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "0.45rem 0.9rem"
+    typography: "{typography.label}"
   chip-recommended:
-    backgroundColor: "{colors.process-red}"
-    textColor: "#ffffff"
-  tab-active:
-    backgroundColor: "{colors.process-yellow}"
-    textColor: "{colors.ink-black}"
-    padding: "0.65rem 1rem"
+    backgroundColor: "{colors.hot-red}"
+    textColor: "{colors.on-hot-red}"
+  code-block:
+    backgroundColor: "{colors.code-ground}"
+    textColor: "{colors.code-text}"
+    rounded: "{rounded.none}"
+    padding: "1rem 1.15rem"
+  size-toggle-selected:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+    height: "2.75rem"
+  sheet-card:
+    backgroundColor: "{colors.cell}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "1.5rem 1.4rem"
 ---
 
 # Design System: Pepper
 
 ## Overview
 
-**Creative North Star: "The Kickoff, Inked"**
+**Creative North Star: "Two Voices"**
 
-Pepper's site is a silver-age comic page. Panels are the repeating cards, speech bubbles are the transcript, and caption boxes carry every paragraph of prose. Flat process inks (cyan, red, yellow, black) fill panel fields over a pulp page in light mode and a black-ink flood in dark mode. Depth comes from a black keyline and a red misregistration plate, never from soft shadows.
+The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.
 
-The page is dense but ordered: a 76rem column, 3px keylines on everything that holds content, and display lettering in a heavy condensed face against a warm book serif for reading. Ben-day dot screens (radial-gradient dots, 9 to 11px pitch) texture the colored fields, so flat color never sits bare.
+The material is black ink on white stock with hairline rules. There are no shadows, no gradients, no rounded corners, no filled decoration. Structure comes from 1px ink rules that form ruled cells, and from scale. One hot red-orange is rationed to the recommended answer, the primary action, the heat dots, and the agent's second-sentence echo in the hero. Dark mode inverts to off-white ink on near-black and lifts the red so it keeps contrast.
+
+Density is editorial and generous: 80rem container, 6rem between sections, long measure capped at 65ch for prose and 48ch inside cells.
 
 **Key Characteristics:**
-- 3px ink keyline on every panel, caption, bubble, code block, and button.
-- Idle panels sit half a dot off register: a red outline plate offset 6px right, 5px down. Hover or focus-within snaps it to 0.
-- Prose lives in bleached-paper caption boxes; colored fields hold lettering and bubbles.
-- Red marks the recommended answer and the primary action only.
-- Corners are square except speech bubbles and chips.
+- Anton uppercase for the user's voice; Hanken Grotesk for prose; JetBrains Mono for the agent, labels and code.
+- Hairline ink rules and ruled grid cells instead of shadows or boxes.
+- One red, used on the single most important thing in a region.
+- Square corners everywhere; the only circles are dots (logo mark, heat meter).
+- Light and dark are both first-class and follow the system.
 
 ## Colors
 
-A four-ink process palette on a warm pulp ground, inverted to a near-black night ground in dark mode while the inks stay put.
+A near-monochrome ink-and-paper palette with a single hot red. Neutrals are slightly warm, never pure white or pure black.
 
 ### Primary
-- **Process Red** (#c92a22): primary action (copy button), recommended chip, selected size, misregistration plate, hover color on links, heat dots, footer rule, scrollbar. Night mode lifts it to #cf3228.
-
-### Secondary
-- **Process Yellow** (#f8c928): splash panel field, yellow-tone panel titles, active tab, hover fill on secondary controls, inline code highlight, selection color, table header.
-- **Process Cyan** (#3a97d6): speech field behind the hero bubbles, transcript field, blue-tone panel titles, copied-state of the copy button.
+- **Hot Red** (#c93418): the recommended chip, the copy button, step numerals, the agent label and agent-voice speaker tag, the second hero sentence, heat dots, the logo dot, text selection, link hover. In dark mode it becomes **Night Hot Red** (#ff6a45) with dark text on it (#0b0b0c).
 
 ### Neutral
-- **Pulp Ground** (#f1e7c4): light page ground.
-- **Night Ground** (#14121a): dark page ground (prefers-color-scheme).
-- **Ink Black** (#17140f): text, keylines, footer. Night keyline ink is #0a0910.
-- **Bleached Paper** (#fffbee): caption boxes, panel bodies, tab panels. Always carries ink-black text in both schemes.
-- **Muted Ink** (#4d4636): fine print and notes (night text equivalent #c9c0a6).
-- **Focus Blue** (#0b3d91): focus ring in light; yellow (#ffd84a) in dark.
-- **Code Ground** (#1b1812) with **Code Text** (#f6ebc8): command and code blocks.
+- **Paper** (#fafaf7): page ground and default cell fill. Dark: **Night Paper** (#0b0b0c).
+- **Ink** (#0b0b0b): text, strong rules (the grid, code frames, footer top rule), selected-state fills. Dark: **Night Ink** (#f2f0e8).
+- **Muted Ink** (#55524b): secondary labels, notes, the user/agent speaker tag. Dark: #a9a69c.
+- **Hairline** (#cfcdc4): soft dividers (header bottom, table row lines, inline-code borders). Dark: #2e2e31.
+- **Cell** (#f1f0ea): hover fill for panels, the brief sheet card, inline-code ground, table header ground. Dark: #131315.
+- **Code Ground** (#0b0b0b) with **Code Text** (#f2f0e8): the one filled ink block; in dark mode the ground lifts to #131315.
+- **Focus Blue** (#0b3d91): 3px focus ring, offset 3px. Dark: **Focus Yellow** (#ffd84a).
 
 ### Named Rules
-**The Red Is An Answer Rule.** Red appears only where the visitor is being pointed: the recommended option, the primary action, the heat dots. Never as decoration on a panel field.
+**The One Red Rule.** Red marks the one thing to act on or notice in a region: the recommended answer, the primary action, the heat. Never use it for decoration, large fills, or more than one filled object per region.
 
-**The Fields Stay Fixed Rule.** Bubbles, caption boxes, and panel bodies keep paper-white fills with ink-black text in dark mode too; only the page ground, footer text, and focus ring invert.
+**The Ink Rule.** Strong structure is 1px full-strength ink; soft structure is 1px Hairline. Neither is ever replaced by a shadow or a tint.
 
 ## Typography
 
-**Display Font:** Londrina Solid (with Arial Narrow, sans-serif), weights 400 and 900
-**Body Font:** Literata (with Georgia, serif)
+**Display Font:** Anton (with Arial Narrow, sans-serif), always uppercase, weight 400 only
+**Body Font:** Hanken Grotesk (with system-ui, sans-serif)
 **Label/Mono Font:** JetBrains Mono (with ui-monospace)
 
-**Character:** Londrina is a hand-lettered comic caps face used at weight 900; Literata is a warm, readable text serif that keeps long captions calm. Mono marks commands, speakers, and code.
+**Character:** A loud condensed poster face against a plain reading grotesque and a technical mono. Anton is the user shouting; mono is the agent speaking quietly; Hanken just lets the prose be read.
 
 ### Hierarchy
-- **Display** (900, clamp(2.6rem, 7.2vw, 5.6rem), 1.02): hero lettering in the splash, uppercase, max 14ch; key phrase set as an ink-black block with yellow text.
-- **Headline** (900, clamp(2.1rem, 4.5vw, 3.4rem), 0.98): section h2, uppercase, max 20ch.
-- **Title** (900, clamp(1.7rem, 2.6vw, 2.2rem), 1): panel titles (h3), uppercase.
-- **Body** (400, 1.0625rem, 1.6): captions and prose, 65ch measure.
-- **Label** (700 to 800, 0.75 to 0.95rem, 0.04 to 0.08em, uppercase mono): speaker names, code bar, copy buttons use the serif at weight 800.
+- **Display** (Anton 400, clamp(3.6rem, 12.5vw, 10.5rem), 0.88): the hero's first sentence only. The second hero sentence drops to clamp(1.9rem, 5vw, 4rem) in Hot Red.
+- **Headline** (Anton 400, clamp(2.6rem, 6.5vw, 5rem), 0.95, max 18ch): every section h2. Doc h1 uses clamp(3.4rem, 9vw, 6.5rem).
+- **Title** (Anton 400, clamp(1.9rem, 2.8vw, 2.5rem), 1): panel and card h3. The user's transcript lines use clamp(2.2rem, 5.6vw, 4.4rem) at 0.95.
+- **Body** (Hanken 400, 1.0625rem, 1.6): prose; lede 1.15rem to 1.2rem; max 65ch. Panel text 1rem at 1.55, max 48ch.
+- **Label** (JetBrains Mono 500 to 700, 0.78rem to 0.9rem): nav, links with arrows, buttons, chips, agent replies (0.95rem at 1.55 to 1.6), speaker tags, code (0.875rem at 1.7).
 
 ### Named Rules
-**The Lettering Rule.** Every heading is uppercase Londrina at 900. Prose never is.
+**The Volume Rule.** Size is the speaker. Anything the user says or the page asserts as a headline is Anton and large; anything the agent says is mono and small. Never set the agent's voice in the display face or the user's in mono.
+
+**The One Weight Rule.** Anton is used at 400 only, uppercase, with balanced wrapping. Do not bold or lowercase it.
 
 ## Layout
 
-One centered column, max 76rem, 1rem side gutters, 4rem top padding per page. Content is a comic page grid: the hero is a 1.75fr / 1fr split from 52rem; card grids are 1 column on mobile, 2 columns (skills) from 40rem, and a 6- or 12-column span grid for steps and reasons. Gaps are 1.75rem between rows and 1.25rem between columns. Grids reserve 6px right and 4 to 6px top padding so the misregistration plate is never clipped. Narration captions step in left margins (0, 3vw, 8vw) like staggered panels. Docs prose caps at 52rem container and 65ch measure. Tap targets are at least 2.75rem.
+A single column at max 80rem with 1.25rem side gutters, sections separated by 6rem of top padding (4.5rem under 40rem). The hero stacks two sentences of display type above a two-column foot (1.1fr / 1fr from 56rem) holding the lede and install on the left and the agent reply on the right. Card sections use a gap-less ruled grid: 2 columns for skills from 40rem, a 6-column grid with 3 plus 3 then 2 plus 2 plus 2 spans for steps, and a 12-column grid with 4 across then 3 across from 64rem for the "why" cards. The transcript is an offset conversation: user lines left at full width up to 58rem, agent lines indented clamp(0, 8vw, 7rem) at max 40rem, and flush left under 40rem. Docs pages run at 52rem with a 65ch prose measure. Code and tables scroll horizontally inside their own frames; the page never does. Spacing is rem-based with no formal scale: 0.5 to 1.25rem inside components, 2.5rem to 3.5rem between blocks, 6rem between sections.
 
 ## Elevation & Depth
 
-No blur shadows. Depth is a keyline plus a misregistered second plate: a 3px red outline pseudo-element inset -3px, offset translate(6px, 5px) behind the panel, splash, speech field, and sheet card. It registers (translate 0) on hover and focus-within over 0.18s with cubic-bezier(0.22, 1, 0.36, 1). Buttons lift 2px on hover and drop 1px on press. Transcript beats arrive with an 8px, 6px slide and fade (0.26s, same easing) one at a time; reduced-motion shows them immediately.
+Flat, with no box-shadows anywhere. Depth is conveyed by ruled borders, by the one inverted ink block for code, and by a background step to Cell on hover or focus-within of a panel (0.18s, cubic-bezier(0.22, 1, 0.36, 1)).
 
 ### Named Rules
-**The Half-Dot Rule.** Idle is off register; attention registers the plate. Do not add soft shadows or hard offset shadows in ink.
+**The No Shadow Rule.** Nothing floats. A surface is either on the paper, ruled into a cell, or inverted to ink.
 
 ## Shapes
 
-Square keylined rectangles (3px ink border) for panels, captions, code, tabs, and buttons. Speech bubbles are the exception: the "you" bubble is a 1.6rem rounded oval with a skewed tail at bottom right; the agent bubble is 0.5rem. Chips are full pills with a 2px border. Heat is three 0.8rem circles, filled red for the level. The logo mark is a red dot with an ink ring. Panels tab: a small ink label sits straddling the top-left edge.
+Square. Every box, button, chip, code block and table has 0 radius and a 1px ink border. The only round forms are dots: the 0.75rem logo dot and the 0.7rem heat dots (filled when on, red outline when off). Grid cells share borders (top and left on the grid, right and bottom on each cell) so adjacent cells show a single rule.
 
 ## Components
 
-### Panel
-Paper-white keylined card, anatomy: tab label, uppercase title band, one-line summary, arrow action link. Title band takes a tone (paper, yellow, cyan, red with white text) and a ben-day dot screen. Registers its red plate on hover.
-
 ### Buttons
-- **Copy:** process red, white 800-weight text, 3px ink border, 2.75rem min height; copied state turns cyan with ink text.
-- **Replay and size selector:** paper or white fill, ink border; hover yellow; selected size is red with white text.
+- **Shape:** square (0), minimum height 2.75rem (2.25rem inside code bars).
+- **Copy (primary):** Hot Red fill, white text, 1px red border, mono 700 at 0.85rem, padding 0.75rem 1.1rem. Hover lifts 2px (translateY(-2px), 0.12s); active drops 1px. After copying it inverts to Ink fill with Paper text for 2s and announces "Copied to clipboard" through a polite live region.
+- **Replay (secondary):** Paper fill, Ink text, 1px ink border; hover inverts to Ink fill.
+- **Size toggle:** a joined segmented radiogroup in one ink frame; the selected segment is Ink fill with Paper text, hover is Cell.
+- **Tabs:** underline tabs on a 1px ink baseline; selected tab has Ink text and a 3px Hot Red underline, unselected is Muted Ink.
 
-### Caption Box
-Paper-white, 3px ink keyline, 1.0625rem Literata, max 62ch. The hot variant swaps the border to red.
+### Panels (cards)
+- **Anatomy:** one for every card on the site: Anton title, one-line summary, optional meta row, optional mono action with a trailing arrow. Padding 1.25rem, ruled cell, Paper fill, hover and focus-within to Cell.
+- **Step numerals:** on "steps" panels the lead is a Hot Red Anton numeral (clamp(2.4rem, 4vw, 3.4rem)), which is a real ordinal, not a label.
 
-### Speech Bubbles
-White fill, 3px keyline, skewed corner tail. Used in the hero speech field and transcript beats; speaker label above in mono caps.
+### Chips
+- Square, 1px ink border, mono 600 0.85rem, Paper fill. The recommended chip is Hot Red fill with white text and is the only red filled object in the transcript. Chips are display, not controls (cursor default).
 
-### Code Block
-Dark code ground, 3px keyline, mono bar with copy button, scrollable pre.
-
-### Tabs
-Paper tabs with ink border and no bottom edge; active and hover are yellow; the panel under them is paper with a 3px keyline.
+### Code blocks
+- The one inverted block: Code Ground with Code Text, 1px ink frame, a bar with a mono uppercase 0.75rem filename and a copy button, then a horizontally scrolling pre (0.875rem, 1.7). The pre is keyboard focusable. Under 40rem the hero and install pre wrap instead of scrolling.
 
 ### Navigation
-Mark at left (Londrina 2.1rem caps with red dot), links in 600-weight serif at 0.95rem, underline hover turning red (yellow in dark). Footer is an ink block with a 6px red top rule.
+- Header: Anton uppercase wordmark with a Hot Red dot, and mono 500 0.82rem links, underlined on hover; a hairline bottom rule. Wraps on narrow widths. A skip link slides in on focus. The footer opens with a full-weight ink rule and an oversized Anton wordmark (clamp(3rem, 12vw, 8rem)).
+
+### Transcript (signature)
+- Beats are revealed one at a time (opacity and 10px rise, 0.3s to 0.35s), staggered 1.5s, triggered when 35% in view; with reduced motion, or no JS, the full transcript is shown and the Replay button is hidden. The user line is huge Anton; the agent reply is small mono under an indented Hot Red speaker tag.
+
+### Brief sheet (signature)
+- A two-up: a Cell-filled rendered sheet (Anton title, bold inline terms, Anton h4 section heads) beside a code block of the raw markdown. Empty sections are dimmed to Muted Ink.
+
+### Heat meter
+- Three 0.7rem dots with 1.5px Hot Red outline; filled for the level; paired with a mono Muted Ink label.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** wrap content in a 3px ink keyline and put prose in bleached-paper caption boxes.
-- **Do** texture every colored field with a ben-day dot screen (9 to 11px pitch, 0.2 to 0.28 alpha).
-- **Do** keep idle panels off register by (6px, 5px) in red and snap them on hover and focus.
-- **Do** reserve red for the recommended answer, the primary action, and heat dots.
-- **Do** keep a 3px focus ring (#0b3d91, yellow in dark) with 3px offset.
+- **Do** let scale carry hierarchy: Anton uppercase for assertions, mono for the agent, Hanken for reading.
+- **Do** build structure from 1px ink or hairline rules and shared cell borders.
+- **Do** keep one Hot Red filled object per region and let it mean "the answer" or "the action".
+- **Do** keep 2.75rem minimum hit areas, a 3px offset focus ring (Focus Blue / Focus Yellow), and reduced-motion fallbacks that show everything.
+- **Do** keep copy in a plain, short, mono-friendly voice and design for light and dark together.
 
 ### Don't:
-- **Don't** use blur shadows or hard offset ink shadows; depth is keyline plus misregistration.
-- **Don't** set prose directly on a colored field; use a caption box or bubble.
-- **Don't** fill panels with flat unscreened color or introduce a fifth ink.
-- **Don't** put the page in a centered-hero-over-feature-cards SaaS layout.
+- **Don't** add shadows, gradients, rounded corners, glass or tinted fills; the world is flat ink on paper.
+- **Don't** return to the comic-page language (halftone dots, thick keylines, process colors, panel-title bands) this system replaced.
+- **Don't** set the agent in the display face or bold and lowercase Anton.
+- **Don't** use red for decoration, large areas, or text on body copy.
+- **Don't** use a centred hero over a row of identical feature cards; the hero is the two-sentence stage with the agent reply beside the install.

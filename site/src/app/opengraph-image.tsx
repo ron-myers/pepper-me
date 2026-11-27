@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const dynamic = 'force-static'
-export const alt = 'Pepper: agents get the one-line ticket. Pepper gives them the kickoff meeting.'
+export const alt = 'Pepper: agents get the one-line task. Pepper gives them the kickoff meeting.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -19,7 +19,7 @@ export default function Image() {
           PEPPER
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', fontSize: 84, fontWeight: 900, lineHeight: 1, textTransform: 'uppercase' }}>
-          <span>Agents get the one-line ticket.</span>
+          <span>Agents get the one-line task.</span>
           <span style={{ background: '#17140f', color: '#f8c928', padding: '4px 14px', marginTop: 10, alignSelf: 'flex-start' }}>
             Pepper gives them the kickoff.
           </span>

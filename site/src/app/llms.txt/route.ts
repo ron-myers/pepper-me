@@ -5,7 +5,7 @@ export const dynamic = 'force-static'
 export function GET() {
   const body = `# Pepper
 
-> Skills that give your agent the context it needs to do its best work. Agents get the one-line ticket; Pepper gives them the kickoff meeting. Current version: ${getVersion()}.
+> Skills that give your agent the context it needs to do its best work. Agents get the one-line task; Pepper gives them the kickoff meeting. Current version: ${getVersion()}.
 
 Pepper is a set of agent skills for Claude Code. Each skill is a short, structured conversation that makes sure your agent has what it needs before it starts.
 

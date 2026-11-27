@@ -11,27 +11,36 @@ import { INSTALL, REPO_URL } from '@/lib/site'
 export default function Home() {
   return (
     <>
-      {/* 1. Hero: a splash panel plus two speech panels */}
+      {/* 1. Hero: two voices */}
       <section className="page hero" aria-labelledby="h-hero">
-        <div className="splash">
-          <h1 id="h-hero">
-            Agents get the one-line ticket. <em>Pepper gives them the kickoff meeting.</em>
-          </h1>
-          <p className="cap">
-            Skills that give your agent the context it needs to do its best work. Install once, then type{' '}
-            <code>pepper me</code>.
-          </p>
-          <HeroInstall text={INSTALL.plugin} />
-          <p className="alt">
-            <a href={REPO_URL}>See it on GitHub</a>
-          </p>
-        </div>
-        <div className="speech" aria-hidden="true">
-          <div className="sp">
-            <p className="bubble you">Build a pricing page.</p>
+        <h1 id="h-hero">
+          <span className="voice-you">Agents get the one-line task.</span>
+          <span className="voice-pepper">Pepper gives them the kickoff meeting.</span>
+        </h1>
+        <div className="hero-foot">
+          <div className="hero-cta">
+            <p className="lede">
+              Skills that give your agent the context it needs to do its best work. Install once, then type{' '}
+              <code>pepper me</code>.
+            </p>
+            <HeroInstall text={INSTALL.plugin} />
+            <p className="alt">
+              <a href={REPO_URL}>See it on GitHub</a>
+            </p>
           </div>
-          <div className="sp q">
-            <p className="bubble agent">For whom? And what does done look like?</p>
+          <div className="agentreply" aria-hidden="true">
+            <p className="agent-label">agent&gt;</p>
+            <p>Here&apos;s what I think you want:</p>
+            <p>Goal: convert free users to the Pro plan</p>
+            <p>Audience: existing free users, not new visitors</p>
+            <p>Done: page live, linked from the upgrade banner</p>
+            <ul className="chips">
+              <li className="chip" data-rec>
+                Yes, keep going
+              </li>
+              <li className="chip">Mostly</li>
+              <li className="chip">No, start over</li>
+            </ul>
           </div>
         </div>
       </section>
