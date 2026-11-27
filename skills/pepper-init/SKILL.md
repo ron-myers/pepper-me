@@ -14,7 +14,7 @@ Pepper init records what is true and what is unknown. It does not invent convent
 1. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`) behave exactly as in pepper-me.
 2. If neither exists, use these defaults:
    - default_heat: medium, tone: direct, questions_per_round: 4, ask_what_i_missed: true
-   - other_sessions.enabled: false
+   - other_sessions.enabled: false (lookback_hours 24, max_sessions 10, include_past_chats true)
    - conflict_check.enabled: true, ask_on: hard, log_soft: true
    - init.path: PROJECT.md
    - init.scan: true
@@ -38,7 +38,7 @@ Look for:
 - **Conventions:** lint and format configs, tsconfig, editorconfig, directory layout, naming patterns visible in the code, commit style in `git log`.
 - **Verification:** test runner and where tests live, CI config, pre-commit hooks, type checking.
 - **Existing agent context:** CLAUDE.md, AGENTS.md, `.cursor/rules`, `.github/copilot-instructions.md`, `.pepper/brief.md`, memory.
-- **Other sessions (only if enabled):** same rules as pepper-me. User messages only, newest first, capped at `max_sessions`, respect `only_projects` and `skip_projects`. Prefer a subagent so raw transcripts stay out of the main context.
+- **Other sessions (only if enabled):** same rules as pepper-me. User messages only, newest first, capped at `max_sessions`, respect `only_projects` and `skip_projects`. If `include_past_chats` is true and past-chat search tools exist, search them with a few project keywords. Prefer a subagent so raw transcripts stay out of the main context.
 
 Skim. Do not read the whole repo. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
 

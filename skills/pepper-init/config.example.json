@@ -9,7 +9,8 @@
     "lookback_hours": 24,
     "max_sessions": 10,
     "only_projects": [],
-    "skip_projects": []
+    "skip_projects": [],
+    "include_past_chats": true
   },
 
   "conflict_check": {
