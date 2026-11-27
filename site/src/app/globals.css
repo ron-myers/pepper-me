@@ -264,3 +264,6 @@ h2 + .grid, h2 + .narration { margin-top: 1.75rem; }
 .asked-a { font-weight: 700; }
 .opt[data-on] { background: var(--cell); }
 .askbox .replay { margin-top: 0.5rem; }
+
+.fix { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.fix-line { margin: 0 0 0.75rem; font: 400 clamp(2.4rem, 6vw, 4.5rem)/0.95 var(--font-d); text-transform: uppercase; color: var(--accent); }

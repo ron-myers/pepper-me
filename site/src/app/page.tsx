@@ -50,6 +50,13 @@ export default function Home() {
             A vague request gets a confident, plausible answer to the wrong question. You find out 20 minutes later,
             correct it, and repeat. Every round trip costs you time and the agent&apos;s context window.
           </p>
+          <div className="fix">
+            <p className="fix-line">Pepper fixes this.</p>
+            <p className="cap">
+              <code>pepper me</code> does what a good colleague does in a 30-minute kickoff, in a few minutes.{' '}
+              <Link href="/#how">See how it works</Link>.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -78,7 +85,7 @@ export default function Home() {
       </section>
 
       {/* 4. How it works */}
-      <section className="page" aria-labelledby="h-how">
+      <section className="page" id="how" aria-labelledby="h-how">
         <h2 id="h-how">How pepper-me works</h2>
         <p className="lede">A good colleague&apos;s 30-minute kickoff, in a few minutes.</p>
         <ol className="grid steps">
