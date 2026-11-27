@@ -1,6 +1,6 @@
 {
   "name": "pepper-me",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Run a kickoff meeting with your agent before it starts work. It asks the questions a sharp colleague would, checks for conflicts, and writes a brief you approve.",
   "author": {
     "name": "Ron Myers",
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/ron-myers/pepper-me",
   "repository": "https://github.com/ron-myers/pepper-me",
   "license": "MIT",
-  "keywords": ["clarify", "intent", "interview", "questions", "brief", "planning", "grill-me"]
+  "keywords": ["init", "project-context", "clarify", "intent", "interview", "questions", "brief", "planning", "grill-me"]
 }

@@ -11,7 +11,7 @@ Agents get the one-line ticket. They're capable, but they can only work with the
 | Skill | What it does | Status |
 |---|---|---|
 | [`pepper-me`](#pepper-me) | A kickoff meeting before any task. Your agent asks, you answer, you approve a brief. | Available |
-| `pepper-init` | The same idea for a new project. Interviews you once and sets up the context files your agent reads every session. | Planned |
+| [`pepper-init`](#pepper-init) | The same idea for a whole project. Interviews you once and writes `PROJECT.md`, the context file your agent reads every session. | Available |
 
 ## Install
 
@@ -193,6 +193,67 @@ Other-session lookup is **off by default**. When on, pepper me reads Claude Code
 **Isn't this more work for me?** For a mild session, it's one card of taps. A wrong guess costs far more.
 
 **Does it work without AskUserQuestion?** Yes. It falls back to plain-text questions with the same structure.
+
+---
+
+## pepper-init
+
+> Type `pepper me init`. Your agent reads your repo, asks only what it can't find, and writes `PROJECT.md`. Every future session starts with that context.
+
+### The problem
+
+Every new session starts cold. The agent re-learns your commands, guesses your conventions, and breaks the rule you explained last week. A hand-written CLAUDE.md helps, but nobody writes the whole thing, and nobody keeps it current.
+
+### The fix
+
+`pepper me init` is the first-day-on-the-project conversation, done once and saved:
+
+1. **Reads the repo.** README, manifests, CI, lint and test config, recent commits, existing agent files. Every fact keeps its source.
+2. **Reflects back.** "Here's what I read about this project." You correct a draft.
+3. **Asks only the gaps.** Purpose, users, constraints, conventions, how work is verified. Questions cite your own files: "CI runs `pnpm test` but package.json has no `test` script. Which is right?"
+4. **Checks for conflicts.** README says Jest, package.json says Vitest. You see both and choose.
+5. **Writes `PROJECT.md`.** You approve a preview first. Unknowns are marked open, never guessed.
+6. **Links it.** With your OK, it appends a three-line pointer to `CLAUDE.md` or `AGENTS.md` so agents read the file. It touches nothing else in them.
+
+### Re-running
+
+Run it again when the project changes. It parses the existing file, treats settled decisions as settled, and asks only about what changed or is still open. Earlier decisions are never rewritten. A changed answer is logged as a new row. If nothing changed, it says so and stops.
+
+### Works with pepper me
+
+`pepper me` reads `PROJECT.md` first. It never asks what the file already answers, and it brings up open items when they matter to the task.
+
+### Usage
+
+```
+pepper me init
+pepper me init mild
+pepper me init hot, candor
+pepper me init refresh
+```
+
+Same heat, tone and `sessions` arguments as `pepper me`. `refresh` forces update mode.
+
+### What `PROJECT.md` contains
+
+Purpose, users, stack and commands, conventions, constraints, never-do list, verification, working agreements, unconfirmed scan facts, open items, and a decision log. Empty sections are dropped. It stays under about 150 lines.
+
+### Configuration
+
+The `init` block in the same config files as `pepper me`. See `skills/pepper-init/config.example.json`.
+
+```json
+{
+  "init": {
+    "path": "PROJECT.md",
+    "scan": true,
+    "link_agent_files": "ask",
+    "agent_files": ["CLAUDE.md", "AGENTS.md"]
+  }
+}
+```
+
+`link_agent_files` is `ask`, `auto` or `never`.
 
 ---
 
