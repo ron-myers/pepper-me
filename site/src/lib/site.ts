@@ -4,7 +4,7 @@ import path from 'node:path'
 const repoRoot = path.resolve(process.cwd(), '..')
 
 export const REPO_URL = 'https://github.com/ron-myers/pepper-me'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://pepper-me.vercel.app'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://pepperme.dev'
 
 export function getVersion(): string {
   const raw = fs.readFileSync(path.join(repoRoot, '.claude-plugin/plugin.json'), 'utf8')
