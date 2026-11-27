@@ -249,3 +249,18 @@ h2 + .grid, h2 + .narration { margin-top: 1.75rem; }
 .opt-rec { margin-left: auto; font: 600 0.72rem var(--font-m); color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
 .chat-status { margin: 0; min-height: 1.4em; font-size: 0.85rem; color: var(--muted); }
 .chatwin .fine { padding: 0.6rem 1.25rem 1rem; border-top: 1px solid var(--hair); }
+.askbox:focus { outline: none; }
+.askbox:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.ask-meta { display: flex; justify-content: space-between; gap: 1rem; margin: 0 0 0.35rem; font: 700 0.75rem/1.2 var(--font-m); text-transform: uppercase; letter-spacing: 0.08em; }
+.ask-kind { color: var(--accent); }
+.ask-count { color: var(--muted); }
+.ask-why { margin: 0 0 0.8rem; font-size: 0.85rem; color: var(--muted); }
+.ask-ctx { margin: 0; padding: 0.5rem 1rem 0.25rem; font-size: 0.82rem; color: var(--muted); }
+.ask legend { max-width: calc(100% - 1.5rem); }
+.asked { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; font-size: 0.82rem; }
+.asked li { display: grid; grid-template-columns: auto 1fr; gap: 0 0.75rem; border-top: 1px solid var(--hair); padding-top: 0.5rem; }
+.asked-kind { grid-row: span 2; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.7rem; padding-top: 0.15rem; max-width: 8rem; }
+.asked-q { color: var(--muted); }
+.asked-a { font-weight: 700; }
+.opt[data-on] { background: var(--cell); }
+.askbox .replay { margin-top: 0.5rem; }

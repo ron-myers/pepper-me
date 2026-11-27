@@ -35,7 +35,7 @@ export default function Home() {
 
       {/* 2. The problem */}
       <section className="page problem" aria-labelledby="h-problem">
-        <h2 id="h-problem">The first day with your best employee</h2>
+        <h2 id="h-problem">The kickoff meeting with your best employee</h2>
         <div className="narration">
           <p className="cap">
             Picture the first day on a big project with your best employee. You don&apos;t hand over a one-line ticket and
