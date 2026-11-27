@@ -1,0 +1,15 @@
+{
+  "name": "pepper-me",
+  "owner": {
+    "name": "Ron Myers",
+    "url": "https://github.com/ron-myers"
+  },
+  "plugins": [
+    {
+      "name": "pepper-me",
+      "source": "./",
+      "description": "Run a kickoff meeting with your agent before it starts work. It asks the questions a sharp colleague would, checks for conflicts, and writes a brief you approve.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+.DS_Store
+.pepper/
+.conductor/
+node_modules/
