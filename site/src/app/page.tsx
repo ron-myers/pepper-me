@@ -87,7 +87,7 @@ export default function Home() {
       {/* 4. How it works */}
       <section className="page" id="how" aria-labelledby="h-how">
         <h2 id="h-how">How pepper-me works</h2>
-        <p className="lede">A good colleague&apos;s 30-minute kickoff, in a few minutes.</p>
+        <p className="lede">Before your agent starts a task, <code>pepper me</code> gets it the context a good colleague would ask for in a 30-minute kickoff. It reads what it can, asks only what it can&apos;t find, and writes a brief you approve. Five steps, a few minutes.</p>
         <ol className="grid steps">
           {STEPS.map((s, i) => (
             <Panel as="li" key={s.title} tab={`Step ${i + 1}`} tone={i === 4 ? 'yellow' : 'paper'} title={s.title} summary={s.body} />
