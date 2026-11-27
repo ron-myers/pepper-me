@@ -2,3 +2,4 @@
 .pepper/
 .conductor/
 node_modules/
+.candid/last-review.json

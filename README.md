@@ -118,23 +118,27 @@ A `card` looks like this:
 
 ```markdown
 ---
+pepper_brief: v1
 version: 1
-status: approved
+created: 2026-11-27
 heat: medium
+size: card
+task: Pricing page for the Pro plan
+status: approved
 ---
 
-# Pricing page for Pro plan
+# Brief: Pricing page for the Pro plan
 
 **Goal:** Convert free users to Pro.
 **Audience:** Existing free users arriving from the upgrade banner.
-**Done:** Page live and linked from the banner.
+**Done looks like:** Page live and linked from the banner.
 
 ## Constraints
 - Monthly pricing only at launch
 - No discount messaging
 
 ## Assumptions
-- Reuse the current marketing layout (stated, not asked)
+- Reuse the current marketing layout (low-risk)
 ```
 
 ### Configuration

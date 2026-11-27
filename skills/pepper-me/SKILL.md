@@ -81,7 +81,7 @@ Always use AskUserQuestion. Each call holds up to `questions_per_round` question
 
 ## 5. Conflict check (after every round)
 
-If `conflict_check.enabled`, compare each new answer against:
+If `conflict_check.enabled`, compare each new answer against the sources listed in `conflict_check.sources` (default: all of them):
 
 - earlier answers in this run and the reflection
 - what the user said earlier in this session
@@ -150,6 +150,7 @@ Drop any section with nothing in it. Never show empty headings.
 ```markdown
 ---
 pepper_brief: v1
+version: 1
 created: <ISO date>
 heat: <mild|medium|hot>
 size: <line|card|page|full>
@@ -201,7 +202,7 @@ If `brief.template` points to a file, use its sections instead and keep the fron
 ### Save and version
 
 - If `brief.save` is true and the folder is writable, save to `brief.path`. Otherwise show the brief in chat.
-- If a brief already exists and `versioning` is true, bump the version (v2, v3). Keep the old decision log and append new entries. Never overwrite earlier decisions without logging the change.
+- If a brief already exists and `versioning` is true, increment `version` (2, 3). `pepper_brief` is the format version. Never change it. Keep the old decision log and append new entries. Never overwrite earlier decisions without logging the change.
 
 ### Approve
 
