@@ -26,6 +26,7 @@
     "save": true,
     "path": ".pepper/brief.md",
     "template": null,
-    "versioning": true
+    "versioning": true,
+    "auto_start": false
   }
 }

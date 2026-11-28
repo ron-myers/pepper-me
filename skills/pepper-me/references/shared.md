@@ -63,5 +63,5 @@ Do not start the task until the file has `status: approved`. For `pepper-me` tha
 | "The task is small, skip the interview." | Task size does not decide whether to ask. Run a mild round. |
 | "Memory already answers this." | Memory is a source, not an answer. Cite it in an option and let the user confirm. |
 | "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
-| "The file is obvious, skip approval." | No approval, no task. Ask the approve card. |
+| "The file is obvious, skip approval." | No approval, no task. Ask the approve card. Only auto start in `pepper-me` (`brief.auto_start: true` or the `auto` argument) replaces the card. |
 | "This conflict is minor, I'll pick one." | Hard conflicts get a card. Soft ones get logged. Never pick silently. |
