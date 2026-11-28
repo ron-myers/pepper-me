@@ -48,7 +48,7 @@ export const STEPS = [
   },
   {
     title: 'Writes a brief',
-    body: 'One page you approve. Then, and only then, work begins.',
+    body: 'One page you approve. By default, work begins only after you approve it.',
   },
 ]
 

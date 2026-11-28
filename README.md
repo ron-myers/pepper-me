@@ -34,7 +34,7 @@ npx skills add ron-myers/pepper-me
 
 ## pepper-me
 
-> Type `pepper me`. Your agent runs the kickoff meeting. Work starts only after you say yes.
+> Type `pepper me`. Your agent runs the kickoff meeting. By default, work starts only after you say yes.
 
 ### The problem
 
@@ -48,7 +48,7 @@ A vague request gets a confident, plausible answer to the wrong question. You fi
 2. **Reflects back.** "Here's what I think you want." You correct a draft instead of starting from a blank page.
 3. **Asks what's missing.** Why this matters, who it's for, what done looks like, what could go wrong. Intent before details.
 4. **Checks for conflicts.** If an answer contradicts what you said earlier, or what the repo says, it shows you both quotes and asks.
-5. **Writes a brief.** One page you approve. Then, and only then, work begins.
+5. **Writes a brief.** One page you approve. By default, work begins only after you approve it.
 
 ### What it looks like
 
