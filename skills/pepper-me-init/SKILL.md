@@ -15,22 +15,26 @@ Pepper Me init records what is true and what is unknown. It does not invent conv
 
 1. Read `references/shared.md` next to this file now. It holds the shared defaults, tones, session rules, round mechanics and red flags used below.
    - If you are not Claude Code, also read `references/<agent>-tools.md` for your agent (`codex`, `cursor`, `gemini`, `copilot`). It says how to ask questions and what is unavailable.
-2. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`) are described in `references/shared.md`.
+2. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`preset`, `default_heat`, `default_rigor`, `tone`, `questions_per_round`, `max_questions`, `answer_style`, `recommend`, `research`, `reflect`, `ask_what_i_missed`, `show_progress`, `other_sessions`, `conflict_check`) are described in `references/shared.md`.
 3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - init.path: PROJECT.md
    - init.scan: true
    - init.link_agent_files: ask
    - init.agent_files: ["CLAUDE.md", "AGENTS.md"]
 4. Parse arguments after the trigger, any order, all optional:
+   - Preset: `quick`, `standard`, `deep`, `audit` (see Presets in `references/shared.md`)
    - Heat: `mild`, `medium`, `hot`
+   - Rigor: `gentle`, `firm`, `relentless`
    - Tone: any tone name from Tones in `references/shared.md` (`direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`)
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    - `refresh` to force update mode (see section 2)
-   Example: `pepper me init hot, candor`
+   Example: `pepper me init hot, relentless, candor`
+
+   Then resolve every setting once with Presets in `references/shared.md`: defaults, then the preset, then the config files, then these arguments.
 
 ## 1. Scan silently
 
-Skip this section only if `init.scan` is false. Otherwise read before asking. Record every fact with its source file, and keep it as a candidate, not as truth.
+Skip this section if `init.scan` is false or `research` is `none`. In update mode (section 2) still read the existing `PROJECT.md`. Otherwise read before asking. With `research: deep`, also follow Research in `references/shared.md`. Record every fact with its source file, and keep it as a candidate, not as truth.
 
 Look for:
 
@@ -39,7 +43,7 @@ Look for:
 - **Conventions:** lint and format configs, tsconfig, editorconfig, directory layout, naming patterns visible in the code, commit style in `git log`.
 - **Verification:** test runner and where tests live, CI config, pre-commit hooks, type checking.
 - **Existing agent context:** CLAUDE.md, AGENTS.md, `.cursor/rules`, `.github/copilot-instructions.md`, `.pepper/brief.md`, memory.
-- **Other sessions (only if enabled):** follow Other sessions in `references/shared.md`. Use a few project keywords for any past-chat search.
+- **Other sessions (only if enabled, or `research` is `deep`):** follow Other sessions in `references/shared.md`. Use a few project keywords for any past-chat search.
 
 Read only the sources listed above. Read nothing else unless the user names it. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
 
@@ -55,6 +59,8 @@ Tell the user in one line what you read ("Read README, package.json, CI config, 
   - If nothing changed and nothing is open, say so and stop. Do not manufacture questions.
 
 ## 3. Reflect
+
+If `reflect` is `off`, skip this section. Show no reflection and no check card, and go to section 4. With `every_round`, also follow Reflect in `references/shared.md` after each round.
 
 Open with 4 to 6 lines: "Here's what I read about this project". Cover purpose, users, stack, and the biggest unknown. Then ask with AskUserQuestion:
 
@@ -75,7 +81,7 @@ Ask in this order. Finish a layer before starting the next. Skip any layer the s
 
 Score each unknown by cost of a wrong guess times how unsure you are. Ask the high scorers. Turn the rest into entries under Open items or stated assumptions.
 
-Heat sets depth:
+Heat sets depth only. Rigor sets the pressure (see Rigor in `references/shared.md`).
 
 - **mild:** 1 round. Purpose, users, and the single riskiest unknown.
 - **medium:** up to 3 rounds. Layers 1 to 5.
@@ -83,7 +89,7 @@ Heat sets depth:
 
 ## 5. Ask in rounds
 
-Follow Round mechanics in `references/shared.md`. Always use AskUserQuestion. When the guess came from a file, cite it in the option description: "From package.json scripts", "From CI config".
+Follow Round mechanics in `references/shared.md`, including answer style, recommend and progress. Always use AskUserQuestion, except for the plain-text questions that `answer_style` calls for. When the guess came from a file, cite it in the option description: "From package.json scripts", "From CI config".
 
 Questions must be about this project, never generic. "Your CI runs `pnpm test` but package.json has no `test` script. Which is right?" beats "What's your test command?"
 
@@ -98,21 +104,24 @@ Never silently pick a winner. When the user says the repo is out of date, add an
 
 ## 7. Messy answers
 
-- **Vague:** rephrase once with sharper options. If still vague, log your best reading as an assumption.
+- **Vague:** follow Rigor in `references/shared.md`. Log assumptions under Unconfirmed or Open items.
 - **Skipped:** record under Open items.
 - **"You decide":** make the call, record it in Decisions as delegated, with one line of reasoning.
 - **"go", "enough", "write it":** stop asking and write the file.
 
 ## 8. Stop test
 
-Stop when all hold, or the heat limit is reached:
+Stop when all hold, or the heat limit or `max_questions` is reached:
 
 - purpose and users are settled
 - every high-risk unknown has an answer or an Open item
 - no hard conflicts are open
 - the build, test, and run commands are confirmed or listed as open
 
-If `ask_what_i_missed` is true, ask one last card: "Anything I didn't ask that a new teammate should know?" Options: "No, write it (Recommended)", "Yes". On hot, also ask "What's the mistake people make here most often?"
+Then ask the closing cards (see Closing cards in `references/shared.md`):
+
+- If `ask_what_i_missed` is `end` or `every_round` (`true` counts as `end`), ask: "Anything I didn't ask that a new teammate should know?" Options: "No, write it (Recommended)", "Yes".
+- If rigor is `relentless`, then ask the fail card: "What's the mistake people make here most often?" Options: "Nothing comes to mind, write it (Recommended)", "Something does" (user types it in Other). Log the answer under Never do or Open items. It runs at any heat.
 
 ## 9. Write PROJECT.md
 

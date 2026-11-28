@@ -41,7 +41,7 @@ The skills are the same on every agent. Most agents have their own manifest at t
 | Codex | `npx skills add ron-myers/pepper-me`, or copy a folder from `skills/` into `~/.agents/skills/` | [`codex-tools.md`](skills/pepper-me/references/codex-tools.md). Manifest: `.codex-plugin/plugin.json`. |
 | Cursor | `npx skills add ron-myers/pepper-me` | [`cursor-tools.md`](skills/pepper-me/references/cursor-tools.md). Manifest: `.cursor-plugin/plugin.json`. |
 
-Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents leave `other_sessions.enabled` false. More agents are tracked in the issues.
+Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents set `other_sessions.enabled` to `false`. That also keeps the `deep` and `audit` presets from trying the lookup. More agents are tracked in the issues.
 
 ---
 
@@ -93,7 +93,7 @@ Agent:   Brief saved to .pepper/brief.md. Approve to start?
 - **Ranked by risk.** Each unknown is scored by cost of a wrong guess times how unsure the agent is. High scores become questions. Low scores become stated assumptions you can veto in the brief.
 - **Batched questions.** Up to 4 clickable questions per card, grouped so none depend on each other.
 - **Handles messy answers.** Vague, skipped, "you decide" and "go" each have defined behavior. Say `go` at any point to jump to the brief.
-- **Clear finish line.** It stops when every high-risk unknown has an answer or a logged assumption, then asks one last thing: "What didn't I ask?"
+- **Clear finish line.** It stops when every high-risk unknown has an answer or a logged assumption, then asks one last thing: "What didn't I ask?" With `relentless` rigor it also asks "What would make this fail?"
 - **Answers travel.** With other-session lookup on, answers you gave in other sessions appear as one-tap recommendations labelled with their source. You still confirm each one.
 - **Check-ins mid-task.** Run it again when the work drifts. The brief bumps a version and the decision log keeps the history.
 
@@ -103,6 +103,8 @@ Agent:   Brief saved to .pepper/brief.md. Approve to start?
 pepper me
 pepper me mild
 pepper me hot, candor
+pepper me hot, relentless
+pepper me audit
 pepper me hot, skeptic, full
 pepper me sessions
 ```
@@ -113,12 +115,60 @@ A bare `pepper me` after your agent asked you questions turns those questions in
 
 | Argument | Values | Default |
 |---|---|---|
-| Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |
-| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
+| Preset | `quick`, `standard`, `deep`, `audit` | none |
+| Heat | `mild` one round, `medium` up to three, `hot` the full session. Depth only. | `medium` |
+| Rigor | `gentle`, `firm`, `relentless`. How hard it presses on each answer. | `firm` |
+| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`. Wording only. | `direct` |
 | Brief size | `line`, `card`, `page`, `full` | sized automatically |
 | Sessions | `sessions`, `no-sessions` | off |
 | Auto start | `auto`, `no-auto` | off |
 | After task | `after:<name>`, `no-after` | off |
+
+### Heat, rigor and tone
+
+Three settings, three jobs:
+
+- **Heat** is how long the interview runs: rounds and layers.
+- **Rigor** is how hard it presses on each answer.
+  - `gentle` takes answers as given and logs gaps as assumptions.
+  - `firm` rephrases a vague answer once, then logs an assumption.
+  - `relentless` tests the goal in round 1, asks for numbers or evidence, asks "What would make this the wrong call?", re-asks a vague answer up to 3 times, and ends with "What would make this fail?" at any heat.
+- **Tone** is the wording. It never changes how often it follows up.
+
+"You decide", `go`, `enough` and `write it` end the pressure at every level.
+
+### Presets
+
+A preset sets several keys at once. Keys you set yourself override it.
+
+| Key | `quick` | `standard` | `deep` | `audit` |
+|---|---|---|---|---|
+| `default_heat` | `mild` | `medium` | `hot` | `hot` |
+| `default_rigor` | `gentle` | `firm` | `firm` | `relentless` |
+| `research` | `light` | `light` | `deep` | `deep` |
+| `reflect` | `off` | `start` | `every_round` | `every_round` |
+| `ask_what_i_missed` | `off` | `end` | `end` | `every_round` |
+| `answer_style` | `choice` | `choice` | `mixed` | `mixed` |
+| `recommend` | `always` | `always` | `always` | `sourced` |
+
+A preset named in a config file sits below your config keys. A preset typed as an argument sits above them, so `pepper me deep` always runs deep, and `pepper me deep gentle` runs deep with gentle rigor. Presets don't set `tone`, `questions_per_round`, `max_questions` or `show_progress`. A config key counts only if you wrote it, so delete the keys you copied from `config.example.json` and don't want to pin. An old `ask_what_i_missed: true` beats a preset's value, like any key.
+
+### Interview settings
+
+| Key | Values | Default |
+|---|---|---|
+| `preset` | `null`, `quick`, `standard`, `deep`, `audit` | `null` |
+| `default_heat` | `mild`, `medium`, `hot` | `medium` |
+| `default_rigor` | `gentle`, `firm`, `relentless` | `firm` |
+| `tone` | any tone name | `direct` |
+| `questions_per_round` | `1` to `4`, or `auto` (one per independent unknown) | `4` |
+| `max_questions` | `null`, or a number. Caps the questions asked across rounds. Conflict, closing and approve cards don't count. | `null` |
+| `answer_style` | `choice` cards, `open` plain text, `mixed` cards plus one open question per round | `choice` |
+| `recommend` | `always`, `sourced` (only when the guess cites a file, memory or session), `never` | `always` |
+| `research` | `none`, `light` (repo and memory), `deep` (adds git history, linked issues and other sessions, unless you opted out) | `light` |
+| `reflect` | `off`, `start`, `every_round` | `start` |
+| `ask_what_i_missed` | `off`, `end`, `every_round`. `true` means `end`, `false` means `off`. | `end` |
+| `show_progress` | `true`, `false`. Prints "Round 2 of up to 3." | `true` |
 
 ### The brief
 
@@ -164,10 +214,18 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 
 ```json
 {
+  "preset": null,
   "default_heat": "medium",
+  "default_rigor": "firm",
   "tone": "direct",
   "questions_per_round": 4,
-  "ask_what_i_missed": true,
+  "max_questions": null,
+  "answer_style": "choice",
+  "recommend": "always",
+  "research": "light",
+  "reflect": "start",
+  "ask_what_i_missed": "end",
+  "show_progress": true,
   "other_sessions": {
     "enabled": false,
     "lookback_hours": 24,
@@ -199,7 +257,7 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 
 ### Privacy
 
-Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
+Other-session lookup is **off by default**. The `deep` research level (used by the `deep` and `audit` presets) turns it on for that run. Set `other_sessions.enabled` to `false` in a config file, or pass `no-sessions`, and `deep` leaves your sessions alone. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
 
 ### Auto start
 
@@ -258,10 +316,11 @@ Run it again when the project changes. It parses the existing file, treats settl
 pepper me init
 pepper me init mild
 pepper me init hot, candor
+pepper me init audit
 pepper me init refresh
 ```
 
-Same heat, tone and `sessions` arguments as `pepper me`. `refresh` forces update mode.
+Same preset, heat, rigor, tone and `sessions` arguments as `pepper me`. `refresh` forces update mode.
 
 ### What `PROJECT.md` contains
 

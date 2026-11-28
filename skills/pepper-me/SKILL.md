@@ -17,24 +17,28 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
    - after_task.run: null
    - conflict_check.repo_files: README.md, CLAUDE.md, AGENTS.md, docs/, .pepper/brief.md (`PROJECT.md` is always included)
 4. Parse arguments after the trigger. Any order, all optional:
+   - Preset: `quick`, `standard`, `deep`, `audit` (see Presets in `references/shared.md`)
    - Heat: `mild`, `medium`, `hot`
+   - Rigor: `gentle`, `firm`, `relentless`
    - Tone: any tone name from Tones in `references/shared.md`
    - Brief size: `line`, `card`, `page`, `full`
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    - `auto` or `no-auto` to override brief.auto_start for this run
    - `after:<name>` or `no-after` to override after_task.run for this run
-   Example: `pepper me hot, candor, full`
+   Example: `pepper me hot, relentless, candor, full`
+
+   Then resolve every setting once with Presets in `references/shared.md`: defaults, then the preset, then the config files, then these arguments.
 5. Resolve auto start once. It is on if `brief.auto_start` is true, or if `auto` was passed. `no-auto` turns it off. Sections 8, 10 and 11 say "auto start is on" for this result.
 6. Resolve the follow-up once. It is `<name>` if `after:<name>` was passed, even when `after_task.run` is null. Otherwise it is `after_task.run`. `no-after` clears it, wins if `after:<name>` is also passed, and does nothing when none is set. An empty string in `after_task.run` counts as null. Section 11a says "the follow-up" for this result.
 
 ## 1. Gather context silently
 
-Before asking anything, collect what is already known. Record every fact with its source.
+Before asking anything, collect what is already known. Record every fact with its source. How far to look depends on `research` (see Research in `references/shared.md`). With `none`, skip the repo (`PROJECT.md` too), memory and session reads below and use only this session.
 
 - **This session:** everything the user has said so far, attachments, and the task they want done. If the trigger has no task text after it (a bare `pepper me`), follow section 1a.
 - **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then read at most the files in `conflict_check.repo_files`, plus the README and manifest files (package or config files).
 - **Memory:** any stored context about the user, their projects and preferences.
-- **Other sessions (only if enabled):** follow Other sessions in `references/shared.md`.
+- **Other sessions (only if enabled, or `research` is `deep`):** follow Other sessions in `references/shared.md`.
 
 Never ask a question the context already answers. Build the reflection and ask round 1 from this session, the repo and memory only. Add other-session and past-chat results from round 2 on, if they have arrived.
 
@@ -43,12 +47,14 @@ Never ask a question the context already answers. Build the reflection and ask r
 If the user says only `pepper me` (arguments at most, no task text), the recent chat is the task. If an approved brief already exists for this task, section 11 applies instead.
 
 - Collect the questions, clarifications and options your last messages raised. Drop any the user already answered.
-- Make them the first questions of round 1, ahead of your own. Follow Round mechanics in `references/shared.md`: fit options to 2 to 4 with your best guess first, and carry overflow questions to the next round.
-- Build the reflection in section 2 from that chat.
+- Make them the first questions of round 1, ahead of your own. Follow Round mechanics in `references/shared.md`: fit options to 2 to 4, ordered per `recommend`, and carry overflow questions to the next round.
+- Build the reflection in section 2 from that chat (skip it if `reflect` is `off`).
 - If your recent messages raised no questions, use the chat as context and continue as usual.
 - If the chat holds no task either, ask one open question about the goal, as in section 2.
 
 ## 2. Reflect first
+
+If `reflect` is `off`, skip this section. Show no reflection and no check card, and go to section 3. With `every_round`, also follow Reflect in `references/shared.md` after each round.
 
 Open with 3 to 4 lines: "Here's what I think you want", covering goal, audience, what done looks like, and the biggest unknown. Then ask with AskUserQuestion:
 
@@ -68,7 +74,7 @@ Work in layers. Finish intent before moving to details.
 
 Score each unknown by cost of a wrong guess times how unsure you are. Ask the high scorers. Turn low scorers into stated assumptions instead of questions.
 
-Heat sets the depth:
+Heat sets the depth only. Rigor sets the pressure (see Rigor in `references/shared.md`).
 
 - **mild:** 1 round. Intent only plus the single riskiest unknown.
 - **medium:** up to 3 rounds. Intent, scope, key constraints.
@@ -76,7 +82,7 @@ Heat sets the depth:
 
 ## 4. Ask in rounds
 
-Follow Round mechanics in `references/shared.md`. Always use AskUserQuestion.
+Follow Round mechanics in `references/shared.md`, including answer style, recommend and progress. Always use AskUserQuestion, except for the plain-text questions that `answer_style` calls for.
 
 ## 5. Conflict check (after every round)
 
@@ -97,20 +103,23 @@ If `ask_on` is `all`, ask about soft conflicts too. Never silently pick a winner
 
 ## 6. Messy answers
 
-- **Vague:** rephrase once with sharper options. If still vague, log your best reading as an assumption.
+- **Vague:** follow Rigor in `references/shared.md`.
 - **Skipped:** log as an assumption and move on.
 - **"You decide":** make the call, log it as a delegated decision with your reasoning in one line.
 - **"go", "enough", "write it":** stop asking immediately and write the brief.
 
 ## 7. Stop test
 
-Stop when all of these hold, or the heat limit is reached:
+Stop when all of these hold, or the heat limit or `max_questions` is reached:
 
 - every high-risk unknown has an answer or a logged assumption
 - no hard conflicts are open
 - intent (why, who, done) is settled
 
-If `ask_what_i_missed` is true, ask one final card: "Anything I didn't ask that matters?" Options: "No, write the brief (Recommended)", "Yes" (user types it in Other). On hot, also ask "What would make this fail?"
+Then ask the closing cards (see Closing cards in `references/shared.md`):
+
+- If `ask_what_i_missed` is `end` or `every_round` (`true` counts as `end`), ask: "Anything I didn't ask that matters?" Options: "No, write the brief (Recommended)", "Yes" (user types it in Other).
+- If rigor is `relentless`, then ask the fail card: "What would make this fail?" Options: "Nothing comes to mind, write the brief (Recommended)", "Something does" (user types it in Other). Log the answer under Risks. It runs at any heat.
 
 ## 8. Red flags
 
@@ -118,7 +127,7 @@ Do not start the task until the brief has `status: approved`. The Red flags tabl
 
 ## 9. Tone
 
-Apply the configured tone from Tones in `references/shared.md` to question wording and the reflection. The brief itself stays plain in every tone.
+Apply the configured tone from Tones in `references/shared.md` to question wording and the reflection. Tone changes words only, never how hard you press. The brief itself stays plain in every tone.
 
 ## 10. The brief
 

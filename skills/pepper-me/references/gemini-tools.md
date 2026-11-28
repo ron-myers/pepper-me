@@ -4,7 +4,7 @@ Both skills are written for Claude Code. On Gemini CLI these parts resolve diffe
 
 ## Asking questions
 
-Use `ask_user`. It poses structured questions with text, single-select or multi-select answers, so it takes the place of AskUserQuestion. Keep the same options and the recommended answer first.
+Use `ask_user`. It poses structured questions with text, single-select or multi-select answers, so it takes the place of AskUserQuestion. Keep the same options, ordered and labelled per `recommend`.
 
 ## Instructions file
 
