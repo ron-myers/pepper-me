@@ -6,7 +6,7 @@ export function HeroInstall({ text }: { text: string }) {
       <pre aria-label="Install command">
         <code>{text}</code>
       </pre>
-      <CopyButton text={text} label="Copy install" />
+      <CopyButton text={text} label="Copy install" event="copy: hero install" />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 import { useId, useState } from 'react'
 import { SIZES, briefFor, toMarkdown, type Size } from '@/lib/brief'
 import { CopyButton } from './CopyButton'
+import { track } from '@/lib/track'
 
 export function BriefSwitch() {
   const [size, setSize] = useState<Size>('card')
@@ -20,7 +21,11 @@ export function BriefSwitch() {
             role="radio"
             aria-checked={size === s.id}
             className="size"
-            onClick={() => setSize(s.id)}
+            onClick={() => {
+              if (s.id === size) return
+              setSize(s.id)
+              track(`brief size: ${s.id}`)
+            }}
           >
             {s.id}
           </button>
@@ -64,7 +69,7 @@ export function BriefSwitch() {
         <div className="code">
           <div className="codebar">
             <span>.pepper/brief.md</span>
-            <CopyButton text={md} />
+            <CopyButton text={md} event={`copy: brief (${size})`} />
           </div>
           <pre tabIndex={0}>
             <code>{md}</code>

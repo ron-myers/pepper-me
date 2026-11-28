@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Anton, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Link from 'next/link'
 import Script from 'next/script'
+import { LinkTracker } from '@/components/LinkTracker'
 import { getVersion, REPO_URL, SITE_URL } from '@/lib/site'
 import './globals.css'
 
@@ -39,7 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         {FATHOM_SITE_ID && (
-          <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+          <>
+            <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+            <LinkTracker />
+          </>
         )}
         <a className="skip" href="#main">
           Skip to content
@@ -53,7 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/skills/pepper-me">pepper-me</Link>
             <Link href="/skills/pepper-me-init">pepper-me-init</Link>
             <Link href="/changelog">Changelog</Link>
-            <a href={REPO_URL}>GitHub</a>
+            <a href={REPO_URL} data-track="github: header">
+              GitHub
+            </a>
           </nav>
         </header>
         <main id="main">{children}</main>
@@ -62,16 +68,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p className="foot-mark">Pepper Me</p>
             <ul>
               <li>
-                <a href={REPO_URL}>Repo</a>
+                <a href={REPO_URL} data-track="github: footer">
+                  Repo
+                </a>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/LICENSE`}>MIT license</a>
+                <a href={`${REPO_URL}/blob/stable/LICENSE`} data-track="github: license">
+                  MIT license
+                </a>
               </li>
               <li>
                 <Link href="/changelog">Changelog</Link>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`}>Contributing</a>
+                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`} data-track="github: contributing">
+                  Contributing
+                </a>
               </li>
               <li>
                 <a href="/llms.txt">llms.txt</a>
@@ -81,7 +93,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </li>
             </ul>
             <p className="fine">
-              Version {version}. Built by <a href="https://github.com/ron-myers">Ron Myers</a> at Fritter Factory.
+              Version {version}. Built by <a href="https://github.com/ron-myers" data-track="outbound: author">
+                Ron Myers
+              </a> at Fritter Factory.
             </p>
           </div>
         </footer>

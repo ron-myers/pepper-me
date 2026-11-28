@@ -1,6 +1,7 @@
 'use client'
 import { useId, useRef, useState } from 'react'
 import { CopyButton } from './CopyButton'
+import { track } from '@/lib/track'
 
 const TABS = [
   { id: 'plugin', label: 'Claude Code plugin', note: 'Installs every skill in the repo.' },
@@ -13,6 +14,12 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
   const base = useId()
   const refs = useRef<(HTMLButtonElement | null)[]>([])
 
+  function pick(id: (typeof TABS)[number]['id']) {
+    if (id === active) return
+    setActive(id)
+    track(`install tab: ${id}`)
+  }
+
   function onKey(e: React.KeyboardEvent, i: number) {
     let n = i
     if (e.key === 'ArrowRight') n = (i + 1) % TABS.length
@@ -21,7 +28,7 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
     else if (e.key === 'End') n = TABS.length - 1
     else return
     e.preventDefault()
-    setActive(TABS[n].id)
+    pick(TABS[n].id)
     refs.current[n]?.focus()
   }
 
@@ -40,7 +47,7 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
             aria-selected={active === t.id}
             aria-controls={`${base}-p`}
             tabIndex={active === t.id ? 0 : -1}
-            onClick={() => setActive(t.id)}
+            onClick={() => pick(t.id)}
             onKeyDown={(e) => onKey(e, i)}
           >
             {t.label}
@@ -52,7 +59,7 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
         <div className="code">
           <div className="codebar">
             <span>{active === 'manual' ? 'shell' : 'terminal'}</span>
-            <CopyButton text={commands[active]} />
+            <CopyButton text={commands[active]} event={`copy: install ${active}`} />
           </div>
           <pre tabIndex={0}>
             <code>{commands[active]}</code>
