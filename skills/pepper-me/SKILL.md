@@ -18,6 +18,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
    - other_sessions.enabled: false (lookback_hours 24, max_sessions 10, include_past_chats true)
    - conflict_check.enabled: true, ask_on: hard, log_soft: true
    - brief: size auto, save true, path .pepper/brief.md, versioning true
+   - conflict_check.repo_files: README.md, CLAUDE.md, AGENTS.md, docs/, .pepper/brief.md (`PROJECT.md` is always included)
 3. Parse arguments after the trigger. Any order, all optional:
    - Heat: `mild`, `medium`, `hot`
    - Tone: any tone name from section 9
@@ -30,7 +31,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 Before asking anything, collect what is already known. Record every fact with its source.
 
 - **This session:** everything the user has said so far, attachments, and the task they want done.
-- **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then README, CLAUDE.md, AGENTS.md, docs/, package or config files, and any existing `.pepper/brief.md`. Use the `conflict_check.repo_files` list when set, and always include `PROJECT.md`. Skim, don't read everything.
+- **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then read at most the files in `conflict_check.repo_files`, plus the README and manifest files (package or config files).
 - **Memory:** any stored context about the user, their projects and preferences.
 - **Other sessions (only if enabled):**
   - Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects` (match on the project folder name). Cap at `max_sessions`, newest first.
@@ -38,7 +39,7 @@ Before asking anything, collect what is already known. Record every fact with it
   - Claude app: if `include_past_chats` is true and past-chat search tools exist, search them with a few content keywords from the task.
   - Use a subagent for the transcript search when one is available so raw transcripts stay out of the main context.
 
-Never ask a question the context already answers. Don't block on slow lookups. Ask questions that don't depend on them first.
+Never ask a question the context already answers. Build the reflection and ask round 1 from this session, the repo and memory only. Add other-session and past-chat results from round 2 on, if they have arrived.
 
 ## 2. Reflect first
 
@@ -73,7 +74,7 @@ Always use AskUserQuestion. Each call holds up to `questions_per_round` question
 - Group questions that don't depend on each other. Hold dependent questions for the next round.
 - Each question gets 2 to 4 options. Put your best guess first and add "(Recommended)" to its label.
 - When the best guess came from another source, say so in the option description: "From your Paytic session, 2h ago" or "From README.md". The user still confirms it. Never accept it silently.
-- Offer "You decide" as an option where the call is low stakes.
+- Offer "You decide" as an option when a wrong answer can be changed in one edit.
 - Headers 12 characters max. Each question must make sense on its own.
 - Use multiSelect when several answers can apply.
 - No acknowledgment filler between rounds. The next card is the acknowledgment.
@@ -92,7 +93,7 @@ If `conflict_check.enabled`, compare each new answer against the sources listed 
 Classify each conflict:
 
 - **Hard:** both can't be true, or the difference changes the work. Ask a conflict card right away. Quote both sides with sources: "You said launch is for investors. CLAUDE.md says the audience is customers. Which wins?" Options: "New answer wins", "Earlier wins (source)", "Both, I'll explain", "The repo is out of date".
-- **Soft:** tension, ambiguity, or a minor mismatch. Don't interrupt. Log it in the brief under Conflicts.
+- **Soft:** tension, ambiguity, or a mismatch that does not change the work. Don't interrupt. Log it in the brief under Conflicts.
 
 If `ask_on` is `all`, ask about soft conflicts too. Never silently pick a winner. When the user says the repo is out of date, add a follow-up item to the brief to fix that file.
 
@@ -119,7 +120,7 @@ Do not start the task until the brief has `status: approved`.
 
 | Thought | Reality |
 |---|---|
-| "The task is small, skip the interview." | Size sets the brief size, not whether to ask. Run a mild round. |
+| "The task is small, skip the interview." | Task size does not decide whether to ask. Run a mild round. |
 | "Memory already answers this." | Memory is a source, not an answer. Cite it in an option and let the user confirm. |
 | "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
 | "The brief is obvious, skip approval." | No approval, no task. Ask the approve card. |
@@ -142,11 +143,11 @@ Apply the configured tone to question wording and the reflection. The brief itse
 
 ### Size
 
-With `size: auto`, pick from heat and task size:
+With `size: auto`, pick from heat:
 
-- mild, or a small task: **line** or **card**
+- mild: **line** or **card**
 - medium: **card** or **page**
-- hot, or a multi-part project: **page** or **full**
+- hot: **page** or **full**
 
 Sizes:
 
