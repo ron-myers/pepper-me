@@ -42,7 +42,7 @@ Look for:
 - **Existing agent context:** CLAUDE.md, AGENTS.md, `.cursor/rules`, `.github/copilot-instructions.md`, `.pepper/brief.md`, memory.
 - **Other sessions (only if enabled):** same rules as pepper-me. User messages only, newest first, capped at `max_sessions`, respect `only_projects` and `skip_projects`. If `include_past_chats` is true and past-chat search tools exist, search them with a few project keywords. Prefer a subagent so raw transcripts stay out of the main context.
 
-Read only the files listed in this section. Read nothing else unless the user names it. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
+Read only the sources listed above. Read nothing else unless the user names it. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
 
 Tell the user in one line what you read ("Read README, package.json, CI config, 40 recent commits") so they know the basis.
 

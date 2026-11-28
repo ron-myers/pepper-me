@@ -120,7 +120,7 @@ Do not start the task until the brief has `status: approved`.
 
 | Thought | Reality |
 |---|---|
-| "The task is small, skip the interview." | Size sets the brief size, not whether to ask. Run a mild round. |
+| "The task is small, skip the interview." | Task size does not decide whether to ask. Run a mild round. |
 | "Memory already answers this." | Memory is a source, not an answer. Cite it in an option and let the user confirm. |
 | "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
 | "The brief is obvious, skip approval." | No approval, no task. Ask the approve card. |
