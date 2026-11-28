@@ -227,4 +227,6 @@ If the work drifts from the approved brief, or the user runs pepper me again mid
 
 ## 12. Fallback
 
-If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".
+- If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".
+- If there is no subagent tool, read at most 3 transcripts yourself (or `max_sessions` if lower), user messages only.
+- If the session lookup fails or returns nothing, say so in one line. Then continue with repo and memory only.
