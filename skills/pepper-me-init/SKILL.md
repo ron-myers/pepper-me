@@ -1,6 +1,6 @@
 ---
 name: pepper-me-init
-description: Interview the user once about a project and write PROJECT.md, the context file every agent session reads first. Use when the user says "pepper me init", "pepper init", asks to set up project context, or wants to refresh it after the project changed.
+description: Use when the user says "pepper me init" or "pepper init", asks to set up project context, or wants to refresh PROJECT.md after the project changed.
 ---
 
 # Pepper Me Init

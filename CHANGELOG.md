@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 - 2026-11-27
+
+- Skill descriptions now hold triggers only ("Use when..."), so agents read the skill body instead of a workflow summary.
+- Carries the rename of `pepper-init` to `pepper-me-init` (`pepper me init`), which shipped without a release.
+
 ## 0.2.0 - 2026-11-27
 
 - Add `pepper-init` (`pepper me init`). Scans the repo, interviews you on the gaps, and writes `PROJECT.md`.
