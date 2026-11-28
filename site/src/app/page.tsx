@@ -1,3 +1,4 @@
+import { EVENTS } from '@/lib/events'
 import Link from 'next/link'
 import { Panel } from '@/components/Panel'
 import { Heat } from '@/components/Heat'
@@ -26,7 +27,7 @@ export default function Home() {
             </p>
             <HeroInstall text={INSTALL.plugin} />
             <p className="alt">
-              <a href={REPO_URL} data-track="github: hero">
+              <a href={REPO_URL} data-track={EVENTS.githubHero}>
                 See it on GitHub
               </a>
             </p>
