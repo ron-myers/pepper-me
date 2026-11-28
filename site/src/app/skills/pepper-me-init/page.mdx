@@ -36,15 +36,18 @@ Run it again when the project changes. It parses the existing file, treats settl
 pepper me init
 pepper me init mild
 pepper me init hot, candor
+pepper me init audit
 pepper me init refresh
 ```
 
-Same heat, tone and `sessions` arguments as `pepper me`. `refresh` forces update mode.
+Same preset, heat, rigor, tone and `sessions` arguments as `pepper me`. See [pepper-me](/skills/pepper-me) for what each does. `refresh` forces update mode.
 
 | Argument | Values | Default |
 |---|---|---|
-| Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |
-| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
+| Preset | `quick`, `standard`, `deep`, `audit` | none |
+| Heat | `mild` one round, `medium` up to three, `hot` the full session. Depth only. | `medium` |
+| Rigor | `gentle`, `firm`, `relentless`. How hard it presses on each answer. | `firm` |
+| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`. Wording only. | `direct` |
 | Sessions (Claude Code only) | `sessions`, `no-sessions` | off |
 | Refresh | `refresh` forces update mode | off |
 

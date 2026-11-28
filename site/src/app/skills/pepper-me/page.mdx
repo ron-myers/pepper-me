@@ -27,6 +27,8 @@ A vague request gets a confident, plausible answer to the wrong question. You fi
 pepper me
 pepper me mild
 pepper me hot, candor
+pepper me hot, relentless
+pepper me audit
 pepper me hot, skeptic, full
 pepper me sessions
 ```
@@ -35,12 +37,60 @@ Arguments go in any order. All are optional.
 
 | Argument | Values | Default |
 |---|---|---|
-| Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |
-| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
+| Preset | `quick`, `standard`, `deep`, `audit` | none |
+| Heat | `mild` one round, `medium` up to three, `hot` the full session. Depth only. | `medium` |
+| Rigor | `gentle`, `firm`, `relentless`. How hard it presses on each answer. | `firm` |
+| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`. Wording only. | `direct` |
 | Brief size | `line`, `card`, `page`, `full` | sized automatically |
 | Sessions (Claude Code only) | `sessions`, `no-sessions` | off |
 | Auto start | `auto`, `no-auto` | off |
 | After task | `after:<name>`, `no-after` | off |
+
+## Heat, rigor and tone
+
+Three settings, three jobs:
+
+- **Heat** is how long the interview runs: rounds and layers.
+- **Rigor** is how hard it presses on each answer.
+  - `gentle` takes answers as given and logs gaps as assumptions.
+  - `firm` rephrases a vague answer once, then logs an assumption.
+  - `relentless` tests the goal in round 1, asks for numbers or evidence, asks "What would make this the wrong call?", re-asks a vague answer up to 3 times, and ends with "What would make this fail?" at any heat.
+- **Tone** is the wording. It never changes how often it follows up.
+
+"You decide", `go`, `enough` and `write it` end the pressure at every level.
+
+## Presets
+
+A preset sets several keys at once. Keys you set yourself override it.
+
+| Key | `quick` | `standard` | `deep` | `audit` |
+|---|---|---|---|---|
+| `default_heat` | `mild` | `medium` | `hot` | `hot` |
+| `default_rigor` | `gentle` | `firm` | `firm` | `relentless` |
+| `research` | `light` | `light` | `deep` | `deep` |
+| `reflect` | `off` | `start` | `every_round` | `every_round` |
+| `ask_what_i_missed` | `off` | `end` | `end` | `every_round` |
+| `answer_style` | `choice` | `choice` | `mixed` | `mixed` |
+| `recommend` | `always` | `always` | `always` | `sourced` |
+
+A preset named in a config file sits below your config keys. A preset typed as an argument sits above them, so `pepper me deep` always runs deep, and `pepper me deep gentle` runs deep with gentle rigor. Presets don't set `tone`, `questions_per_round`, `max_questions` or `show_progress`. A config key counts only if you wrote it, so delete the keys you copied from `config.example.json` and don't want to pin. An old `ask_what_i_missed: true` beats a preset's value, like any key.
+
+## Interview settings
+
+| Key | Values | Default |
+|---|---|---|
+| `preset` | `null`, `quick`, `standard`, `deep`, `audit` | `null` |
+| `default_heat` | `mild`, `medium`, `hot` | `medium` |
+| `default_rigor` | `gentle`, `firm`, `relentless` | `firm` |
+| `tone` | any tone name | `direct` |
+| `questions_per_round` | `1` to `4`, or `auto` (one per independent unknown) | `4` |
+| `max_questions` | `null`, or a number. Caps the questions asked across rounds. Conflict, closing and approve cards don't count. | `null` |
+| `answer_style` | `choice` cards, `open` plain text, `mixed` cards plus one open question per round | `choice` |
+| `recommend` | `always`, `sourced` (only when the guess cites a file, memory or session), `never` | `always` |
+| `research` | `none`, `light` (repo and memory), `deep` (adds git history, linked issues and other sessions, unless you opted out) | `light` |
+| `reflect` | `off`, `start`, `every_round` | `start` |
+| `ask_what_i_missed` | `off`, `end`, `every_round`. `true` means `end`, `false` means `off`. | `end` |
+| `show_progress` | `true`, `false`. Prints "Round 2 of up to 3." | `true` |
 
 ## Output: the brief
 
@@ -86,10 +136,18 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 
 ```json
 {
+  "preset": null,
   "default_heat": "medium",
+  "default_rigor": "firm",
   "tone": "direct",
   "questions_per_round": 4,
-  "ask_what_i_missed": true,
+  "max_questions": null,
+  "answer_style": "choice",
+  "recommend": "always",
+  "research": "light",
+  "reflect": "start",
+  "ask_what_i_missed": "end",
+  "show_progress": true,
   "other_sessions": {
     "enabled": false,
     "lookback_hours": 24,
