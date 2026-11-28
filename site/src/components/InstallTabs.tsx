@@ -6,7 +6,7 @@ import { track } from '@/lib/track'
 
 const TABS = [
   { id: 'plugin', label: 'Claude Code plugin', note: 'Installs every skill in the repo.' },
-  { id: 'gemini', label: 'Gemini CLI', note: 'Tool notes: skills/*/references/gemini-tools.md. Uses ask_user for questions.' },
+  { id: 'gemini', label: 'Gemini CLI', note: 'Tool notes: skills/*/references/gemini-tools.md.' },
   { id: 'copilot', label: 'GitHub Copilot CLI', note: 'Tool notes: skills/*/references/copilot-tools.md.' },
   { id: 'codex', label: 'Codex', note: 'Or copy a folder from skills/ into ~/.agents/skills/. Tool notes: skills/*/references/codex-tools.md.' },
   { id: 'cursor', label: 'Cursor', note: 'Tool notes: skills/*/references/cursor-tools.md.' },
