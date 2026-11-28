@@ -178,7 +178,7 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 
 ### Privacy
 
-Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out.
+Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
 
 ### Conflict check
 
