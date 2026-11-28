@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Anton, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Link from 'next/link'
 import Script from 'next/script'
+import { LinkTracker } from '@/components/LinkTracker'
 import { getVersion, REPO_URL, SITE_URL } from '@/lib/site'
 import './globals.css'
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {FATHOM_SITE_ID && (
           <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
         )}
+        <LinkTracker />
         <a className="skip" href="#main">
           Skip to content
         </a>
@@ -53,7 +55,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/skills/pepper-me">pepper-me</Link>
             <Link href="/skills/pepper-me-init">pepper-me-init</Link>
             <Link href="/changelog">Changelog</Link>
-            <a href={REPO_URL}>GitHub</a>
+            <a href={REPO_URL} data-track="github: header">
+              GitHub
+            </a>
           </nav>
         </header>
         <main id="main">{children}</main>
@@ -62,7 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p className="foot-mark">Pepper Me</p>
             <ul>
               <li>
-                <a href={REPO_URL}>Repo</a>
+                <a href={REPO_URL} data-track="github: footer">
+                  Repo
+                </a>
               </li>
               <li>
                 <a href={`${REPO_URL}/blob/stable/LICENSE`}>MIT license</a>

@@ -7,7 +7,7 @@
 web
 
 ## Stack
-Next.js (App Router, TypeScript, static export where possible), Tailwind or CSS modules, MDX for skill pages, `next/font`. Deploy to Vercel. Lives in `site/` in this repo. No analytics, cookies or trackers.
+Next.js (App Router, TypeScript, static export where possible), Tailwind or CSS modules, MDX for skill pages, `next/font`. Deploy to Vercel. Lives in `site/` in this repo. Analytics: Fathom only (cookieless), with custom events on copy, install tabs, brief switcher and link clicks. No other trackers.
 
 ## Users
 - Developers starting a task with vague intent.

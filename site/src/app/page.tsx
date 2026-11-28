@@ -26,7 +26,9 @@ export default function Home() {
             </p>
             <HeroInstall text={INSTALL.plugin} />
             <p className="alt">
-              <a href={REPO_URL}>See it on GitHub</a>
+              <a href={REPO_URL} data-track="github: hero">
+                See it on GitHub
+              </a>
             </p>
           </div>
           <ChatWindow />

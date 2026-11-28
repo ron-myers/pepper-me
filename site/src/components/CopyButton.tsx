@@ -1,7 +1,8 @@
 'use client'
 import { useRef, useState } from 'react'
+import { track } from '@/lib/track'
 
-export function CopyButton({ text, label = 'Copy' }: { text: string; label?: string }) {
+export function CopyButton({ text, label = 'Copy', event = 'copy' }: { text: string; label?: string; event?: string }) {
   const [done, setDone] = useState(false)
   const t = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -9,6 +10,7 @@ export function CopyButton({ text, label = 'Copy' }: { text: string; label?: str
     try {
       await navigator.clipboard.writeText(text)
       setDone(true)
+      track(event)
       if (t.current) clearTimeout(t.current)
       t.current = setTimeout(() => setDone(false), 2000)
     } catch {
