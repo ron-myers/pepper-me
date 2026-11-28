@@ -42,7 +42,7 @@ Look for:
 - **Existing agent context:** CLAUDE.md, AGENTS.md, `.cursor/rules`, `.github/copilot-instructions.md`, `.pepper/brief.md`, memory.
 - **Other sessions (only if enabled):** same rules as pepper-me. User messages only, newest first, capped at `max_sessions`, respect `only_projects` and `skip_projects`. If `include_past_chats` is true and past-chat search tools exist, search them with a few project keywords. Prefer a subagent so raw transcripts stay out of the main context.
 
-Skim. Do not read the whole repo. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
+Read only the files listed in this section. Read nothing else unless the user names it. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
 
 Tell the user in one line what you read ("Read README, package.json, CI config, 40 recent commits") so they know the basis.
 
@@ -89,7 +89,7 @@ Same mechanics as pepper-me. Always use AskUserQuestion.
 - Up to `questions_per_round` per call (tool max 4). Group questions that don't depend on each other.
 - 2 to 4 options each. Best guess first, labelled "(Recommended)".
 - When the guess came from a file or session, cite it in the option description: "From package.json scripts", "From CI config". The user still confirms it. Never accept it silently.
-- Offer "You decide" on low-stakes calls. Use multiSelect when several answers apply.
+- Offer "You decide" when a wrong answer can be changed in one edit. Use multiSelect when several answers apply.
 - Headers 12 characters max. Each question must stand alone.
 - No filler between rounds. The next card is the acknowledgment.
 
@@ -161,7 +161,7 @@ status: draft
 | Test | `...` |
 | Lint | `...` |
 
-<One line per major technology. Versions only when they matter.>
+<One line per major technology. Versions only when a manifest or lockfile pins one.>
 
 ## Conventions
 - <Rule a new teammate would otherwise break>

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3 - 2026-11-27
+
+- Replace nuance clauses in both skills with conditions an agent can observe. "You decide" is offered when a wrong answer can be changed in one edit.
+- `pepper-me` reads at most `conflict_check.repo_files` plus README and manifests. The default list is now stated in the skill.
+- The reflection and round 1 use this session, the repo and memory only. Other-session results join from round 2.
+- Brief size comes from heat alone.
+- `pepper-me-init` reads only the files listed in its gather section.
+
 ## 0.2.2 - 2026-11-27
 
 - `pepper-me` gets a red-flags table (Thought and Reality) and a standalone approval gate: do not start the task until the brief has `status: approved`.
