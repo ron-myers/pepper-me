@@ -1,0 +1,38 @@
+{
+  "default_heat": "hot",
+  "tone": "direct",
+  "questions_per_round": 4,
+  "ask_what_i_missed": true,
+
+  "other_sessions": {
+    "enabled": true,
+    "lookback_hours": 24,
+    "max_sessions": 10,
+    "only_projects": ["pepper-me"],
+    "skip_projects": [],
+    "include_past_chats": true
+  },
+
+  "conflict_check": {
+    "enabled": true,
+    "sources": ["this_session", "other_sessions", "memory", "repo"],
+    "repo_files": ["PROJECT.md", "README.md", "AGENTS.md", "CONTRIBUTING.md", ".pepper/brief.md"],
+    "ask_on": "hard",
+    "log_soft": true
+  },
+
+  "brief": {
+    "size": "auto",
+    "save": true,
+    "path": ".pepper/brief.md",
+    "template": null,
+    "versioning": true
+  },
+
+  "init": {
+    "path": "PROJECT.md",
+    "scan": true,
+    "link_agent_files": "ask",
+    "agent_files": ["CLAUDE.md", "AGENTS.md"]
+  }
+}
