@@ -40,12 +40,13 @@ Never ask a question the context already answers. Build the reflection and ask r
 
 ## 1a. Bare trigger
 
-If the user says only `pepper me` (arguments at most, no task text), the recent chat is the task.
+If the user says only `pepper me` (arguments at most, no task text), the recent chat is the task. If an approved brief already exists for this task, section 11 applies instead.
 
 - Collect the questions, clarifications and options your last messages raised. Drop any the user already answered.
-- Make them the first questions of round 1, ahead of your own. Keep the options you offered.
+- Make them the first questions of round 1, ahead of your own. Follow Round mechanics in `references/shared.md`: fit options to 2 to 4 with your best guess first, and carry overflow questions to the next round.
 - Build the reflection in section 2 from that chat.
 - If your recent messages raised no questions, use the chat as context and continue as usual.
+- If the chat holds no task either, ask one open question about the goal, as in section 2.
 
 ## 2. Reflect first
 
