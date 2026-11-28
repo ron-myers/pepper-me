@@ -35,5 +35,9 @@
     "scan": true,
     "link_agent_files": "ask",
     "agent_files": ["CLAUDE.md", "AGENTS.md"]
+  },
+
+  "after_task": {
+    "run": "candid-review"
   }
 }

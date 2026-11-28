@@ -13,6 +13,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 2. Read `~/.pepper-me/config.json` if it exists. Then read `.pepper/config.json` in the current project and merge it on top (project wins). `config.example.json` next to this file documents every option.
 3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - brief: size auto, save true, path .pepper/brief.md, versioning true, auto_start false
+   - after_task.run: null
    - conflict_check.repo_files: README.md, CLAUDE.md, AGENTS.md, docs/, .pepper/brief.md (`PROJECT.md` is always included)
 4. Parse arguments after the trigger. Any order, all optional:
    - Heat: `mild`, `medium`, `hot`
@@ -20,8 +21,10 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
    - Brief size: `line`, `card`, `page`, `full`
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    - `auto` or `no-auto` to override brief.auto_start for this run
+   - `after:<name>` or `no-after` to override after_task.run for this run
    Example: `pepper me hot, candor, full`
 5. Resolve auto start once. It is on if `brief.auto_start` is true, or if `auto` was passed. `no-auto` turns it off. Sections 8, 10 and 11 say "auto start is on" for this result.
+6. Resolve the follow-up once. It is `<name>` if `after:<name>` was passed, even when `after_task.run` is null. Otherwise it is `after_task.run`. `no-after` clears it, wins if `after:<name>` is also passed, and does nothing when none is set. An empty string in `after_task.run` counts as null. Section 11a says "the follow-up" for this result.
 
 ## 1. Gather context silently
 
@@ -198,6 +201,18 @@ If auto start is on, do not ask. The setting is the approval:
 ## 11. Mid-task
 
 If the work drifts from the approved brief, or the user runs pepper me again mid-task, run one mild round on the drift only, check conflicts against the brief, and bump the version. If auto start is on, the bumped brief is approved without a card. Show it in chat and continue.
+
+## 11a. After the task
+
+Applies only when a follow-up is set (section 0). With none set, do nothing here.
+
+- When the task is finished, check the result against "Done looks like" in the brief.
+- If it passes, run the follow-up skill or command on the result. The setting is the consent, with no extra confirm, even if the follow-up publishes.
+- Run it once, at the end of the task. A mid-task brief bump does not run it early.
+- Report the outcome in one or two lines.
+- If the skill or command is not installed, say so in one line and skip it. Do not guess a substitute.
+- If the user stopped or abandoned the task, or the check fails, skip the follow-up and say so in one line.
+- It works the same with auto start on or off.
 
 ## 12. Fallback
 

@@ -40,6 +40,7 @@ Arguments go in any order. All are optional.
 | Brief size | `line`, `card`, `page`, `full` | sized automatically |
 | Sessions | `sessions`, `no-sessions` | off |
 | Auto start | `auto`, `no-auto` | off |
+| After task | `after:<name>`, `no-after` | off |
 
 ## Output: the brief
 
@@ -111,6 +112,9 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
     "template": null,
     "versioning": true,
     "auto_start": false
+  },
+  "after_task": {
+    "run": null
   }
 }
 ```
@@ -122,6 +126,10 @@ Other-session lookup is **off by default**. When on, pepper me reads Claude Code
 ## Auto start
 
 By default you approve the brief before work begins. Set `brief.auto_start` to `true` to skip that card. The setting is the approval: the brief is shown in chat, saved with `status: approved`, and the task starts. A mid-task check-in also skips the card. Pass `auto` or `no-auto` to override the setting for one run. If you say `go` while a hard conflict is open, the task starts and the conflict is listed in the brief.
+
+## After the task
+
+Set `after_task.run` to the name of a skill or slash command, such as `"candid-review"`, to run it once the task is done. It is a single string. The default is `null`, which changes nothing. The setting is the consent: the agent checks the result against "Done looks like", runs the follow-up without asking, and reports the outcome in a line or two. **`candid-ship` publishes.** It opens a pull request and can auto-merge, so set it only if you want that every time. If the skill or command is not installed, the agent says so in one line and skips it. If you stop the task or it fails the check, the follow-up does not run. A mid-task check-in does not run it early. Pass `after:<name>` to run a different follow-up for one run, or `no-after` to skip it.
 
 ## Conflict check
 
