@@ -30,6 +30,8 @@ export default function Home() {
               <a href={REPO_URL} data-track={EVENTS.githubHero}>
                 See it on GitHub
               </a>
+              {' · '}
+              <Link href="/#install">Other agents</Link>
             </p>
           </div>
           <ChatWindow />
@@ -132,7 +134,7 @@ export default function Home() {
         <h2 id="h-install">Install</h2>
         <InstallTabs commands={INSTALL} />
         <p className="lede">
-          Then type <code>pepper me</code>. <Link href="/skills/pepper-me">Usage and options</Link>.
+          Then type <code>pepper me</code>. Works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex and Cursor. <Link href="/skills/pepper-me">Usage and options</Link>.
         </p>
       </section>
 

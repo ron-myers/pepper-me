@@ -45,7 +45,7 @@ Same heat, tone and `sessions` arguments as `pepper me`. `refresh` forces update
 |---|---|---|
 | Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |
 | Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
-| Sessions | `sessions`, `no-sessions` | off |
+| Sessions (Claude Code only) | `sessions`, `no-sessions` | off |
 | Refresh | `refresh` forces update mode | off |
 
 ## Output: what `PROJECT.md` contains
@@ -68,6 +68,10 @@ The `init` block goes in the same config files as `pepper me`. See `skills/peppe
 ```
 
 `link_agent_files` is `ask`, `auto` or `never`.
+
+## Other agents
+
+The skills are the same on every agent. Each agent has a tool-mapping note in `skills/*/references/<agent>-tools.md`. It names the agent file `pepper me init` links to on that agent. The `sessions` argument works only in Claude Code. See [Install](/#install) for your agent.
 
 ---
 

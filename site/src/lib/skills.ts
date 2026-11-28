@@ -70,7 +70,7 @@ export const WHY = [
   },
   {
     title: 'Answers travel',
-    body: 'With other-session lookup on, answers you gave in other sessions appear as one-tap recommendations labelled with their source. You still confirm each one.',
+    body: 'With other-session lookup on, answers you gave in other sessions appear as one-tap recommendations labelled with their source. You still confirm each one. Claude Code only.',
   },
   {
     title: 'Check-ins mid-task',

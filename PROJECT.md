@@ -62,7 +62,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 
 ## Open items
 - [x] PRODUCT.md says "No analytics, cookies or trackers", but Fathom is intended (#7). Update PRODUCT.md. (open since 2026-11-27, source: PRODUCT.md vs site/src/app/layout.tsx)
-- [ ] PRODUCT.md's Open note on skills.sh is stale. skills.sh is now confirmed. (open since 2026-11-27, source: PRODUCT.md)
+- [x] PRODUCT.md's Open note on skills.sh is stale. skills.sh is now confirmed. (open since 2026-11-27, source: PRODUCT.md)
 - [ ] CONTRIBUTING.md step 2 says edit `skills/pepper-me/SKILL.md` only. It predates `pepper-me-init` and the site. Update it. (open since 2026-11-27, source: CONTRIBUTING.md)
 - [ ] PRODUCT.md says "Never edit a SKILL.md". PROJECT.md says ask first. Align the wording. (open since 2026-11-27, source: PRODUCT.md vs answer)
 
