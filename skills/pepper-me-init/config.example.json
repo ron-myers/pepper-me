@@ -1,8 +1,16 @@
 {
+  "preset": null,
   "default_heat": "medium",
+  "default_rigor": "firm",
   "tone": "direct",
   "questions_per_round": 4,
-  "ask_what_i_missed": true,
+  "max_questions": null,
+  "answer_style": "choice",
+  "recommend": "always",
+  "research": "light",
+  "reflect": "start",
+  "ask_what_i_missed": "end",
+  "show_progress": true,
 
   "other_sessions": {
     "enabled": false,

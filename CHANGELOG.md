@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 - 2026-11-28
+
+- New setting `default_rigor` (`gentle`, `firm`, `relentless`, default `firm`) in both skills. It sets how hard the interview presses on each answer. `firm` is the old behavior.
+- `default_heat` is depth only now: how many rounds and layers. It no longer carries any pressure.
+- Tones `skeptic` and `candor` are wording only. They no longer carry built-in pressure. Set `default_rigor` for that.
+- The "What would make this fail?" closing card moved from `hot` heat to `relentless` rigor. It runs at any heat with `relentless`, and no longer runs on `hot` alone.
+- New presets `quick`, `standard`, `deep` and `audit` bundle the settings below. Set `preset` or pass the name as an argument. Keys you set override a preset.
+- New keys, all defaulting to the old behavior: `max_questions`, `answer_style` (`choice`, `open`, `mixed`), `recommend` (`always`, `sourced`, `never`), `research` (`none`, `light`, `deep`), `reflect` (`off`, `start`, `every_round`) and `show_progress`.
+- `questions_per_round` also accepts `auto`.
+- `ask_what_i_missed` is now `off`, `end` or `every_round`. `true` still works as `end` and `false` as `off`.
+- New arguments: `quick`, `standard`, `deep`, `audit`, `gentle`, `firm`, `relentless`.
+- `show_progress` is on by default, so each round now starts with a "Round 2 of up to 3." line. Set it to `false` to turn that off.
+
 ## 0.5.1 - 2026-11-28
 
 - A bare `pepper me` (no task text) now treats the recent chat as the task. The questions, clarifications and options the agent raised in its last messages become the first questions of round 1, minus any the user already answered. New section 1a in `pepper-me`'s `SKILL.md`.

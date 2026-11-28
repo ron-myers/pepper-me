@@ -4,33 +4,95 @@ Rules used by both `pepper-me` and `pepper-me-init`. This file is copied into ea
 
 ## Shared config keys
 
-These keys behave the same in both skills: `default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`.
+These keys behave the same in both skills: `preset`, `default_heat`, `default_rigor`, `tone`, `questions_per_round`, `max_questions`, `answer_style`, `recommend`, `research`, `reflect`, `ask_what_i_missed`, `show_progress`, `other_sessions`, `conflict_check`.
 
-Defaults when no config file sets them:
+Defaults when no config file or preset sets them:
 
-- default_heat: medium
-- tone: direct
-- questions_per_round: 4
-- ask_what_i_missed: true
+- preset: null
+- default_heat: medium (depth only: how many rounds and layers)
+- default_rigor: firm (pressure: how hard you press on each answer)
+- tone: direct (wording only)
+- questions_per_round: 4 (a number from 1 to 4, or `auto`)
+- max_questions: null (no cap)
+- answer_style: choice
+- recommend: always
+- research: light
+- reflect: start
+- ask_what_i_missed: end (`true` means `end`, `false` means `off`)
+- show_progress: true
 - other_sessions.enabled: false (lookback_hours 24, max_sessions 10, include_past_chats true)
 - conflict_check.enabled: true, ask_on: hard, log_soft: true
 
+## Presets
+
+A preset sets several keys at once. It sets only the keys it lists. Every other key keeps its default.
+
+| Key | quick | standard | deep | audit |
+|---|---|---|---|---|
+| default_heat | mild | medium | hot | hot |
+| default_rigor | gentle | firm | firm | relentless |
+| research | light | light | deep | deep |
+| reflect | off | start | every_round | every_round |
+| ask_what_i_missed | off | end | end | every_round |
+| answer_style | choice | choice | mixed | mixed |
+| recommend | always | always | always | sourced |
+
+Resolve every setting once, lowest to highest:
+
+1. defaults
+2. the preset
+3. keys in `~/.pepper-me/config.json`
+4. keys in `.pepper/config.json`
+5. arguments typed after the trigger
+
+- The preset name comes from the `preset` key or from an argument. An argument wins over the key.
+- A preset named in a config file yields to every explicit key in config files.
+- A preset typed as an argument beats config keys, so `pepper me deep` always runs deep. An explicit argument such as `gentle` still beats that preset.
+- An unknown preset name: say so in one line and use `standard`.
+
+## Rigor
+
+Rigor sets how hard you press on each answer. Heat does not do this. Heat only sets how many rounds and layers you run.
+
+- **gentle:** take each answer as given. A vague answer is logged as an assumption with your best reading. Never ask the same thing twice. Hard conflicts still get a card, because `conflict_check` owns that.
+- **firm:** a vague answer gets one rephrase with sharper options. If it is still vague, log an assumption.
+- **relentless:**
+  - In round 1, include one question that tests the goal itself: "Is this the right problem to solve?"
+  - When a success criterion or a claim is vague, ask for a number, an example or evidence.
+  - For each high-risk decision, ask "What would make this the wrong call?"
+  - A vague answer gets up to 3 re-asks. Make each one sharper than the last. Then log an assumption.
+  - Re-asks use up rounds and questions from the heat limit and `max_questions`. They never extend either.
+  - Ask the fail card at the end (see Closing cards).
+
+At every level, "you decide", "go", "enough" and "write it" end the pressure at once. "You decide" settles that question. The other three stop the interview.
+
 ## Tones
 
-Apply the configured tone to question wording and the reflection. The written file stays plain in every tone.
+Tone changes wording only. It never changes how often you follow up. Rigor does that. Apply the configured tone to question wording and the reflection. The written file stays plain in every tone.
 
 - **direct:** shortest wording, no warm-up. "Who reads this?"
-- **candor:** radical candor. Cares, but names weak spots. "This goal is vague. What does winning look like in numbers?"
+- **candor:** radical candor. Cares, and says the weak spot out loud. "This goal is vague. What does winning look like in numbers?"
 - **friendly:** warm and relaxed. "Quick one, who's this for?"
 - **coach:** Socratic. Helps the user think. "What would you tell a founder who asked you this?"
 - **exec:** board-meeting style. Decisions and tradeoffs only. "Speed or polish? Pick one."
-- **skeptic:** devil's advocate. Tests assumptions. "Why would anyone pay for this?"
+- **skeptic:** devil's advocate voice. Words each question as a doubt. "Why would anyone pay for this?"
 - **consultant:** structured and thorough. "Audience first, then scope, then risks."
 - **playful:** light and quick, for creative work. "Gut call, bold or safe?"
 
+## Research
+
+`research` sets how far you look before the first question.
+
+- **none:** use only what the user has said this session. Read no repo files and no memory, and look up no other sessions. Conflict checks use only this session and the answers so far.
+- **light:** this session, the repo and memory. Other sessions only if `other_sessions.enabled` is true.
+- **deep:** everything in light, plus:
+  - the last 30 commit subjects from `git log`
+  - issues and pull requests linked in the task text, README or the agent file (use `gh` if it is installed, otherwise skip with one line)
+  - other sessions, even when `other_sessions.enabled` is false, using the other `other_sessions` settings. The `no-sessions` argument turns this off.
+
 ## Other sessions
 
-Only when `other_sessions.enabled` is true.
+Only when `other_sessions.enabled` is true, or `research` is `deep`.
 
 - Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects`. Each entry matches if it appears anywhere in the project folder name (substring, case-sensitive). For example, `pepper-me` matches `-Users-name-conductor-workspaces-pepper-me-zurich-v2`. An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored. Cap at `max_sessions`, newest first.
 - Read **user messages only**, never assistant messages. You want answers the user gave, not suggestions Claude made.
@@ -43,14 +105,48 @@ Only when `other_sessions.enabled` is true.
 
 Always use AskUserQuestion. Each call holds up to `questions_per_round` questions (tool max is 4).
 
+- `questions_per_round` is a number from 1 to 4, or `auto`. With `auto`, count the unknowns that don't depend on each other and ask that many, at least 1 and at most 4.
+- `max_questions`, when set, caps the questions you ask across all rounds. Count every re-ask. Do not count the reflection check, conflict cards, closing cards or the approve card. When the cap is reached, stop asking and log each remaining high-risk unknown as an assumption (an Open item in `pepper-me-init`).
 - Group questions that don't depend on each other. Hold dependent questions for the next round.
-- Each question gets 2 to 4 options. Put your best guess first and add "(Recommended)" to its label.
+- Each question gets 2 to 4 options. Order and label them by `recommend` (see below).
 - When the best guess came from another source, say so in the option description: "From your last session, 2h ago" or "From README.md". The user still confirms it. Never accept it silently.
 - Offer "You decide" as an option when a wrong answer can be changed in one edit.
 - Headers 12 characters max. Each question must make sense on its own.
 - Use multiSelect when several answers can apply.
 - No acknowledgment filler between rounds. The next card is the acknowledgment.
 - After each round, recompute what's unlocked and ask the next round.
+
+### Answer style
+
+- **choice:** every question is a card with options.
+- **open:** ask every question as plain chat text, numbered, with no options. You may put your best guess in the question: "I think it's for existing customers. Right?" The user answers in their own words.
+- **mixed:** ask the round's cards as in choice. Then ask the hardest unknown of that round as one plain-text open question and wait for the reply before the next round.
+
+### Recommend
+
+`recommend` applies to interview questions only. Fixed cards (reflection check, approve, closing cards) keep their labels.
+
+- **always:** put your best guess first and add "(Recommended)" to its label.
+- **sourced:** add "(Recommended)" only when the guess comes from a file, memory or past session, and cite it in the option description. Otherwise add no marker.
+- **never:** add no marker, and do not order options by your guess.
+
+### Reflect
+
+- **start:** reflect once at the start, as the skill describes.
+- **every_round:** reflect at the start. After each later round, give a 1 to 2 line plain-text restatement of what is settled and what is still open. No card.
+- **off:** skip the reflection and its check card. Go straight to the questions.
+
+### Progress
+
+If `show_progress` is true, write one plain-text line before each round: "Round 2 of up to 3." The number after "up to" is the heat limit. If `max_questions` is set, add " 7 of 12 questions asked." Leave it out after the last round.
+
+### Closing cards
+
+Closing cards come after the stop test. They never count toward `max_questions`.
+
+- `ask_what_i_missed` is `end` or `every_round`: ask the catch-all card once at the end. With `every_round`, also ask it after each round: "Anything I didn't ask that matters?" with options "No, keep going (Recommended)" and "Yes" (the user types it in Other).
+- `off`: skip the catch-all.
+- `default_rigor` is `relentless`: ask the fail card, after the catch-all. It runs at any heat.
 
 If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".
 
@@ -65,3 +161,4 @@ Do not start the task until the file has `status: approved`. For `pepper-me` tha
 | "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
 | "The file is obvious, skip approval." | No approval, no task. Ask the approve card. Only auto start in `pepper-me` (`brief.auto_start: true` or the `auto` argument) replaces the card. |
 | "This conflict is minor, I'll pick one." | Hard conflicts get a card. Soft ones get logged. Never pick silently. |
+| "They said 'you decide', so I'll keep pressing." | "You decide" settles that question at every rigor level. Make the call and log it. |
