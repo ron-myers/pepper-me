@@ -1,0 +1,16 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "pepper-me",
+  "displayName": "Pepper Me",
+  "description": "Run a kickoff meeting with your agent before it starts work. It asks the questions a sharp colleague would, checks for conflicts, and writes a brief you approve.",
+  "version": "0.5.2",
+  "author": {
+    "name": "Ron Myers",
+    "url": "https://github.com/ron-myers"
+  },
+  "homepage": "https://github.com/ron-myers/pepper-me",
+  "repository": "https://github.com/ron-myers/pepper-me",
+  "license": "MIT",
+  "keywords": ["init", "project-context", "clarify", "intent", "interview", "questions", "brief", "planning"],
+  "suggestedPrompts": ["pepper me", "pepper me init"]
+}
