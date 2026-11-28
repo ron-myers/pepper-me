@@ -7,15 +7,15 @@ heat: medium
 status: approved
 ---
 
-# Pepper
+# Pepper Me
 
 ## Purpose
-Pepper is a set of agent skills that give an agent context before it works. `pepper-me` runs a kickoff for one task and writes a brief. `pepper-init` interviews the user once and writes `PROJECT.md`. A marketing site in `site/` drives installs.
+Pepper Me is a set of agent skills that give an agent context before it works. `pepper-me` runs a kickoff for one task and writes a brief. `pepper-me-init` interviews the user once and writes `PROJECT.md`. A marketing site in `site/` drives installs.
 Winning means adoption by other developers.
 
 ## Users
 - Developers starting a task with vague intent (`pepper-me`)
-- Teams onboarding an agent to an existing repo (`pepper-init`)
+- Teams onboarding an agent to an existing repo (`pepper-me-init`)
 - Non-developers using agents, such as PMs and founders
 
 ## Stack and commands
@@ -28,7 +28,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | Site build | `cd site && npm run build` (static export to `site/out`) |
 | Site preview | `cd site && npm start` (serves `out/`; run build first) |
 
-- Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-init/SKILL.md`, each with a `config.example.json`
+- Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-me-init/SKILL.md`, each with a `config.example.json`
 - Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.0
 - Install paths: Claude Code plugin (primary) and skills.sh (`npx skills add ron-myers/pepper-me`)
 - Site: Next.js 16 App Router, TypeScript, MDX, static export. Serves `llms.txt`.
@@ -36,7 +36,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 - Default branch and ship target: `stable` (`.candid/config.json`)
 
 ## Conventions
-- Commit style: conventional prefixes with PR number, e.g. `feat: add pepper-init (pepper me init) (#2)`
+- Commit style: conventional prefixes with PR number, e.g. `feat: add pepper-me-init (pepper me init) (#2)`
 - Keep SKILL.md instructions short and testable. Plain language, short sentences, one behavior per bullet. Every option has a default (CONTRIBUTING.md).
 - Adding a config key means updating `config.example.json`, the defaults list in SKILL.md, and the README.
 - Each release bumps the version in `plugin.json`, `marketplace.json` and `CHANGELOG.md` together.
@@ -63,7 +63,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 ## Open items
 - [ ] PRODUCT.md says "No analytics, cookies or trackers", but Fathom is intended (#7). Update PRODUCT.md. (open since 2026-11-27, source: PRODUCT.md vs site/src/app/layout.tsx)
 - [ ] PRODUCT.md's Open note on skills.sh is stale. skills.sh is now confirmed. (open since 2026-11-27, source: PRODUCT.md)
-- [ ] CONTRIBUTING.md step 2 says edit `skills/pepper-me/SKILL.md` only. It predates `pepper-init` and the site. Update it. (open since 2026-11-27, source: CONTRIBUTING.md)
+- [ ] CONTRIBUTING.md step 2 says edit `skills/pepper-me/SKILL.md` only. It predates `pepper-me-init` and the site. Update it. (open since 2026-11-27, source: CONTRIBUTING.md)
 - [ ] PRODUCT.md says "Never edit a SKILL.md". PROJECT.md says ask first. Align the wording. (open since 2026-11-27, source: PRODUCT.md vs answer)
 - [ ] `.pepper/config.json` sets `only_projects: ["pepper-me"]`, but SKILL.md doesn't say if project folder matching is exact or partial. Real folders are named like `-Users-ronmyers-conductor-workspaces-pepper-me-zurich-v2`. If matching is exact, no other sessions are read. (open since 2026-11-27, source: .pepper/config.json vs skills/pepper-me/SKILL.md)
 
@@ -86,3 +86,4 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | 14 | 2026-11-27 | Pre-PR review | candid review before every PR | asked, .candid/config.json |
 | 15 | 2026-11-27 | Node and package manager | npm only, Node unpinned | asked, site/package-lock.json |
 | 16 | 2026-11-27 | What triggers a release | Any SKILL.md or config change | asked |
+| 17 | 2026-11-27 | Pepper Me rename | Product name is "Pepper Me" everywhere. Skill `pepper-init` renamed to `pepper-me-init`. Shipped with no version bump, an exception to #16 | asked, conflict |

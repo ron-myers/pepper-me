@@ -18,8 +18,8 @@ export const SKILLS: Skill[] = [
     heat: 2,
   },
   {
-    slug: 'pepper-init',
-    name: 'pepper-init',
+    slug: 'pepper-me-init',
+    name: 'pepper-me-init',
     command: 'pepper me init',
     summary:
       'The same idea for a whole project. Interviews you once and writes PROJECT.md, the context file your agent reads every session.',

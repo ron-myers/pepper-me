@@ -16,10 +16,10 @@ Next.js (App Router, TypeScript, static export where possible), Tailwind or CSS 
 Agents also read the site (`llms.txt`).
 
 ## Product Purpose
-Pepper is a set of agent skills that give an agent context before it works. `pepper-me` runs a kickoff for one task and writes a brief. `pepper-init` interviews the user once and writes `PROJECT.md`. The site exists for adoption by other developers. Main action: install the plugin.
+Pepper Me is a set of agent skills that give an agent context before it works. `pepper-me` runs a kickoff for one task and writes a brief. `pepper-me-init` interviews the user once and writes `PROJECT.md`. The site exists for adoption by other developers. Main action: install the plugin.
 
 ## Positioning
-Agents get the one-line ticket; Pepper gives them the kickoff meeting.
+Agents get the one-line ticket; Pepper Me gives them the kickoff meeting.
 
 ## Operating Context
 Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, `.claude-plugin/plugin.json` (version 0.2.0). Install: Claude Code plugin, skills.sh, manual.

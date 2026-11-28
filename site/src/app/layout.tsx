@@ -11,14 +11,14 @@ const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', displ
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: 'Pepper: skills that give your agent context', template: '%s | Pepper' },
+  title: { default: 'Pepper Me: skills that give your agent context', template: '%s | Pepper Me' },
   description:
-    'Pepper is a set of agent skills. Each one is a short, structured conversation that makes sure your agent has the context it needs before it starts.',
+    'Pepper Me is a set of agent skills. Each one is a short, structured conversation that makes sure your agent has the context it needs before it starts.',
   openGraph: {
     type: 'website',
-    siteName: 'Pepper',
-    title: 'Pepper: skills that give your agent context',
-    description: 'Agents get the one-line task. Pepper gives them the kickoff meeting.',
+    siteName: 'Pepper Me',
+    title: 'Pepper Me: skills that give your agent context',
+    description: 'Agents get the one-line task. Pepper Me gives them the kickoff meeting.',
   },
   twitter: { card: 'summary_large_image' },
 }
@@ -45,13 +45,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <header className="top">
-          <Link href="/" className="mark" aria-label="Pepper, home">
-            Pepper
+          <Link href="/" className="mark" aria-label="Pepper Me, home">
+            Pepper Me
           </Link>
           <nav aria-label="Main">
             <Link href="/#skills">Skills</Link>
             <Link href="/skills/pepper-me">pepper-me</Link>
-            <Link href="/skills/pepper-init">pepper-init</Link>
+            <Link href="/skills/pepper-me-init">pepper-me-init</Link>
             <Link href="/changelog">Changelog</Link>
             <a href={REPO_URL}>GitHub</a>
           </nav>
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <footer className="foot">
           <div className="foot-in">
-            <p className="foot-mark">Pepper</p>
+            <p className="foot-mark">Pepper Me</p>
             <ul>
               <li>
                 <a href={REPO_URL}>Repo</a>

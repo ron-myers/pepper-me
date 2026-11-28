@@ -1,13 +1,13 @@
 ---
-name: pepper-init
+name: pepper-me-init
 description: Interview the user once about a project and write PROJECT.md, the context file every agent session reads first. Use when the user says "pepper me init", "pepper init", asks to set up project context, or wants to refresh it after the project changed.
 ---
 
-# Pepper Init
+# Pepper Me Init
 
 The first-day-on-the-project conversation, done once, saved to a file. Read the repo first. Ask only what the repo can't answer. Write `PROJECT.md` so every future session starts with the context a new teammate would need. Do not start any other task until the file is approved.
 
-Pepper init records what is true and what is unknown. It does not invent conventions, pick a stack, or design anything.
+Pepper Me init records what is true and what is unknown. It does not invent conventions, pick a stack, or design anything.
 
 ## 0. Load config and arguments
 
@@ -211,9 +211,9 @@ If none of the files exist, ask whether to create `AGENTS.md` containing only th
 The block is the only thing you ever add to those files. Append it at the end. Never edit or reformat anything else in them.
 
 ```markdown
-<!-- pepper-init:start -->
+<!-- pepper-me-init:start -->
 Read `PROJECT.md` before starting work. It holds this project's purpose, commands, conventions and open questions. Items under "Open items" are unresolved: ask the user instead of guessing.
-<!-- pepper-init:end -->
+<!-- pepper-me-init:end -->
 ```
 
 If the markers already exist, replace only what is between them.

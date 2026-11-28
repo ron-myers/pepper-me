@@ -16,7 +16,7 @@ export default function NotFound() {
       </h1>
       <div className="hero-foot">
         <div className="agentreply">
-          <p className="agent-label">Pepper</p>
+          <p className="agent-label">Pepper Me</p>
           <p>I looked. Nothing lives at this address.</p>
           <p>The link may be old, or mistyped. Pick where you want to go and I&apos;ll take it from there.</p>
         </div>
