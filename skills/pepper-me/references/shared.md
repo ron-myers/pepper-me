@@ -32,7 +32,7 @@ Apply the configured tone to question wording and the reflection. The written fi
 
 Only when `other_sessions.enabled` is true.
 
-- Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects` (match on the project folder name). Cap at `max_sessions`, newest first.
+- Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects`. Each entry matches if it appears anywhere in the project folder name (substring, case-sensitive). For example, `pepper-me` matches `-Users-name-conductor-workspaces-pepper-me-zurich-v2`. An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored. Cap at `max_sessions`, newest first.
 - Read **user messages only**, never assistant messages. You want answers the user gave, not suggestions Claude made.
 - Claude app: if `include_past_chats` is true and past-chat search tools exist, search them with a few content keywords from the task or project.
 - Use a subagent for the transcript search when one is available so raw transcripts stay out of the main context.

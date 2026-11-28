@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.6 - 2026-11-27
+
+- `only_projects` and `skip_projects` now have a stated rule in both skills' `references/shared.md`. Each entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored. Fixes #15.
+
 ## 0.2.5 - 2026-11-27
 
 - Both skills now ship `references/shared.md` with the shared defaults, tones, session rules, round mechanics and red flags. `pepper-me-init` no longer points to the `pepper-me` skill, so it works when installed alone. Each skill reads the file in section 0. If it can't be read, the skill says so and stops. Fixes #14.
