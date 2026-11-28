@@ -1,6 +1,6 @@
 ---
 name: pepper-me
-description: Pepper the user with clarifying questions through AskUserQuestion to capture intent and context before work starts, then write a scalable brief. Use when the user says "pepper me", asks to be interviewed before a task, or wants to clarify intent first. Not for "pepper me init" or "pepper init", which belong to the pepper-me-init skill.
+description: Use when the user says "pepper me", asks to be interviewed before a task, or wants to clarify intent first. Not for "pepper me init" or "pepper init", which belong to the pepper-me-init skill.
 ---
 
 # Pepper Me

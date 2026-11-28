@@ -22,7 +22,7 @@ Pepper Me is a set of agent skills that give an agent context before it works. `
 Agents get the one-line ticket; Pepper Me gives them the kickoff meeting.
 
 ## Operating Context
-Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, `.claude-plugin/plugin.json` (version 0.2.0). Install: Claude Code plugin, skills.sh, manual.
+Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, `.claude-plugin/plugin.json` (version 0.2.1). Install: Claude Code plugin, skills.sh, manual.
 
 ## Capabilities and Constraints
 - Every claim must trace to repo files. No invented features, stats, testimonials, logos or user counts.
