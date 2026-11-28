@@ -42,6 +42,7 @@ The skills are the same on every agent. Most agents have their own manifest at t
 | Cursor | `npx skills add ron-myers/pepper-me` | [`cursor-tools.md`](skills/pepper-me/references/cursor-tools.md). Manifest: `.cursor-plugin/plugin.json`. |
 | Antigravity | `agy plugin install https://github.com/ron-myers/pepper-me` | [`antigravity-tools.md`](skills/pepper-me/references/antigravity-tools.md). Manifest: `.antigravity-plugin/plugin.json`. |
 | Devin CLI | `devin plugins install ron-myers/pepper-me` | [`devin-tools.md`](skills/pepper-me/references/devin-tools.md). Manifest: `.devin-plugin/plugin.json`. |
+| Factory Droid | `droid plugin marketplace add ron-myers/pepper-me`, then `droid plugin install pepper-me@pepper-me` | [`droid-tools.md`](skills/pepper-me/references/droid-tools.md). Manifests: `.factory-plugin/plugin.json`, `.factory-plugin/marketplace.json`. |
 
 Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents leave `other_sessions.enabled` false. More agents are tracked in the issues.
 
