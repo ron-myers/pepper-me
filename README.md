@@ -1,17 +1,17 @@
-# Pepper
+# Pepper Me
 
 **Skills that give your agent the context it needs to do its best work.**
 
 Picture the first day on a big project with your best employee. You don't hand over a one-line ticket and walk away. You sit down, explain why the work matters, and let them ask questions until they have what they need. Then they go do great work.
 
-Agents get the one-line ticket. They're capable, but they can only work with the context you remembered to give them, so they guess at the rest. Pepper fixes that. Each skill in this repo is a short, structured conversation that makes sure your agent has what it needs before it starts.
+Agents get the one-line ticket. They're capable, but they can only work with the context you remembered to give them, so they guess at the rest. Pepper Me fixes that. Each skill in this repo is a short, structured conversation that makes sure your agent has what it needs before it starts.
 
 ## Skills
 
 | Skill | What it does | Status |
 |---|---|---|
 | [`pepper-me`](#pepper-me) | A kickoff meeting before any task. Your agent asks, you answer, you approve a brief. | Available |
-| [`pepper-init`](#pepper-init) | The same idea for a whole project. Interviews you once and writes `PROJECT.md`, the context file your agent reads every session. | Available |
+| [`pepper-me-init`](#pepper-me-init) | The same idea for a whole project. Interviews you once and writes `PROJECT.md`, the context file your agent reads every session. | Available |
 
 ## Install
 
@@ -196,7 +196,7 @@ Other-session lookup is **off by default**. When on, pepper me reads Claude Code
 
 ---
 
-## pepper-init
+## pepper-me-init
 
 > Type `pepper me init`. Your agent reads your repo, asks only what it can't find, and writes `PROJECT.md`. Every future session starts with that context.
 
@@ -240,7 +240,7 @@ Purpose, users, stack and commands, conventions, constraints, never-do list, ver
 
 ### Configuration
 
-The `init` block in the same config files as `pepper me`. See `skills/pepper-init/config.example.json`.
+The `init` block in the same config files as `pepper me`. See `skills/pepper-me-init/config.example.json`.
 
 ```json
 {

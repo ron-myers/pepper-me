@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-11-27T00:00:00Z",
-  "title": "Design System: Pepper",
+  "title": "Design System: Pepper Me",
   "extensions": {
     "colorMeta": {
       "hot-red": { "role": "primary", "displayName": "Hot Red", "canonical": "#c93418", "tonalRamp": ["#3a0f07", "#5e1a0d", "#8a2511", "#c93418", "#dc5a3f", "#e8836c", "#f1ac9b", "#f9dcd4"] },
@@ -100,7 +100,7 @@
   ],
   "narrative": {
     "northStar": "Two Voices",
-    "overview": "The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.\n\nThe material is black ink on white stock with hairline rules. There are no shadows, no gradients, no rounded corners, no filled decoration. Structure comes from 1px ink rules that form ruled cells, and from scale. One hot red-orange is rationed to the recommended answer, the primary action, the heat dots, and the agent's second-sentence echo in the hero. Dark mode inverts to off-white ink on near-black and lifts the red so it keeps contrast.\n\nDensity is editorial and generous: 80rem container, 6rem between sections, long measure capped at 65ch for prose and 48ch inside cells.",
+    "overview": "The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper Me's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.\n\nThe material is black ink on white stock with hairline rules. There are no shadows, no gradients, no rounded corners, no filled decoration. Structure comes from 1px ink rules that form ruled cells, and from scale. One hot red-orange is rationed to the recommended answer, the primary action, the heat dots, and the agent's second-sentence echo in the hero. Dark mode inverts to off-white ink on near-black and lifts the red so it keeps contrast.\n\nDensity is editorial and generous: 80rem container, 6rem between sections, long measure capped at 65ch for prose and 48ch inside cells.",
     "keyCharacteristics": [
       "Anton uppercase for the user's voice; Hanken Grotesk for prose; JetBrains Mono for the agent, labels and code.",
       "Hairline ink rules and ruled grid cells instead of shadows or boxes.",

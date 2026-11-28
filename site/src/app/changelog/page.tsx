@@ -4,7 +4,7 @@ import { getChangelog } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Changelog',
-  description: 'Every release of Pepper, newest first.',
+  description: 'Every release of Pepper Me, newest first.',
 }
 
 export default function Changelog() {

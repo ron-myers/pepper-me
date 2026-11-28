@@ -1,5 +1,5 @@
 ---
-name: Pepper
+name: Pepper Me
 description: Two voices on one page. The user shouts in giant condensed type; the agent answers small, in monospace. Black ink, white stock, one hot red, hairline rules.
 colors:
   paper: "#fafaf7"
@@ -110,13 +110,13 @@ components:
     padding: "1.5rem 1.4rem"
 ---
 
-# Design System: Pepper
+# Design System: Pepper Me
 
 ## Overview
 
 **Creative North Star: "Two Voices"**
 
-The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.
+The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper Me's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.
 
 The material is black ink on white stock with hairline rules. There are no shadows, no gradients, no rounded corners, no filled decoration. Structure comes from 1px ink rules that form ruled cells, and from scale. One hot red-orange is rationed to the recommended answer, the primary action, the heat dots, and the agent's second-sentence echo in the hero. Dark mode inverts to off-white ink on near-black and lifts the red so it keeps contrast.
 

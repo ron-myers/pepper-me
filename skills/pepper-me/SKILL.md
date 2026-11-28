@@ -1,6 +1,6 @@
 ---
 name: pepper-me
-description: Pepper the user with clarifying questions through AskUserQuestion to capture intent and context before work starts, then write a scalable brief. Use when the user says "pepper me", asks to be interviewed before a task, or wants to clarify intent first. Not for "pepper me init" or "pepper init", which belong to the pepper-init skill.
+description: Pepper the user with clarifying questions through AskUserQuestion to capture intent and context before work starts, then write a scalable brief. Use when the user says "pepper me", asks to be interviewed before a task, or wants to clarify intent first. Not for "pepper me init" or "pepper init", which belong to the pepper-me-init skill.
 ---
 
 # Pepper Me
@@ -30,7 +30,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 Before asking anything, collect what is already known. Record every fact with its source.
 
 - **This session:** everything the user has said so far, attachments, and the task they want done.
-- **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then README, CLAUDE.md, AGENTS.md, docs/, package or config files, and any existing `.pepper/brief.md`. Use the `conflict_check.repo_files` list when set, and always include `PROJECT.md`. Skim, don't read everything.
+- **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then README, CLAUDE.md, AGENTS.md, docs/, package or config files, and any existing `.pepper/brief.md`. Use the `conflict_check.repo_files` list when set, and always include `PROJECT.md`. Skim, don't read everything.
 - **Memory:** any stored context about the user, their projects and preferences.
 - **Other sessions (only if enabled):**
   - Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects` (match on the project folder name). Cap at `max_sessions`, newest first.

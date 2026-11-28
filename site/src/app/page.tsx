@@ -16,7 +16,7 @@ export default function Home() {
       <section className="page hero" aria-labelledby="h-hero">
         <h1 id="h-hero">
           <span className="voice-you">Agents get the one-line task.</span>
-          <span className="voice-pepper">Pepper gives them the kickoff meeting.</span>
+          <span className="voice-pepper">Pepper Me gives them the kickoff meeting.</span>
         </h1>
         <div className="hero-foot">
           <div className="hero-cta">
@@ -51,7 +51,7 @@ export default function Home() {
             correct it, and repeat. Every round trip costs you time and the agent&apos;s context window.
           </p>
           <div className="fix">
-            <p className="fix-line">Pepper fixes this.</p>
+            <p className="fix-line">Pepper Me fixes this.</p>
             <p className="cap">
               <code>pepper me</code> does what a good colleague does in a 30-minute kickoff, in a few minutes.{' '}
               <Link href="/#how">See how it works</Link>.
@@ -135,7 +135,7 @@ export default function Home() {
 
       {/* 9. Configurable: answer once */}
       <section className="page" id="remember" aria-labelledby="h-remember">
-        <h2 id="h-remember">Answer once. Pepper remembers.</h2>
+        <h2 id="h-remember">Answer once. Pepper Me remembers.</h2>
         <p className="lede">
           You shouldn&apos;t answer the same questions every session. Run <code>pepper me init</code> once and your setup
           is saved, and set your own defaults for how <code>pepper me</code> runs.
@@ -152,7 +152,7 @@ export default function Home() {
                 <code>pepper me init</code>
               </p>
             }
-            action={{ href: '/skills/pepper-init', label: 'Read about pepper-init' }}
+            action={{ href: '/skills/pepper-me-init', label: 'Read about pepper-me-init' }}
           />
           <Panel
             as="li"
