@@ -1,5 +1,5 @@
 .DS_Store
-.pepper/
+.pepper/*
 .conductor/
 node_modules/
 .candid/last-review.json
@@ -9,3 +9,4 @@ node_modules/
 site/node_modules/
 site/.next/
 site/out/
+!.pepper/config.json
