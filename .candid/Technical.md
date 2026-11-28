@@ -15,7 +15,7 @@ Tags: `[observed N/M]` = convention followed in N of M relevant files. `[recomme
 
 - Any change to a `SKILL.md` or `config.example.json` is a release. Bump `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and add a top entry to `CHANGELOG.md` in the same PR. [observed 3/3: all at 0.2.4]
 - Site-only and docs-only changes (`site/`, `README.md`, `CONTRIBUTING.md`) do not bump the version and do not get a `CHANGELOG.md` entry.
-- `CHANGELOG.md` entries use `## <version> - <YYYY-MM-DD>` followed by plain-language bullets. [observed 5/5 of recent entries]
+- `CHANGELOG.md` entries use `## <version> - <YYYY-MM-DD>` followed by plain-language bullets. [observed 6/6 entries]
 - Never edit a `SKILL.md` without the user's explicit approval, whatever the task. Skill wording is the product (`PROJECT.md` "Never do").
 - Never change the `pepper_context` or `pepper_brief` format version.
 - Adding a config key updates three places together: `skills/<skill>/config.example.json`, the defaults list in that `SKILL.md`, and `README.md`.
@@ -40,7 +40,7 @@ site/src/components/   9 presentational + interactive components
 site/src/lib/          site.ts (repo/version reads), skills.ts (content data), brief.ts (brief data)
 ```
 
-- `lib/` imports nothing from `components/` or `app/`. `components/` may import from `@/lib/*` only, never from `@/app/*`. [observed, 0 violations]
+- `lib/` imports nothing from `components/` or `app/`. `components/` may import from `@/lib/*`, sibling components via `./`, and framework packages (`next/link`), never from `@/app/*`. [observed 9/9 components, 0 violations]
 - Use the `@/` alias (`tsconfig.json` `paths`) for cross-directory imports, not `../../`. [observed in `app/layout.tsx`, `app/llms.txt/route.ts`]
 - Site content (skill names, commands, summaries, install commands) lives in `lib/skills.ts` and `lib/site.ts`, not inline in components. When copy changes, edit there. `lib/skills.ts` carries "Source: README.md" comments: keep them accurate.
 - Every site claim must trace to repo files (`PRODUCT.md`). Version shown on the site comes from `.claude-plugin/plugin.json` via `getVersion()` in `lib/site.ts`. Never hardcode a version string.
