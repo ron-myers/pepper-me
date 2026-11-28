@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.3 - 2026-11-28
+
+- Devin CLI support (#30). New manifest `.devin-plugin/plugin.json`, installed with `devin plugins install ron-myers/pepper-me`. Skills are auto-discovered from `skills/`.
+- Both skills ship `references/devin-tools.md`. It maps question asking (plain-text fallback), the agent file (`AGENTS.md`), other-session lookup (Claude Code only) and subagents (`run_subagent`).
+- `.devin-plugin/plugin.json` is listed in `.version-bump.json`.
+
 ## 0.5.2 - 2026-11-28
 
 - Antigravity support (#29). New manifest `.antigravity-plugin/plugin.json`, installed with `agy plugin install https://github.com/ron-myers/pepper-me`. Skills are auto-discovered from `skills/`.

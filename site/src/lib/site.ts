@@ -25,6 +25,7 @@ copilot plugin install pepper-me@pepper-me`,
   codex: `npx skills add ron-myers/pepper-me`,
   cursor: `npx skills add ron-myers/pepper-me`,
   antigravity: `agy plugin install ${REPO_URL}`,
+  devin: `devin plugins install ron-myers/pepper-me`,
   manual: `# copy any folder from skills/ into ~/.claude/skills/
 git clone ${REPO_URL}.git
 cp -r pepper-me/skills/pepper-me ~/.claude/skills/`,
