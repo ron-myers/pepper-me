@@ -33,7 +33,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 
 ## 1. Gather context silently
 
-Before asking anything, collect what is already known. Record every fact with its source. How far to look depends on `research` (see Research in `references/shared.md`). With `none`, skip the repo, memory and session reads below and use only this session.
+Before asking anything, collect what is already known. Record every fact with its source. How far to look depends on `research` (see Research in `references/shared.md`). With `none`, skip the repo (`PROJECT.md` too), memory and session reads below and use only this session.
 
 - **This session:** everything the user has said so far, attachments, and the task they want done. If the trigger has no task text after it (a bare `pepper me`), follow section 1a.
 - **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then read at most the files in `conflict_check.repo_files`, plus the README and manifest files (package or config files).
@@ -47,7 +47,7 @@ Never ask a question the context already answers. Build the reflection and ask r
 If the user says only `pepper me` (arguments at most, no task text), the recent chat is the task. If an approved brief already exists for this task, section 11 applies instead.
 
 - Collect the questions, clarifications and options your last messages raised. Drop any the user already answered.
-- Make them the first questions of round 1, ahead of your own. Follow Round mechanics in `references/shared.md`: fit options to 2 to 4 with your best guess first, and carry overflow questions to the next round.
+- Make them the first questions of round 1, ahead of your own. Follow Round mechanics in `references/shared.md`: fit options to 2 to 4, ordered per `recommend`, and carry overflow questions to the next round.
 - Build the reflection in section 2 from that chat (skip it if `reflect` is `off`).
 - If your recent messages raised no questions, use the chat as context and continue as usual.
 - If the chat holds no task either, ask one open question about the goal, as in section 2.
@@ -118,7 +118,7 @@ Stop when all of these hold, or the heat limit or `max_questions` is reached:
 
 Then ask the closing cards (see Closing cards in `references/shared.md`):
 
-- If `ask_what_i_missed` is `end` or `every_round`, ask: "Anything I didn't ask that matters?" Options: "No, write the brief (Recommended)", "Yes" (user types it in Other).
+- If `ask_what_i_missed` is `end` or `every_round` (`true` counts as `end`), ask: "Anything I didn't ask that matters?" Options: "No, write the brief (Recommended)", "Yes" (user types it in Other).
 - If rigor is `relentless`, then ask the fail card: "What would make this fail?" Options: "Nothing comes to mind, write the brief (Recommended)", "Something does" (user types it in Other). Log the answer under Risks. It runs at any heat.
 
 ## 8. Red flags

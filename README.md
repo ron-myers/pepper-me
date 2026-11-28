@@ -41,7 +41,7 @@ The skills are the same on every agent. Most agents have their own manifest at t
 | Codex | `npx skills add ron-myers/pepper-me`, or copy a folder from `skills/` into `~/.agents/skills/` | [`codex-tools.md`](skills/pepper-me/references/codex-tools.md). Manifest: `.codex-plugin/plugin.json`. |
 | Cursor | `npx skills add ron-myers/pepper-me` | [`cursor-tools.md`](skills/pepper-me/references/cursor-tools.md). Manifest: `.cursor-plugin/plugin.json`. |
 
-Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents set `other_sessions.enabled` to `false` and avoid `research: deep`, the `deep` and `audit` presets, or pass `no-sessions`. More agents are tracked in the issues.
+Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents set `other_sessions.enabled` to `false`. That also keeps the `deep` and `audit` presets from trying the lookup. More agents are tracked in the issues.
 
 ---
 
@@ -151,7 +151,7 @@ A preset sets several keys at once. Keys you set yourself override it.
 | `answer_style` | `choice` | `choice` | `mixed` | `mixed` |
 | `recommend` | `always` | `always` | `always` | `sourced` |
 
-Order, lowest to highest: defaults, preset, `~/.pepper-me/config.json`, `.pepper/config.json`, arguments. A preset typed as an argument beats config keys, so `pepper me deep` always runs deep.
+A preset named in a config file sits below your config keys. A preset typed as an argument sits above them, so `pepper me deep` always runs deep, and `pepper me deep gentle` runs deep with gentle rigor. Presets don't set `tone`, `questions_per_round`, `max_questions` or `show_progress`. A config key counts only if you wrote it, so delete the keys you copied from `config.example.json` and don't want to pin. An old `ask_what_i_missed: true` beats a preset's value, like any key.
 
 ### Interview settings
 
@@ -162,7 +162,7 @@ Order, lowest to highest: defaults, preset, `~/.pepper-me/config.json`, `.pepper
 | `default_rigor` | `gentle`, `firm`, `relentless` | `firm` |
 | `tone` | any tone name | `direct` |
 | `questions_per_round` | `1` to `4`, or `auto` (one per independent unknown) | `4` |
-| `max_questions` | `null`, or a number. A hard cap across all rounds. | `null` |
+| `max_questions` | `null`, or a number. Caps the questions asked across rounds. Conflict, closing and approve cards don't count. | `null` |
 | `answer_style` | `choice` cards, `open` plain text, `mixed` cards plus one open question per round | `choice` |
 | `recommend` | `always`, `sourced` (only when the guess cites a file, memory or session), `never` | `always` |
 | `research` | `none`, `light` (repo and memory), `deep` (adds git history, linked issues and other sessions, unless you opted out) | `light` |

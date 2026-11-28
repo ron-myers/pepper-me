@@ -34,7 +34,7 @@ Pepper Me init records what is true and what is unknown. It does not invent conv
 
 ## 1. Scan silently
 
-Skip this section if `init.scan` is false or `research` is `none`. Otherwise read before asking. With `research: deep`, also follow Research in `references/shared.md`. Record every fact with its source file, and keep it as a candidate, not as truth.
+Skip this section if `init.scan` is false or `research` is `none`. In update mode (section 2) still read the existing `PROJECT.md`. Otherwise read before asking. With `research: deep`, also follow Research in `references/shared.md`. Record every fact with its source file, and keep it as a candidate, not as truth.
 
 Look for:
 
@@ -120,7 +120,7 @@ Stop when all hold, or the heat limit or `max_questions` is reached:
 
 Then ask the closing cards (see Closing cards in `references/shared.md`):
 
-- If `ask_what_i_missed` is `end` or `every_round`, ask: "Anything I didn't ask that a new teammate should know?" Options: "No, write it (Recommended)", "Yes".
+- If `ask_what_i_missed` is `end` or `every_round` (`true` counts as `end`), ask: "Anything I didn't ask that a new teammate should know?" Options: "No, write it (Recommended)", "Yes".
 - If rigor is `relentless`, then ask the fail card: "What's the mistake people make here most often?" Options: "Nothing comes to mind, write it (Recommended)", "Something does" (user types it in Other). Log the answer under Never do or Open items. It runs at any heat.
 
 ## 9. Write PROJECT.md
