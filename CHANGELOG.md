@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 - 2026-11-27
+
+- New setting `after_task.run` (string or `null`, default `null`) in `pepper-me`. When set, the named skill or slash command runs once the task is done and passes the "Done looks like" check. The setting is the consent, so there is no extra confirm, even for `candid-ship`, which publishes. The outcome is reported in one or two lines. A missing skill or command is skipped with a one-line note, with no substitute. If the user stops the task or the check fails, the follow-up is skipped. A mid-task brief bump runs it once, at the end.
+- New arguments `after:<name>` and `no-after` override the setting for one run. `after:<name>` works even when the setting is `null`.
+- Fixes #21.
+
 ## 0.3.0 - 2026-11-27
 
 - New setting `brief.auto_start` (boolean, default `false`) in `pepper-me`. When true, the approve card is skipped: the brief is shown, saved as `status: approved`, and the task starts. Mid-task version bumps skip the card too. A hard conflict still open when the user says "go" is listed in the brief.

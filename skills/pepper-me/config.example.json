@@ -28,5 +28,9 @@
     "template": null,
     "versioning": true,
     "auto_start": false
+  },
+
+  "after_task": {
+    "run": null
   }
 }
