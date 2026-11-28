@@ -163,7 +163,7 @@ export default function Home() {
             as="li"
             tab="Per person"
             title="Set your defaults"
-            summary="Pick your default heat, tone and brief size in ~/.pepper-me/config.json. A .pepper/config.json in a project overrides it for that project."
+            summary="Pick your default heat, rigor, tone and brief size, or a preset, in ~/.pepper-me/config.json. A .pepper/config.json in a project overrides it for that project."
             extra={
               <p className="meta">
                 <code>~/.pepper-me/config.json</code>
