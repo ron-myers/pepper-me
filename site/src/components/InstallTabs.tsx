@@ -6,8 +6,12 @@ import { track } from '@/lib/track'
 
 const TABS = [
   { id: 'plugin', label: 'Claude Code plugin', note: 'Installs every skill in the repo.' },
+  { id: 'gemini', label: 'Gemini CLI', note: 'Tool notes: skills/*/references/gemini-tools.md. Uses ask_user for questions.' },
+  { id: 'copilot', label: 'GitHub Copilot CLI', note: 'Tool notes: skills/*/references/copilot-tools.md.' },
+  { id: 'codex', label: 'Codex', note: 'Or copy a folder from skills/ into ~/.agents/skills/. Tool notes: skills/*/references/codex-tools.md.' },
+  { id: 'cursor', label: 'Cursor', note: 'Tool notes: skills/*/references/cursor-tools.md.' },
   { id: 'skills', label: 'skills.sh', note: 'Uses the skills.sh CLI.' },
-  { id: 'manual', label: 'Manual', note: 'Copy any folder from skills/ into ~/.claude/skills/.' },
+  { id: 'manual', label: 'Manual', note: 'Copy any folder from skills/ into ~/.claude/skills/ for Claude Code, or ~/.agents/skills/ for Codex.' },
 ] as const
 
 export function InstallTabs({ commands }: { commands: Record<string, string> }) {

@@ -19,7 +19,12 @@ export const INSTALL = {
   plugin: `/plugin marketplace add ron-myers/pepper-me
 /plugin install pepper-me@pepper-me`,
   skills: `npx skills add ron-myers/pepper-me`,
-  manual: `# copy any folder from skills/ into ~/.claude/skills/
+  gemini: `gemini extensions install ${REPO_URL}`,
+  copilot: `copilot plugin marketplace add ron-myers/pepper-me
+copilot plugin install pepper-me@pepper-me`,
+  codex: `npx skills add ron-myers/pepper-me`,
+  cursor: `npx skills add ron-myers/pepper-me`,
+  manual: `# copy any folder from skills/ into ~/.claude/skills/ (Claude Code) or ~/.agents/skills/ (Codex)
 git clone ${REPO_URL}.git
 cp -r pepper-me/skills/pepper-me ~/.claude/skills/`,
 }

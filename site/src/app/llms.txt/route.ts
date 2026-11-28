@@ -7,7 +7,7 @@ export function GET() {
 
 > Skills that give your agent the context it needs to do its best work. Agents get the one-line task; Pepper Me gives them the kickoff meeting. Current version: ${getVersion()}.
 
-Pepper Me is a set of agent skills for Claude Code. Each skill is a short, structured conversation that makes sure your agent has what it needs before it starts.
+Pepper Me is a set of agent skills. It works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex and Cursor. Each skill is a short, structured conversation that makes sure your agent has what it needs before it starts.
 
 ## Skills
 
@@ -22,6 +22,29 @@ Claude Code plugin:
 /plugin marketplace add ron-myers/pepper-me
 /plugin install pepper-me@pepper-me
 \`\`\`
+
+Gemini CLI:
+
+\`\`\`
+gemini extensions install ${REPO_URL}
+\`\`\`
+
+GitHub Copilot CLI:
+
+\`\`\`
+copilot plugin marketplace add ron-myers/pepper-me
+copilot plugin install pepper-me@pepper-me
+\`\`\`
+
+Codex and Cursor (skills.sh):
+
+\`\`\`
+npx skills add ron-myers/pepper-me
+\`\`\`
+
+Manual: copy a folder from \`skills/\` into \`~/.claude/skills/\` (Claude Code) or \`~/.agents/skills/\` (Codex).
+
+Each agent has a tool-mapping note in \`skills/*/references/<agent>-tools.md\`. Other-session lookup reads Claude Code transcripts, so it works only in Claude Code.
 
 ## Links
 
