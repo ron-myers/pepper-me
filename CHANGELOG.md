@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5 - 2026-11-27
+
+- Both skills now ship `references/shared.md` with the shared defaults, tones, session rules, round mechanics and red flags. `pepper-me-init` no longer points to the `pepper-me` skill, so it works when installed alone. Each skill reads the file in section 0. If it can't be read, the skill says so and stops. Fixes #14.
+
 ## 0.2.4 - 2026-11-27
 
 - Both skills' Fallback section covers two more failures. With no subagent tool, read at most 3 transcripts (or `max_sessions` if lower), user messages only. If the session lookup fails or returns nothing, say so in one line and continue with repo and memory only.

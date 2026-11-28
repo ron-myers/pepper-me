@@ -7,24 +7,22 @@ description: Use when the user says "pepper me init" or "pepper init", asks to s
 
 The first-day-on-the-project conversation, done once, saved to a file. Read the repo first. Ask only what the repo can't answer. Write `PROJECT.md` so every future session starts with the context a new teammate would need. Do not start any other task until the file is approved.
 
-The red flags in the pepper-me skill apply here, with `PROJECT.md` approval as the gate.
+The Red flags table in `references/shared.md` applies here, with `PROJECT.md` approval as the gate.
 
 Pepper Me init records what is true and what is unknown. It does not invent conventions, pick a stack, or design anything.
 
 ## 0. Load config and arguments
 
-1. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`) behave exactly as in pepper-me.
-2. If neither exists, use these defaults:
-   - default_heat: medium, tone: direct, questions_per_round: 4, ask_what_i_missed: true
-   - other_sessions.enabled: false (lookback_hours 24, max_sessions 10, include_past_chats true)
-   - conflict_check.enabled: true, ask_on: hard, log_soft: true
+1. Read `references/shared.md` next to this file now. It holds the shared defaults, tones, session rules, round mechanics and red flags used below.
+2. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`) are described in `references/shared.md`.
+3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - init.path: PROJECT.md
    - init.scan: true
    - init.link_agent_files: ask
    - init.agent_files: ["CLAUDE.md", "AGENTS.md"]
-3. Parse arguments after the trigger, any order, all optional:
+4. Parse arguments after the trigger, any order, all optional:
    - Heat: `mild`, `medium`, `hot`
-   - Tone: any tone name from the pepper-me skill (`direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`)
+   - Tone: any tone name from Tones in `references/shared.md` (`direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful`)
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    - `refresh` to force update mode (see section 2)
    Example: `pepper me init hot, candor`
@@ -40,7 +38,7 @@ Look for:
 - **Conventions:** lint and format configs, tsconfig, editorconfig, directory layout, naming patterns visible in the code, commit style in `git log`.
 - **Verification:** test runner and where tests live, CI config, pre-commit hooks, type checking.
 - **Existing agent context:** CLAUDE.md, AGENTS.md, `.cursor/rules`, `.github/copilot-instructions.md`, `.pepper/brief.md`, memory.
-- **Other sessions (only if enabled):** same rules as pepper-me. User messages only, newest first, capped at `max_sessions`, respect `only_projects` and `skip_projects`. If `include_past_chats` is true and past-chat search tools exist, search them with a few project keywords. Prefer a subagent so raw transcripts stay out of the main context.
+- **Other sessions (only if enabled):** follow Other sessions in `references/shared.md`. Use a few project keywords for any past-chat search.
 
 Read only the sources listed above. Read nothing else unless the user names it. For a monorepo, scan the root and each package manifest, and ask which scope this file covers.
 
@@ -84,14 +82,7 @@ Heat sets depth:
 
 ## 5. Ask in rounds
 
-Same mechanics as pepper-me. Always use AskUserQuestion.
-
-- Up to `questions_per_round` per call (tool max 4). Group questions that don't depend on each other.
-- 2 to 4 options each. Best guess first, labelled "(Recommended)".
-- When the guess came from a file or session, cite it in the option description: "From package.json scripts", "From CI config". The user still confirms it. Never accept it silently.
-- Offer "You decide" when a wrong answer can be changed in one edit. Use multiSelect when several answers apply.
-- Headers 12 characters max. Each question must stand alone.
-- No filler between rounds. The next card is the acknowledgment.
+Follow Round mechanics in `references/shared.md`. Always use AskUserQuestion. When the guess came from a file, cite it in the option description: "From package.json scripts", "From CI config".
 
 Questions must be about this project, never generic. "Your CI runs `pnpm test` but package.json has no `test` script. Which is right?" beats "What's your test command?"
 
@@ -232,6 +223,6 @@ Then stop. Do not begin work.
 
 ## 12. Fallback
 
-- If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".
-- If there is no subagent tool, read at most 3 transcripts yourself (or `max_sessions` if lower), user messages only.
-- If the session lookup fails or returns nothing, say so in one line. Then continue with repo and memory only.
+- If AskUserQuestion isn't available, ask in plain text as described in Round mechanics in `references/shared.md`.
+- Subagent and session-lookup failures: follow Other sessions in `references/shared.md`.
+- If `references/shared.md` can't be read, say so in one line and stop. Do not guess its rules.

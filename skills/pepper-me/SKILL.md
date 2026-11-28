@@ -9,19 +9,14 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 
 ## 0. Load config and arguments
 
-1. Read `~/.pepper-me/config.json` if it exists. Then read `.pepper/config.json` in the current project and merge it on top (project wins). `config.example.json` next to this file documents every option.
-2. If neither exists, use these defaults:
-   - default_heat: medium
-   - tone: direct
-   - questions_per_round: 4
-   - ask_what_i_missed: true
-   - other_sessions.enabled: false (lookback_hours 24, max_sessions 10, include_past_chats true)
-   - conflict_check.enabled: true, ask_on: hard, log_soft: true
+1. Read `references/shared.md` next to this file now. It holds the shared defaults, tones, session rules, round mechanics and red flags used below.
+2. Read `~/.pepper-me/config.json` if it exists. Then read `.pepper/config.json` in the current project and merge it on top (project wins). `config.example.json` next to this file documents every option.
+3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - brief: size auto, save true, path .pepper/brief.md, versioning true
    - conflict_check.repo_files: README.md, CLAUDE.md, AGENTS.md, docs/, .pepper/brief.md (`PROJECT.md` is always included)
-3. Parse arguments after the trigger. Any order, all optional:
+4. Parse arguments after the trigger. Any order, all optional:
    - Heat: `mild`, `medium`, `hot`
-   - Tone: any tone name from section 9
+   - Tone: any tone name from Tones in `references/shared.md`
    - Brief size: `line`, `card`, `page`, `full`
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    Example: `pepper me hot, candor, full`
@@ -33,11 +28,7 @@ Before asking anything, collect what is already known. Record every fact with it
 - **This session:** everything the user has said so far, attachments, and the task they want done.
 - **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then read at most the files in `conflict_check.repo_files`, plus the README and manifest files (package or config files).
 - **Memory:** any stored context about the user, their projects and preferences.
-- **Other sessions (only if enabled):**
-  - Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects` (match on the project folder name). Cap at `max_sessions`, newest first.
-  - Read **user messages only**, never assistant messages. You want answers the user gave, not suggestions Claude made.
-  - Claude app: if `include_past_chats` is true and past-chat search tools exist, search them with a few content keywords from the task.
-  - Use a subagent for the transcript search when one is available so raw transcripts stay out of the main context.
+- **Other sessions (only if enabled):** follow Other sessions in `references/shared.md`.
 
 Never ask a question the context already answers. Build the reflection and ask round 1 from this session, the repo and memory only. Add other-session and past-chat results from round 2 on, if they have arrived.
 
@@ -69,16 +60,7 @@ Heat sets the depth:
 
 ## 4. Ask in rounds
 
-Always use AskUserQuestion. Each call holds up to `questions_per_round` questions (tool max is 4).
-
-- Group questions that don't depend on each other. Hold dependent questions for the next round.
-- Each question gets 2 to 4 options. Put your best guess first and add "(Recommended)" to its label.
-- When the best guess came from another source, say so in the option description: "From your Paytic session, 2h ago" or "From README.md". The user still confirms it. Never accept it silently.
-- Offer "You decide" as an option when a wrong answer can be changed in one edit.
-- Headers 12 characters max. Each question must make sense on its own.
-- Use multiSelect when several answers can apply.
-- No acknowledgment filler between rounds. The next card is the acknowledgment.
-- After each round, recompute what's unlocked and ask the next round.
+Follow Round mechanics in `references/shared.md`. Always use AskUserQuestion.
 
 ## 5. Conflict check (after every round)
 
@@ -116,28 +98,11 @@ If `ask_what_i_missed` is true, ask one final card: "Anything I didn't ask that 
 
 ## 8. Red flags
 
-Do not start the task until the brief has `status: approved`.
-
-| Thought | Reality |
-|---|---|
-| "The task is small, skip the interview." | Task size does not decide whether to ask. Run a mild round. |
-| "Memory already answers this." | Memory is a source, not an answer. Cite it in an option and let the user confirm. |
-| "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
-| "The brief is obvious, skip approval." | No approval, no task. Ask the approve card. |
-| "This conflict is minor, I'll pick one." | Hard conflicts get a card. Soft ones get logged. Never pick silently. |
+Do not start the task until the brief has `status: approved`. The Red flags table in `references/shared.md` applies.
 
 ## 9. Tone
 
-Apply the configured tone to question wording and the reflection. The brief itself stays plain in every tone.
-
-- **direct:** shortest wording, no warm-up. "Who reads this?"
-- **candor:** radical candor. Cares, but names weak spots. "This goal is vague. What does winning look like in numbers?"
-- **friendly:** warm and relaxed. "Quick one, who's this for?"
-- **coach:** Socratic. Helps the user think. "What would you tell a founder who asked you this?"
-- **exec:** board-meeting style. Decisions and tradeoffs only. "Speed or polish? Pick one."
-- **skeptic:** devil's advocate. Tests assumptions. "Why would anyone pay for this?"
-- **consultant:** structured and thorough. "Audience first, then scope, then risks."
-- **playful:** light and quick, for creative work. "Gut call, bold or safe?"
+Apply the configured tone from Tones in `references/shared.md` to question wording and the reflection. The brief itself stays plain in every tone.
 
 ## 10. The brief
 
@@ -227,6 +192,6 @@ If the work drifts from the approved brief, or the user runs pepper me again mid
 
 ## 12. Fallback
 
-- If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".
-- If there is no subagent tool, read at most 3 transcripts yourself (or `max_sessions` if lower), user messages only.
-- If the session lookup fails or returns nothing, say so in one line. Then continue with repo and memory only.
+- If AskUserQuestion isn't available, ask in plain text as described in Round mechanics in `references/shared.md`.
+- Subagent and session-lookup failures: follow Other sessions in `references/shared.md`.
+- If `references/shared.md` can't be read, say so in one line and stop. Do not guess its rules.

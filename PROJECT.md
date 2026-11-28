@@ -29,7 +29,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | Site preview | `cd site && npm start` (serves `out/`; run build first) |
 
 - Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-me-init/SKILL.md`, each with a `config.example.json`
-- Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.4
+- Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.5
 - Install paths: Claude Code plugin (primary) and skills.sh (`npx skills add ron-myers/pepper-me`)
 - Site: Next.js 16 App Router, TypeScript, MDX, static export. Serves `llms.txt`.
 - Site deploy: Vercel Git integration deploys on merge to `stable`. `NEXT_PUBLIC_FATHOM_SITE_ID` is set in Vercel. Fathom loads only when it is set.
@@ -38,7 +38,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 ## Conventions
 - Commit style: conventional prefixes with PR number, e.g. `feat: add pepper-me-init (pepper me init) (#2)`
 - Keep SKILL.md instructions short and testable. Plain language, short sentences, one behavior per bullet. Every option has a default (CONTRIBUTING.md).
-- Adding a config key means updating `config.example.json`, the defaults list in SKILL.md, and the README.
+- Adding a config key means updating `config.example.json`, the defaults list (in `SKILL.md`, or in both `references/shared.md` copies if the key is shared), and the README.
 - Each release bumps the version in `plugin.json`, `marketplace.json` and `CHANGELOG.md` together.
 - Any `SKILL.md` or `config.example.json` change is a release and bumps the version. Site-only and docs-only PRs don't.
 - `CHANGELOG.md` tracks plugin releases only. Site changes do not need an entry.

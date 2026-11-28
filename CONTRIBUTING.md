@@ -13,9 +13,11 @@ Thanks for helping make pepper me better.
 
 1. Fork the repo and create a branch.
 2. Edit `skills/pepper-me/SKILL.md`. Keep instructions short and testable.
-3. If you add a config option, add it to `config.example.json`, the defaults list in SKILL.md and the README.
+3. If you add a config option, add it to `config.example.json`, the defaults list (in `SKILL.md`, or in both `references/shared.md` copies if the key is shared) and the README.
 4. Try your change in a real session. Paste a short transcript or brief in the pull request.
 5. Add a line to `CHANGELOG.md`.
+
+`skills/pepper-me/references/shared.md` and `skills/pepper-me-init/references/shared.md` must stay identical. Edit both in the same change.
 
 ## Style
 
