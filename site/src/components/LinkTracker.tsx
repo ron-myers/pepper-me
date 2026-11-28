@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { EVENTS } from '@/lib/events'
 import { track } from '@/lib/track'
 
 // One delegated listener. Links opt in with data-track="event name".
@@ -17,7 +18,7 @@ export function LinkTracker() {
       try {
         const url = new URL(a.getAttribute('href') ?? '', window.location.href)
         if (url.origin !== window.location.origin && /^https?:$/.test(url.protocol)) {
-          track(`outbound: ${url.hostname}`)
+          track(EVENTS.outbound(url.hostname))
         }
       } catch {}
     }

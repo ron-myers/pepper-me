@@ -2,6 +2,7 @@
 import { useId, useState } from 'react'
 import { SIZES, briefFor, toMarkdown, type Size } from '@/lib/brief'
 import { CopyButton } from './CopyButton'
+import { EVENTS } from '@/lib/events'
 import { track } from '@/lib/track'
 
 export function BriefSwitch() {
@@ -24,7 +25,7 @@ export function BriefSwitch() {
             onClick={() => {
               if (s.id === size) return
               setSize(s.id)
-              track(`brief size: ${s.id}`)
+              track(EVENTS.briefSize(s.id))
             }}
           >
             {s.id}
@@ -69,7 +70,7 @@ export function BriefSwitch() {
         <div className="code">
           <div className="codebar">
             <span>.pepper/brief.md</span>
-            <CopyButton text={md} event={`copy: brief (${size})`} />
+            <CopyButton text={md} event={EVENTS.copyBrief(size)} />
           </div>
           <pre tabIndex={0}>
             <code>{md}</code>
