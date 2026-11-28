@@ -109,6 +109,8 @@ pepper me sessions
 
 Arguments go in any order. All are optional.
 
+A bare `pepper me` after your agent asked you questions turns those questions into round 1.
+
 | Argument | Values | Default |
 |---|---|---|
 | Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 - 2026-11-28
+
+- A bare `pepper me` (no task text) now treats the recent chat as the task. The questions, clarifications and options the agent raised in its last messages become the first questions of round 1, minus any the user already answered. New section 1a in `pepper-me`'s `SKILL.md`.
+
 ## 0.5.0 - 2026-11-28
 
 - Manifests for Codex (`.codex-plugin/plugin.json`), Cursor (`.cursor-plugin/plugin.json`) and Gemini CLI (`gemini-extension.json`, `GEMINI.md`). GitHub Copilot CLI installs from the existing Claude marketplace file.

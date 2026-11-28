@@ -1,6 +1,6 @@
 {
   "name": "pepper-me",
   "description": "Run a kickoff meeting with your agent before it starts work. It asks the questions a sharp colleague would, checks for conflicts, and writes a brief you approve.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "contextFileName": "GEMINI.md"
 }
