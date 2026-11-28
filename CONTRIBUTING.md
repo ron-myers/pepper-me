@@ -19,6 +19,10 @@ Thanks for helping make pepper me better.
 
 `skills/pepper-me/references/shared.md` and `skills/pepper-me-init/references/shared.md` must stay identical. Edit both in the same change.
 
+## Releases
+
+Run `scripts/bump-version.sh <version>` (needs `jq`). It sets the version in every manifest listed in `.version-bump.json`. `scripts/bump-version.sh --check` prints them and fails on drift. Add the new version to `CHANGELOG.md` by hand. Adding an agent means adding its manifest to `.version-bump.json`, a `references/<agent>-tools.md` in both skills, and a row in the README table.
+
 ## Style
 
 - Plain language, short sentences

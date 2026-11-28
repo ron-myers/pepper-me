@@ -2,7 +2,7 @@
 pepper_context: v1
 version: 2
 created: 2026-11-27
-updated: 2026-11-27
+updated: 2026-11-28
 heat: medium
 status: approved
 ---
@@ -29,8 +29,8 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | Site preview | `cd site && npm start` (serves `out/`; run build first) |
 
 - Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-me-init/SKILL.md`, each with a `config.example.json`
-- Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.4.0
-- Install paths: Claude Code plugin (primary) and skills.sh (`npx skills add ron-myers/pepper-me`)
+- Packaging: Claude Code plugin (`.claude-plugin/plugin.json`, `marketplace.json`), plus `.codex-plugin/`, `.cursor-plugin/`, `gemini-extension.json` and `GEMINI.md`. Version 0.5.0. `scripts/bump-version.sh` bumps every file in `.version-bump.json` (needs `jq`).
+- Install paths: Claude Code plugin (primary), skills.sh (`npx skills add ron-myers/pepper-me`), Gemini CLI extension, Copilot CLI marketplace. See README "Other agents".
 - Site: Next.js 16 App Router, TypeScript, MDX, static export. Serves `llms.txt`.
 - Site deploy: Vercel Git integration deploys on merge to `stable`. `NEXT_PUBLIC_FATHOM_SITE_ID` is set in Vercel. Fathom loads only when it is set.
 - Default branch and ship target: `stable` (`.candid/config.json`)
@@ -39,7 +39,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 - Commit style: conventional prefixes with PR number, e.g. `feat: add pepper-me-init (pepper me init) (#2)`
 - Keep SKILL.md instructions short and testable. Plain language, short sentences, one behavior per bullet. Every option has a default (CONTRIBUTING.md).
 - Adding a config key means updating `config.example.json`, the defaults list (in `SKILL.md`, or in both `references/shared.md` copies if the key is shared), and the README.
-- Each release bumps the version in `plugin.json`, `marketplace.json` and `CHANGELOG.md` together.
+- Each release runs `scripts/bump-version.sh <version>` and adds a `CHANGELOG.md` entry.
 - Any `SKILL.md` or `config.example.json` change is a release and bumps the version. Site-only and docs-only PRs don't.
 - `CHANGELOG.md` tracks plugin releases only. Site changes do not need an entry.
 - Site work follows `PRODUCT.md` (copy and claims) and `DESIGN.md` (visual system). Every site claim must trace to repo files.
@@ -87,3 +87,6 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | 16 | 2026-11-27 | What triggers a release | Any SKILL.md or config change | asked |
 | 17 | 2026-11-27 | Pepper Me rename | Product name is "Pepper Me" everywhere. Skill `pepper-init` renamed to `pepper-me-init`. Shipped with no version bump, an exception to #16 | asked, conflict |
 | 18 | 2026-11-27 | Project folder matching | Substring, case-sensitive. Empty `only_projects` means no filter. Skip wins. Rule lives in `references/shared.md` (#15) | asked |
+| 19 | 2026-11-28 | Multi-agent support | Support all superpowers agents in stages (issues #29-#39). Stage 1: Codex, Cursor, Gemini CLI, Copilot. Pattern: one `skills/` dir, a manifest per agent, `references/<agent>-tools.md`. Supersedes #2 | asked |
+| 20 | 2026-11-28 | Untested agents | List as supported, no untested label. Exception to PRODUCT.md claim rule and Verification above. Tracked in #39 | asked, conflict |
+| 21 | 2026-11-28 | Site update | Written as `.pepper/site-update-prompt.md`, not run in the stage 1 PR | asked |

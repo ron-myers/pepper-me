@@ -30,6 +30,19 @@ npx skills add ron-myers/pepper-me
 
 **Manual:** copy any folder from `skills/` into `~/.claude/skills/`.
 
+### Other agents
+
+The skills are the same on every agent. Most agents have their own manifest at the repo root, and each has a tool-mapping note in `skills/*/references/`.
+
+| Agent | Install | Notes |
+|---|---|---|
+| Gemini CLI | `gemini extensions install https://github.com/ron-myers/pepper-me` | [`gemini-tools.md`](skills/pepper-me/references/gemini-tools.md). Uses `ask_user` for questions. |
+| GitHub Copilot CLI | `copilot plugin marketplace add ron-myers/pepper-me`, then `copilot plugin install pepper-me@pepper-me` | [`copilot-tools.md`](skills/pepper-me/references/copilot-tools.md) |
+| Codex | `npx skills add ron-myers/pepper-me`, or copy a folder from `skills/` into `~/.agents/skills/` | [`codex-tools.md`](skills/pepper-me/references/codex-tools.md). Manifest: `.codex-plugin/plugin.json`. |
+| Cursor | `npx skills add ron-myers/pepper-me` | [`cursor-tools.md`](skills/pepper-me/references/cursor-tools.md). Manifest: `.cursor-plugin/plugin.json`. |
+
+Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents leave `other_sessions.enabled` false. More agents are tracked in the issues.
+
 ---
 
 ## pepper-me

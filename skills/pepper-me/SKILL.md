@@ -10,6 +10,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 ## 0. Load config and arguments
 
 1. Read `references/shared.md` next to this file now. It holds the shared defaults, tones, session rules, round mechanics and red flags used below.
+   - If you are not Claude Code, also read `references/<agent>-tools.md` for your agent (`codex`, `cursor`, `gemini`, `copilot`). It says how to ask questions and what is unavailable.
 2. Read `~/.pepper-me/config.json` if it exists. Then read `.pepper/config.json` in the current project and merge it on top (project wins). `config.example.json` next to this file documents every option.
 3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - brief: size auto, save true, path .pepper/brief.md, versioning true, auto_start false

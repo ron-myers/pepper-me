@@ -14,6 +14,7 @@ Pepper Me init records what is true and what is unknown. It does not invent conv
 ## 0. Load config and arguments
 
 1. Read `references/shared.md` next to this file now. It holds the shared defaults, tones, session rules, round mechanics and red flags used below.
+   - If you are not Claude Code, also read `references/<agent>-tools.md` for your agent (`codex`, `cursor`, `gemini`, `copilot`). It says how to ask questions and what is unavailable.
 2. Read `~/.pepper-me/config.json` if it exists, then `.pepper/config.json` in the project on top (project wins). `config.example.json` next to this file documents the `init` block. Shared keys (`default_heat`, `tone`, `questions_per_round`, `ask_what_i_missed`, `other_sessions`, `conflict_check`) are described in `references/shared.md`.
 3. If neither exists, use the shared defaults in `references/shared.md` plus these:
    - init.path: PROJECT.md
