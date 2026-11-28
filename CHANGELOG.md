@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.2 - 2026-11-28
+
+- Antigravity support (#29). New manifest `.antigravity-plugin/plugin.json`, installed with `agy plugin install https://github.com/ron-myers/pepper-me`. Skills are auto-discovered from `skills/`.
+- Both skills ship `references/antigravity-tools.md`. It maps question asking (plain-text fallback), the agent file, other-session lookup (Claude Code only) and subagents (`invoke_subagent`).
+- `.antigravity-plugin/plugin.json` is listed in `.version-bump.json`.
+
 ## 0.5.1 - 2026-11-28
 
 - A bare `pepper me` (no task text) now treats the recent chat as the task. The questions, clarifications and options the agent raised in its last messages become the first questions of round 1, minus any the user already answered. New section 1a in `pepper-me`'s `SKILL.md`.
