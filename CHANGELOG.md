@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4 - 2026-11-27
+
+- Both skills' Fallback section covers two more failures. With no subagent tool, read at most 3 transcripts (or `max_sessions` if lower), user messages only. If the session lookup fails or returns nothing, say so in one line and continue with repo and memory only.
+
 ## 0.2.3 - 2026-11-27
 
 - Replace nuance clauses in both skills with conditions an agent can observe. "You decide" is offered when a wrong answer can be changed in one edit.

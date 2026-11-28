@@ -29,7 +29,7 @@ The skills are Markdown and JSON only. They have no build, test or lint commands
 | Site preview | `cd site && npm start` (serves `out/`; run build first) |
 
 - Skills: `skills/pepper-me/SKILL.md`, `skills/pepper-me-init/SKILL.md`, each with a `config.example.json`
-- Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.2
+- Packaging: Claude Code plugin, `.claude-plugin/plugin.json` and `marketplace.json`, version 0.2.4
 - Install paths: Claude Code plugin (primary) and skills.sh (`npx skills add ron-myers/pepper-me`)
 - Site: Next.js 16 App Router, TypeScript, MDX, static export. Serves `llms.txt`.
 - Site deploy: Vercel Git integration deploys on merge to `stable`. `NEXT_PUBLIC_FATHOM_SITE_ID` is set in Vercel. Fathom loads only when it is set.
