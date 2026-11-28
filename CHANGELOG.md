@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.4 - 2026-11-28
+
+- Factory Droid support (#31). New manifests `.factory-plugin/plugin.json` and `.factory-plugin/marketplace.json`, installed with `droid plugin marketplace add ron-myers/pepper-me` then `droid plugin install pepper-me@pepper-me`. Skills are auto-discovered from `skills/`.
+- Both skills ship `references/droid-tools.md`. It maps question asking (plain-text fallback), the agent file (`AGENTS.md`), other-session lookup (Claude Code only) and subagents (`Task`).
+- Both Droid manifests are listed in `.version-bump.json`.
+
 ## 0.5.3 - 2026-11-28
 
 - Devin CLI support (#30). New manifest `.devin-plugin/plugin.json`, installed with `devin plugins install ron-myers/pepper-me`. Skills are auto-discovered from `skills/`.

@@ -3,7 +3,7 @@
   "name": "pepper-me",
   "displayName": "Pepper Me",
   "description": "Run a kickoff meeting with your agent before it starts work. It asks the questions a sharp colleague would, checks for conflicts, and writes a brief you approve.",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "author": {
     "name": "Ron Myers",
     "url": "https://github.com/ron-myers"
