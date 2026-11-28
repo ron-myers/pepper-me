@@ -9,7 +9,7 @@ export function Pre({ children }: { children?: React.ReactNode }) {
     <div className="code">
       <div className="codebar">
         <span>{lang}</span>
-        <CopyButton text={text} event={`copy: code block (${lang})`} />
+        <CopyButton text={text} event="copy: code block" />
       </div>
       <pre tabIndex={0}>{children}</pre>
     </div>

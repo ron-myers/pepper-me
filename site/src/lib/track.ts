@@ -4,5 +4,9 @@ type Fathom = { trackEvent: (name: string) => void }
 export function track(name: string) {
   if (typeof window === 'undefined') return
   const f = (window as unknown as { fathom?: Fathom }).fathom
-  f?.trackEvent(name)
+  try {
+    f?.trackEvent?.(name)
+  } catch {
+    // analytics must never break the page
+  }
 }

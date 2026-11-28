@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react'
 import { track } from '@/lib/track'
 
-export function CopyButton({ text, label = 'Copy', event = 'copy' }: { text: string; label?: string; event?: string }) {
+export function CopyButton({ text, label = 'Copy', event }: { text: string; label?: string; event: string }) {
   const [done, setDone] = useState(false)
   const t = useRef<ReturnType<typeof setTimeout> | null>(null)
 

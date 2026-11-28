@@ -40,9 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         {FATHOM_SITE_ID && (
-          <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+          <>
+            <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+            <LinkTracker />
+          </>
         )}
-        <LinkTracker />
         <a className="skip" href="#main">
           Skip to content
         </a>
@@ -71,13 +73,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </a>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/LICENSE`}>MIT license</a>
+                <a href={`${REPO_URL}/blob/stable/LICENSE`} data-track="github: license">
+                  MIT license
+                </a>
               </li>
               <li>
                 <Link href="/changelog">Changelog</Link>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`}>Contributing</a>
+                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`} data-track="github: contributing">
+                  Contributing
+                </a>
               </li>
               <li>
                 <a href="/llms.txt">llms.txt</a>
@@ -87,7 +93,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </li>
             </ul>
             <p className="fine">
-              Version {version}. Built by <a href="https://github.com/ron-myers">Ron Myers</a> at Fritter Factory.
+              Version {version}. Built by <a href="https://github.com/ron-myers" data-track="outbound: author">
+                Ron Myers
+              </a> at Fritter Factory.
             </p>
           </div>
         </footer>
