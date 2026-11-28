@@ -134,7 +134,7 @@ export default function Home() {
         <h2 id="h-install">Install</h2>
         <InstallTabs commands={INSTALL} />
         <p className="lede">
-          Then type <code>pepper me</code>. Works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex, Cursor and Antigravity. <Link href="/skills/pepper-me">Usage and options</Link>.
+          Then type <code>pepper me</code>. Works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity and Devin CLI. <Link href="/skills/pepper-me">Usage and options</Link>.
         </p>
       </section>
 

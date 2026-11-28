@@ -11,6 +11,7 @@ const TABS = [
   { id: 'codex', label: 'Codex', note: 'Or copy a folder from skills/ into ~/.agents/skills/. Tool notes: skills/*/references/codex-tools.md.' },
   { id: 'cursor', label: 'Cursor', note: 'Tool notes: skills/*/references/cursor-tools.md.' },
   { id: 'antigravity', label: 'Antigravity', note: 'Tool notes: skills/*/references/antigravity-tools.md.' },
+  { id: 'devin', label: 'Devin CLI', note: 'Tool notes: skills/*/references/devin-tools.md.' },
   { id: 'skills', label: 'skills.sh', note: 'Uses the skills.sh CLI.' },
   { id: 'manual', label: 'Manual', note: 'Copy any folder from skills/ into ~/.claude/skills/ for Claude Code, or ~/.agents/skills/ for Codex.' },
 ] as const

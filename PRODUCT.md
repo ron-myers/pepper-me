@@ -7,7 +7,7 @@
 web
 
 ## Stack
-Next.js (App Router, TypeScript, static export where possible), Tailwind or CSS modules, MDX for skill pages, `next/font`. Deploy to Vercel. Lives in `site/` in this repo. Analytics: Fathom only, loaded only when `NEXT_PUBLIC_FATHOM_SITE_ID` is set, with custom events on copy, install tabs, brief switcher and link clicks. No other trackers. Install tabs: Claude Code plugin (default), Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity, skills.sh, Manual.
+Next.js (App Router, TypeScript, static export where possible), Tailwind or CSS modules, MDX for skill pages, `next/font`. Deploy to Vercel. Lives in `site/` in this repo. Analytics: Fathom only, loaded only when `NEXT_PUBLIC_FATHOM_SITE_ID` is set, with custom events on copy, install tabs, brief switcher and link clicks. No other trackers. Install tabs: Claude Code plugin (default), Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity, Devin CLI, skills.sh, Manual.
 
 ## Users
 - Developers starting a task with vague intent.
@@ -22,13 +22,13 @@ Pepper Me is a set of agent skills that give an agent context before it works. `
 Agents get the one-line ticket; Pepper Me gives them the kickoff meeting.
 
 ## Operating Context
-Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, `.claude-plugin/plugin.json` (version 0.5.0). Install: Claude Code plugin, Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity, skills.sh, manual. The install tabs use the README commands exactly.
+Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, `.claude-plugin/plugin.json` (version 0.5.0). Install: Claude Code plugin, Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity, Devin CLI, skills.sh, manual. The install tabs use the README commands exactly.
 
 ## Capabilities and Constraints
 - Every claim must trace to repo files. No invented features, stats, testimonials, logos or user counts.
 - Never edit a `SKILL.md`. Skill wording is the product.
 - Heat levels `mild`, `medium`, `hot` exist as a product concept.
-- Supported agents: Claude Code, Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity. Name them only as the README does. Do not label any untested, beta or experimental. Add an install command only if the README gives one.
+- Supported agents: Claude Code, Gemini CLI, GitHub Copilot CLI, Codex, Cursor, Antigravity, Devin CLI. Name them only as the README does. Do not label any untested, beta or experimental. Add an install command only if the README gives one.
 - Other-session lookup reads Claude Code transcripts and works only in Claude Code. Say so wherever other sessions are described.
 
 ## Brand Commitments
