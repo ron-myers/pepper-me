@@ -4,7 +4,7 @@ Both skills are written for Claude Code. On Antigravity these parts resolve diff
 
 ## Asking questions
 
-The Antigravity docs do not describe a structured question tool. Use the plain-text fallback in Round mechanics in `shared.md`: numbered questions, lettered options, recommended option marked. If your session exposes a structured question tool, you may use it with the same options.
+The Antigravity SDK docs list an `ask_question` tool ("Prompt user for input"), but no option or multiple-choice schema is documented. Use the plain-text fallback in Round mechanics in `shared.md`: numbered questions, lettered options, recommended option marked. If your session exposes `ask_question` or another structured question tool with options, you may use it with the same options.
 
 ## Instructions file
 
