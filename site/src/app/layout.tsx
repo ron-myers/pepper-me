@@ -70,6 +70,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <li>
                 <a href="/llms.txt">llms.txt</a>
               </li>
+              <li>
+                <a href="https://www.candid.tools">Intelligent code reviews</a>
+              </li>
             </ul>
             <p className="fine">
               Version {version}. Built by <a href="https://github.com/ron-myers">Ron Myers</a> at Fritter Factory.
