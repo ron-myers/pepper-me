@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0 - 2026-11-28
+
+- Manifests for Codex (`.codex-plugin/plugin.json`), Cursor (`.cursor-plugin/plugin.json`) and Gemini CLI (`gemini-extension.json`, `GEMINI.md`). GitHub Copilot CLI installs from the existing Claude marketplace file.
+- Both skills ship `references/<agent>-tools.md` for Codex, Cursor, Gemini CLI and Copilot. They map question asking, the agent file, other-session lookup and subagents.
+- `scripts/bump-version.sh` and `.version-bump.json` keep every manifest on one version.
+- Other-session lookup reads Claude Code transcripts, so it is Claude Code only. The tool notes say so.
+
 ## 0.4.0 - 2026-11-27
 
 - New setting `after_task.run` (string or `null`, default `null`) in `pepper-me`. When set, the named skill or slash command runs once the task is done and passes the "Done looks like" check. The setting is the consent, so there is no extra confirm, even for `candid-ship`, which publishes. The outcome is reported in one or two lines. A missing skill or command is skipped with a one-line note, with no substitute. If the user stops the task or the check fails, the follow-up is skipped. A mid-task brief bump runs it once, at the end.
