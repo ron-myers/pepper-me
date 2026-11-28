@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2026-11-27
+
+- New setting `brief.auto_start` (boolean, default `false`) in `pepper-me`. When true, the approve card is skipped: the brief is shown, saved as `status: approved`, and the task starts. Mid-task version bumps skip the card too. A hard conflict still open when the user says "go" is listed in the brief.
+- New arguments `auto` and `no-auto` override the setting for one run.
+- The red-flags row on approval, in both skills' `references/shared.md`, names `brief.auto_start: true` as the only exception. Fixes #20.
+
 ## 0.2.6 - 2026-11-27
 
 - `only_projects` and `skip_projects` now have a stated rule in both skills' `references/shared.md`. Each entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored. Fixes #15.

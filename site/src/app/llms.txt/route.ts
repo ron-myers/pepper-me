@@ -11,7 +11,7 @@ Pepper Me is a set of agent skills for Claude Code. Each skill is a short, struc
 
 ## Skills
 
-- [pepper-me](${SITE_URL}/skills/pepper-me): Type \`pepper me\`. A kickoff meeting before any task. The agent reads the room, reflects back, asks what's missing, checks for conflicts, and writes a brief you approve. Work starts only after you say yes.
+- [pepper-me](${SITE_URL}/skills/pepper-me): Type \`pepper me\`. A kickoff meeting before any task. The agent reads the room, reflects back, asks what's missing, checks for conflicts, and writes a brief you approve. By default, work starts only after you say yes.
 - [pepper-me-init](${SITE_URL}/skills/pepper-me-init): Type \`pepper me init\`. Reads your repo, asks only what it can't find, and writes PROJECT.md.
 
 ## Install

@@ -34,7 +34,7 @@ npx skills add ron-myers/pepper-me
 
 ## pepper-me
 
-> Type `pepper me`. Your agent runs the kickoff meeting. Work starts only after you say yes.
+> Type `pepper me`. Your agent runs the kickoff meeting. By default, work starts only after you say yes.
 
 ### The problem
 
@@ -48,7 +48,7 @@ A vague request gets a confident, plausible answer to the wrong question. You fi
 2. **Reflects back.** "Here's what I think you want." You correct a draft instead of starting from a blank page.
 3. **Asks what's missing.** Why this matters, who it's for, what done looks like, what could go wrong. Intent before details.
 4. **Checks for conflicts.** If an answer contradicts what you said earlier, or what the repo says, it shows you both quotes and asks.
-5. **Writes a brief.** One page you approve. Then, and only then, work begins.
+5. **Writes a brief.** One page you approve. By default, work begins only after you approve it.
 
 ### What it looks like
 
@@ -102,6 +102,7 @@ Arguments go in any order. All are optional.
 | Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
 | Brief size | `line`, `card`, `page`, `full` | sized automatically |
 | Sessions | `sessions`, `no-sessions` | off |
+| Auto start | `auto`, `no-auto` | off |
 
 ### The brief
 
@@ -171,7 +172,8 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
     "save": true,
     "path": ".pepper/brief.md",
     "template": null,
-    "versioning": true
+    "versioning": true,
+    "auto_start": false
   }
 }
 ```
@@ -179,6 +181,10 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 ### Privacy
 
 Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
+
+### Auto start
+
+By default you approve the brief before work begins. Set `brief.auto_start` to `true` to skip that card. The setting is the approval: the brief is shown in chat, saved with `status: approved`, and the task starts. A mid-task check-in also skips the card. Pass `auto` or `no-auto` to override the setting for one run. If you say `go` while a hard conflict is open, the task starts and the conflict is listed in the brief.
 
 ### Conflict check
 
