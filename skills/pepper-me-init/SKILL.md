@@ -7,6 +7,8 @@ description: Use when the user says "pepper me init" or "pepper init", asks to s
 
 The first-day-on-the-project conversation, done once, saved to a file. Read the repo first. Ask only what the repo can't answer. Write `PROJECT.md` so every future session starts with the context a new teammate would need. Do not start any other task until the file is approved.
 
+The red flags in the pepper-me skill apply here, with `PROJECT.md` approval as the gate.
+
 Pepper Me init records what is true and what is unknown. It does not invent conventions, pick a stack, or design anything.
 
 ## 0. Load config and arguments

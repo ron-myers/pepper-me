@@ -20,7 +20,7 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
    - brief: size auto, save true, path .pepper/brief.md, versioning true
 3. Parse arguments after the trigger. Any order, all optional:
    - Heat: `mild`, `medium`, `hot`
-   - Tone: any tone name from section 8
+   - Tone: any tone name from section 9
    - Brief size: `line`, `card`, `page`, `full`
    - `sessions` or `no-sessions` to override other_sessions.enabled for this run
    Example: `pepper me hot, candor, full`
@@ -113,7 +113,19 @@ Stop when all of these hold, or the heat limit is reached:
 
 If `ask_what_i_missed` is true, ask one final card: "Anything I didn't ask that matters?" Options: "No, write the brief (Recommended)", "Yes" (user types it in Other). On hot, also ask "What would make this fail?"
 
-## 8. Tone
+## 8. Red flags
+
+Do not start the task until the brief has `status: approved`.
+
+| Thought | Reality |
+|---|---|
+| "The task is small, skip the interview." | Size sets the brief size, not whether to ask. Run a mild round. |
+| "Memory already answers this." | Memory is a source, not an answer. Cite it in an option and let the user confirm. |
+| "The user sounds impatient, I'll start." | Only "go", "enough" or "write it" stops the questions. |
+| "The brief is obvious, skip approval." | No approval, no task. Ask the approve card. |
+| "This conflict is minor, I'll pick one." | Hard conflicts get a card. Soft ones get logged. Never pick silently. |
+
+## 9. Tone
 
 Apply the configured tone to question wording and the reflection. The brief itself stays plain in every tone.
 
@@ -126,7 +138,7 @@ Apply the configured tone to question wording and the reflection. The brief itse
 - **consultant:** structured and thorough. "Audience first, then scope, then risks."
 - **playful:** light and quick, for creative work. "Gut call, bold or safe?"
 
-## 9. The brief
+## 10. The brief
 
 ### Size
 
@@ -208,10 +220,10 @@ If `brief.template` points to a file, use its sections instead and keep the fron
 
 Show the brief, then ask with AskUserQuestion: "Approve and start (Recommended)", "Edit something", "Pepper me more". Set `status: approved` in the frontmatter on approval, then start the task from the brief.
 
-## 10. Mid-task
+## 11. Mid-task
 
 If the work drifts from the approved brief, or the user runs pepper me again mid-task, run one mild round on the drift only, check conflicts against the brief, and bump the version.
 
-## 11. Fallback
+## 12. Fallback
 
 If AskUserQuestion isn't available, ask in plain text: numbered questions, lettered options, recommended option marked, up to 4 per message. The user can reply "1a 2c 3b".

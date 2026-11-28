@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 - 2026-11-27
+
+- `pepper-me` gets a red-flags table (Thought and Reality) and a standalone approval gate: do not start the task until the brief has `status: approved`.
+- `pepper-me-init` points to the same red flags, with `PROJECT.md` approval as the gate.
+- Sections after the stop test renumber (tone is now section 9).
+
 ## 0.2.1 - 2026-11-27
 
 - Skill descriptions now hold triggers only ("Use when..."), so agents read the skill body instead of a workflow summary.
