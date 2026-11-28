@@ -1,6 +1,14 @@
 {
   "version": 1,
+  "tone": "harsh",
+  "mergeTargetBranches": ["stable"],
+  "exclude": ["site/.next/*", "site/out/*"],
+  "autoCommit": true,
+  "decisionRegister": {
+    "enabled": true
+  },
   "ship": {
+    "buildCommand": "cd site && npm run build",
     "targetBranch": "stable"
   }
 }
