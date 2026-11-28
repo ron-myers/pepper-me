@@ -31,12 +31,21 @@ A 30-minute intent session, compressed. Find out what the user wants before doin
 
 Before asking anything, collect what is already known. Record every fact with its source.
 
-- **This session:** everything the user has said so far, attachments, and the task they want done.
+- **This session:** everything the user has said so far, attachments, and the task they want done. If the trigger has no task text after it (a bare `pepper me`), follow section 1a.
 - **Repo / working folder:** `PROJECT.md` first if it exists (written by pepper-me-init). Treat its settled facts as known: never ask project-level questions it answers, and treat its "Open items" as candidate questions when they bear on this task. Then read at most the files in `conflict_check.repo_files`, plus the README and manifest files (package or config files).
 - **Memory:** any stored context about the user, their projects and preferences.
 - **Other sessions (only if enabled):** follow Other sessions in `references/shared.md`.
 
 Never ask a question the context already answers. Build the reflection and ask round 1 from this session, the repo and memory only. Add other-session and past-chat results from round 2 on, if they have arrived.
+
+## 1a. Bare trigger
+
+If the user says only `pepper me` (arguments at most, no task text), the recent chat is the task.
+
+- Collect the questions, clarifications and options your last messages raised. Drop any the user already answered.
+- Make them the first questions of round 1, ahead of your own. Keep the options you offered.
+- Build the reflection in section 2 from that chat.
+- If your recent messages raised no questions, use the chat as context and continue as usual.
 
 ## 2. Reflect first
 
