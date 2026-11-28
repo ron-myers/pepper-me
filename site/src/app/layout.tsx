@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Anton, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Link from 'next/link'
+import Script from 'next/script'
 import { getVersion, REPO_URL, SITE_URL } from '@/lib/site'
 import './globals.css'
 
@@ -30,11 +31,16 @@ export const viewport: Viewport = {
   ],
 }
 
+const FATHOM_SITE_ID = process.env.NEXT_PUBLIC_FATHOM_SITE_ID
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const version = getVersion()
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
+        {FATHOM_SITE_ID && (
+          <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+        )}
         <a className="skip" href="#main">
           Skip to content
         </a>
