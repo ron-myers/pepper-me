@@ -41,7 +41,7 @@ The skills are the same on every agent. Most agents have their own manifest at t
 | Codex | `npx skills add ron-myers/pepper-me`, or copy a folder from `skills/` into `~/.agents/skills/` | [`codex-tools.md`](skills/pepper-me/references/codex-tools.md). Manifest: `.codex-plugin/plugin.json`. |
 | Cursor | `npx skills add ron-myers/pepper-me` | [`cursor-tools.md`](skills/pepper-me/references/cursor-tools.md). Manifest: `.cursor-plugin/plugin.json`. |
 
-Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents leave `other_sessions.enabled` false. More agents are tracked in the issues.
+Other-session lookup reads Claude Code transcripts, so it only works in Claude Code. On other agents set `other_sessions.enabled` to `false` and avoid `research: deep`, the `deep` and `audit` presets, or pass `no-sessions`. More agents are tracked in the issues.
 
 ---
 
@@ -165,7 +165,7 @@ Order, lowest to highest: defaults, preset, `~/.pepper-me/config.json`, `.pepper
 | `max_questions` | `null`, or a number. A hard cap across all rounds. | `null` |
 | `answer_style` | `choice` cards, `open` plain text, `mixed` cards plus one open question per round | `choice` |
 | `recommend` | `always`, `sourced` (only when the guess cites a file, memory or session), `never` | `always` |
-| `research` | `none`, `light` (repo and memory), `deep` (adds git history, linked issues and other sessions) | `light` |
+| `research` | `none`, `light` (repo and memory), `deep` (adds git history, linked issues and other sessions, unless you opted out) | `light` |
 | `reflect` | `off`, `start`, `every_round` | `start` |
 | `ask_what_i_missed` | `off`, `end`, `every_round`. `true` means `end`, `false` means `off`. | `end` |
 | `show_progress` | `true`, `false`. Prints "Round 2 of up to 3." | `true` |
@@ -257,7 +257,7 @@ Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and ed
 
 ### Privacy
 
-Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
+Other-session lookup is **off by default**. The `deep` research level (used by the `deep` and `audit` presets) turns it on for that run. Set `other_sessions.enabled` to `false` in a config file, or pass `no-sessions`, and `deep` leaves your sessions alone. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out. Each `only_projects` and `skip_projects` entry matches if it appears anywhere in the project folder name (substring, case-sensitive). An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored.
 
 ### Auto start
 

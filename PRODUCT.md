@@ -28,6 +28,7 @@ Source of truth for all copy: `README.md`, `skills/*/SKILL.md`, `CHANGELOG.md`, 
 - Every claim must trace to repo files. No invented features, stats, testimonials, logos or user counts.
 - Never edit a `SKILL.md`. Skill wording is the product.
 - Heat levels `mild`, `medium`, `hot` exist as a product concept.
+- Rigor levels `gentle`, `firm`, `relentless` exist as a product concept. They set how hard the interview presses, separate from heat.
 - Supported agents: Claude Code, Gemini CLI, GitHub Copilot CLI, Codex, Cursor. Name them only as the README does. Do not label any untested, beta or experimental. Add an install command only if the README gives one.
 - Other-session lookup reads Claude Code transcripts and works only in Claude Code. Say so wherever other sessions are described.
 

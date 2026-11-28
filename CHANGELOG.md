@@ -11,6 +11,7 @@
 - `questions_per_round` also accepts `auto`.
 - `ask_what_i_missed` is now `off`, `end` or `every_round`. `true` still works as `end` and `false` as `off`.
 - New arguments: `quick`, `standard`, `deep`, `audit`, `gentle`, `firm`, `relentless`.
+- `research: deep` (also used by the `deep` and `audit` presets) reads other sessions for that run. A config file that explicitly sets `other_sessions.enabled` to `false`, or the `no-sessions` argument, turns that off.
 - `show_progress` is on by default, so each round now starts with a "Round 2 of up to 3." line. Set it to `false` to turn that off.
 
 ## 0.5.1 - 2026-11-28

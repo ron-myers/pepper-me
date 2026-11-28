@@ -88,11 +88,11 @@ Tone changes wording only. It never changes how often you follow up. Rigor does 
 - **deep:** everything in light, plus:
   - the last 30 commit subjects from `git log`
   - issues and pull requests linked in the task text, README or the agent file (use `gh` if it is installed, otherwise skip with one line)
-  - other sessions, even when `other_sessions.enabled` is false, using the other `other_sessions` settings. The `no-sessions` argument turns this off.
+  - other sessions, using the other `other_sessions` settings. This is skipped when a config file explicitly sets `other_sessions.enabled` to `false`, or when `no-sessions` is passed. Your own opt-out always wins over a preset.
 
 ## Other sessions
 
-Only when `other_sessions.enabled` is true, or `research` is `deep`.
+Only when `other_sessions.enabled` is true, or `research` is `deep` and no config file explicitly sets `other_sessions.enabled` to `false` (and `no-sessions` was not passed).
 
 - Claude Code: transcripts under `~/.claude/projects/*/*.jsonl` modified within `lookback_hours`. Skip the current session. Respect `only_projects` and `skip_projects`. Each entry matches if it appears anywhere in the project folder name (substring, case-sensitive). For example, `pepper-me` matches `-Users-name-conductor-workspaces-pepper-me-zurich-v2`. An empty `only_projects` reads all projects. A folder that matches both lists is skipped. An empty string entry is ignored. Cap at `max_sessions`, newest first.
 - Read **user messages only**, never assistant messages. You want answers the user gave, not suggestions Claude made.
