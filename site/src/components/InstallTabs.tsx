@@ -1,0 +1,64 @@
+'use client'
+import { useId, useRef, useState } from 'react'
+import { CopyButton } from './CopyButton'
+
+const TABS = [
+  { id: 'plugin', label: 'Claude Code plugin', note: 'Installs every skill in the repo.' },
+  { id: 'skills', label: 'skills.sh', note: 'Uses the skills.sh CLI.' },
+  { id: 'manual', label: 'Manual', note: 'Copy any folder from skills/ into ~/.claude/skills/.' },
+] as const
+
+export function InstallTabs({ commands }: { commands: Record<string, string> }) {
+  const [active, setActive] = useState<(typeof TABS)[number]['id']>('plugin')
+  const base = useId()
+  const refs = useRef<(HTMLButtonElement | null)[]>([])
+
+  function onKey(e: React.KeyboardEvent, i: number) {
+    let n = i
+    if (e.key === 'ArrowRight') n = (i + 1) % TABS.length
+    else if (e.key === 'ArrowLeft') n = (i - 1 + TABS.length) % TABS.length
+    else if (e.key === 'Home') n = 0
+    else if (e.key === 'End') n = TABS.length - 1
+    else return
+    e.preventDefault()
+    setActive(TABS[n].id)
+    refs.current[n]?.focus()
+  }
+
+  const cur = TABS.find((t) => t.id === active)!
+  return (
+    <div className="install">
+      <div role="tablist" aria-label="Install method" className="tabs">
+        {TABS.map((t, i) => (
+          <button
+            key={t.id}
+            ref={(el) => {
+              refs.current[i] = el
+            }}
+            role="tab"
+            id={`${base}-t-${t.id}`}
+            aria-selected={active === t.id}
+            aria-controls={`${base}-p`}
+            tabIndex={active === t.id ? 0 : -1}
+            onClick={() => setActive(t.id)}
+            onKeyDown={(e) => onKey(e, i)}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <div role="tabpanel" id={`${base}-p`} aria-labelledby={`${base}-t-${active}`} className="tabpanel">
+        <p className="note">{cur.note}</p>
+        <div className="code">
+          <div className="codebar">
+            <span>{active === 'manual' ? 'shell' : 'terminal'}</span>
+            <CopyButton text={commands[active]} />
+          </div>
+          <pre tabIndex={0}>
+            <code>{commands[active]}</code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  )
+}

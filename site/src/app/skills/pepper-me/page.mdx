@@ -1,0 +1,136 @@
+export const metadata = {
+  title: 'pepper-me',
+  description: 'Type pepper me. Your agent runs the kickoff meeting. Work starts only after you say yes.',
+}
+
+# pepper-me
+
+> Type `pepper me`. Your agent runs the kickoff meeting. Work starts only after you say yes.
+
+## The problem
+
+A vague request gets a confident, plausible answer to the wrong question. You find out 20 minutes later, correct it, and repeat. Every round trip costs you time and the agent's context window.
+
+## The fix
+
+`pepper me` does what a good colleague does in a 30-minute kickoff, in a few minutes:
+
+1. **Reads the room.** Your session, repo docs, memory and (optionally) your other recent sessions. It never asks what's already been said.
+2. **Reflects back.** "Here's what I think you want." You correct a draft instead of starting from a blank page.
+3. **Asks what's missing.** Why this matters, who it's for, what done looks like, what could go wrong. Intent before details.
+4. **Checks for conflicts.** If an answer contradicts what you said earlier, or what the repo says, it shows you both quotes and asks.
+5. **Writes a brief.** One page you approve. Then, and only then, work begins.
+
+## Usage
+
+```
+pepper me
+pepper me mild
+pepper me hot, candor
+pepper me hot, skeptic, full
+pepper me sessions
+```
+
+Arguments go in any order. All are optional.
+
+| Argument | Values | Default |
+|---|---|---|
+| Heat | `mild` one round, `medium` up to three, `hot` the full session | `medium` |
+| Tone | `direct`, `candor`, `friendly`, `coach`, `exec`, `skeptic`, `consultant`, `playful` | `direct` |
+| Brief size | `line`, `card`, `page`, `full` | sized automatically |
+| Sessions | `sessions`, `no-sessions` | off |
+
+## Output: the brief
+
+Saved to `.pepper/brief.md`. YAML frontmatter, versioned, with empty sections dropped.
+
+| Size | Contains |
+|---|---|
+| `line` | Goal and what done looks like, in one sentence |
+| `card` | Goal, audience, done, constraints, assumptions |
+| `page` | Card plus out of scope, conflicts, open questions |
+| `full` | Page plus risks, decision log, stakeholders, milestones, follow-ups |
+
+A `card` looks like this:
+
+```markdown
+---
+pepper_brief: v1
+version: 1
+created: 2026-11-27
+heat: medium
+size: card
+task: Pricing page for the Pro plan
+status: approved
+---
+
+# Brief: Pricing page for the Pro plan
+
+**Goal:** Convert free users to Pro.
+**Audience:** Existing free users arriving from the upgrade banner.
+**Done looks like:** Page live and linked from the banner.
+
+## Constraints
+- Monthly pricing only at launch
+- No discount messaging
+
+## Assumptions
+- Reuse the current marketing layout (low-risk)
+```
+
+## Configuration
+
+Copy `skills/pepper-me/config.example.json` to `~/.pepper-me/config.json` and edit. A `.pepper/config.json` in a project overrides your global settings for that project.
+
+```json
+{
+  "default_heat": "medium",
+  "tone": "direct",
+  "questions_per_round": 4,
+  "ask_what_i_missed": true,
+  "other_sessions": {
+    "enabled": false,
+    "lookback_hours": 24,
+    "max_sessions": 10,
+    "only_projects": [],
+    "skip_projects": [],
+    "include_past_chats": true
+  },
+  "conflict_check": {
+    "enabled": true,
+    "sources": ["this_session", "other_sessions", "memory", "repo"],
+    "repo_files": ["README.md", "CLAUDE.md", "AGENTS.md", "docs/", ".pepper/brief.md"],
+    "ask_on": "hard",
+    "log_soft": true
+  },
+  "brief": {
+    "size": "auto",
+    "save": true,
+    "path": ".pepper/brief.md",
+    "template": null,
+    "versioning": true
+  }
+}
+```
+
+## Privacy
+
+Other-session lookup is **off by default**. When on, pepper me reads Claude Code transcripts in `~/.claude/projects/` changed within `lookback_hours`. It reads **your messages only**, never Claude's replies. Everything stays on your machine. Use `skip_projects` to keep client or private work out.
+
+## Conflict check
+
+`ask_on: "hard"` interrupts only when two things can't both be true. `ask_on: "all"` asks about every mismatch. Soft conflicts go in the brief. Choosing "The repo is out of date" adds a follow-up to fix it.
+
+## FAQ
+
+**How is this different from plan mode?** Plan mode designs the solution. Pepper me captures the intent that a plan should be built on. Use it first.
+
+**How is this different from grill-me?** [grill-me](https://github.com/mattpocock/skills) stress-tests a plan you already have. Pepper me works earlier, when you have a goal but no plan yet. They pair well.
+
+**Isn't this more work for me?** For a mild session, it's one card of taps. A wrong guess costs far more.
+
+**Does it work without AskUserQuestion?** Yes. It falls back to plain-text questions with the same structure.
+
+---
+
+Source: [`SKILL.md`](https://github.com/ron-myers/pepper-me/blob/stable/skills/pepper-me/SKILL.md) · [Install](/#install) · [Changelog](/changelog)

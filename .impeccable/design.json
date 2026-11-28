@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-27T00:00:00Z",
+  "title": "Design System: Pepper",
+  "extensions": {
+    "colorMeta": {
+      "hot-red": { "role": "primary", "displayName": "Hot Red", "canonical": "#c93418", "tonalRamp": ["#3a0f07", "#5e1a0d", "#8a2511", "#c93418", "#dc5a3f", "#e8836c", "#f1ac9b", "#f9dcd4"] },
+      "paper": { "role": "neutral", "displayName": "White Stock", "canonical": "#fafaf7", "tonalRamp": ["#1a1a18", "#3d3c38", "#6a6860", "#999689", "#c4c2b8", "#e2e0d8", "#f1f0ea", "#fafaf7"] },
+      "ink": { "role": "neutral", "displayName": "Black Ink", "canonical": "#0b0b0b", "tonalRamp": ["#0b0b0b", "#1f1f1e", "#3a3935", "#55524b", "#7e7b72", "#a9a69c", "#cfcdc4", "#ece9e0"] },
+      "muted-ink": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#55524b", "tonalRamp": ["#1e1d1a", "#2f2d29", "#403e39", "#55524b", "#77746b", "#99968b", "#bcb9ae", "#dedbd2"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#cfcdc4", "tonalRamp": ["#55524b", "#77746b", "#99968b", "#b5b2a8", "#cfcdc4", "#dcdad2", "#e8e6df", "#f3f2ed"] },
+      "cell": { "role": "neutral", "displayName": "Cell Tint", "canonical": "#f1f0ea", "tonalRamp": ["#55524b", "#8a877e", "#b8b5aa", "#d6d4cb", "#e4e2da", "#f1f0ea", "#f7f6f1", "#fafaf7"] },
+      "night-paper": { "role": "neutral", "displayName": "Night Stock", "canonical": "#0b0b0c", "tonalRamp": ["#0b0b0c", "#131315", "#1c1c1f", "#2e2e31", "#4a4a4e", "#77777b", "#a9a69c", "#f2f0e8"] },
+      "night-hot-red": { "role": "primary", "displayName": "Night Hot Red", "canonical": "#ff6a45", "tonalRamp": ["#4a1608", "#7a2410", "#b33a1c", "#e55a35", "#ff6a45", "#ff8c6e", "#ffb09a", "#ffd8cc"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The hero's first sentence, the user's loudest voice. Anton, uppercase, tight leading." },
+      "headline": { "displayName": "Headline", "purpose": "Every section h2, max 18ch." },
+      "title": { "displayName": "Title", "purpose": "Panel and card h3, and the user's lines in the transcript at larger size." },
+      "body": { "displayName": "Body", "purpose": "Prose in Hanken Grotesk, 65ch measure." },
+      "label": { "displayName": "Label", "purpose": "The agent's voice and all utility text: nav, buttons, chips, code, replies. JetBrains Mono." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Panel hover fill, button lift, transcript beat rise." },
+      { "name": "beat-reveal", "value": "opacity 0.3s ease-out, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Transcript lines arriving one at a time, 1.5s apart. Disabled under prefers-reduced-motion." },
+      { "name": "button-lift", "value": "transform 0.12s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Copy button rises 2px on hover, drops 1px on press." }
+    ],
+    "breakpoints": [
+      { "name": "narrow", "value": "40rem" },
+      { "name": "wide-hero", "value": "56rem" },
+      { "name": "wide-grid", "value": "64rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Copy Button",
+      "kind": "button",
+      "refersTo": "button-copy",
+      "description": "The primary action: hot red, square, mono. Inverts to ink after copying.",
+      "html": "<button class=\"ds-copy\" type=\"button\">Copy install</button>",
+      "css": ".ds-copy { font: 700 0.85rem/1 ui-monospace, monospace; cursor: pointer; background: #c93418; color: #fff; border: 1px solid #c93418; border-radius: 0; padding: 0.75rem 1.1rem; min-height: 2.75rem; transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1); } .ds-copy:hover { transform: translateY(-2px); } .ds-copy:active { transform: translateY(1px); } .ds-copy:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Replay Button",
+      "kind": "button",
+      "refersTo": "button-replay",
+      "description": "Secondary: paper with an ink frame, inverts on hover.",
+      "html": "<button class=\"ds-replay\" type=\"button\">Replay</button>",
+      "css": ".ds-replay { font: 600 0.85rem ui-monospace, monospace; background: #fafaf7; color: #0b0b0b; border: 1px solid #0b0b0b; border-radius: 0; padding: 0.6rem 1.1rem; min-height: 2.75rem; cursor: pointer; } .ds-replay:hover { background: #0b0b0b; color: #fafaf7; } .ds-replay:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "The one card anatomy: ruled cell, Anton title, short summary, mono action. Fills to the cell tint on hover.",
+      "html": "<article class=\"ds-panel\"><h3>Pepper me</h3><p>Runs a short kickoff for one task and writes a brief.</p><a class=\"ds-act\" href=\"#\">Read about pepper-me</a></article>",
+      "css": ".ds-panel { display: flex; flex-direction: column; background: #fafaf7; color: #0b0b0b; border: 1px solid #0b0b0b; padding: 1.25rem 1.25rem 1.4rem; max-width: 24rem; transition: background-color 0.18s cubic-bezier(0.22, 1, 0.36, 1); } .ds-panel:hover, .ds-panel:focus-within { background: #f1f0ea; } .ds-panel h3 { font: 400 2.2rem/1 Anton, 'Arial Narrow', sans-serif; text-transform: uppercase; margin: 0 0 0.9rem; } .ds-panel p { margin: 0 0 0.75rem; font: 1rem/1.55 system-ui, sans-serif; } .ds-act { font: 600 0.9rem ui-monospace, monospace; color: #0b0b0b; } .ds-act::after { content: ' \\2192'; } .ds-act:hover { color: #c93418; } .ds-act:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Answer Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "The agent's answer options. The recommended one is the only red filled object.",
+      "html": "<ul class=\"ds-chips\"><li class=\"ds-chip ds-rec\">Yes, keep going</li><li class=\"ds-chip\">Mostly</li><li class=\"ds-chip\">No, start over</li></ul>",
+      "css": ".ds-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-chip { border: 1px solid #0b0b0b; padding: 0.45rem 0.9rem; font: 600 0.85rem/1.2 ui-monospace, monospace; background: #fafaf7; color: #0b0b0b; } .ds-rec { background: #c93418; color: #fff; border-color: #c93418; }"
+    },
+    {
+      "name": "Code Block",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "The one inverted ink block, with a filename bar and a copy control.",
+      "html": "<div class=\"ds-code\"><div class=\"ds-bar\"><span>terminal</span></div><pre><code>/plugin install pepper-me</code></pre></div>",
+      "css": ".ds-code { border: 1px solid #0b0b0b; background: #0b0b0b; color: #f2f0e8; } .ds-bar { padding: 0.4rem 1rem; border-bottom: 1px solid #3a3a3d; font: 500 0.75rem/1 ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.08em; color: #b8b5aa; } .ds-code pre { margin: 0; padding: 1rem 1.15rem; overflow-x: auto; font: 0.875rem/1.7 ui-monospace, monospace; }"
+    },
+    {
+      "name": "Install Tabs",
+      "kind": "nav",
+      "refersTo": "button-replay",
+      "description": "Underline tabs on an ink baseline; the selected tab carries a red underline.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">Claude Code plugin</button><button role=\"tab\" aria-selected=\"false\">skills.sh</button><button role=\"tab\" aria-selected=\"false\">Manual</button></div>",
+      "css": ".ds-tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid #0b0b0b; } .ds-tabs [role='tab'] { font: 600 0.88rem ui-monospace, monospace; background: none; color: #55524b; border: 0; border-bottom: 3px solid transparent; padding: 0.7rem 1rem; min-height: 2.75rem; margin-bottom: -1px; cursor: pointer; } .ds-tabs [role='tab']:hover { color: #0b0b0b; } .ds-tabs [role='tab'][aria-selected='true'] { color: #0b0b0b; border-bottom-color: #c93418; } .ds-tabs [role='tab']:focus-visible { outline: 3px solid #0b3d91; outline-offset: 3px; }"
+    },
+    {
+      "name": "Two Voices Exchange",
+      "kind": "custom",
+      "refersTo": "chip",
+      "description": "Signature: the user's line in giant Anton, the agent's reply small in mono, indented.",
+      "html": "<div class=\"ds-exchange\"><p class=\"ds-you\">I need a pricing page for the new plan.</p><div class=\"ds-agent\"><p class=\"ds-who\">Agent</p><p>Here's what I think you want:</p></div></div>",
+      "css": ".ds-exchange { display: grid; gap: 1.5rem; max-width: 40rem; } .ds-you { margin: 0; font: 400 3rem/0.95 Anton, 'Arial Narrow', sans-serif; text-transform: uppercase; color: #0b0b0b; } .ds-agent { margin-left: 3rem; font: 0.95rem/1.6 ui-monospace, monospace; color: #0b0b0b; } .ds-agent p { margin: 0 0 0.3rem; } .ds-who { font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: #c93418; }"
+    },
+    {
+      "name": "Heat Meter",
+      "kind": "custom",
+      "refersTo": "chip",
+      "description": "Three dots outlined in red, filled up to the level, with a mono label.",
+      "html": "<span class=\"ds-heatwrap\"><span class=\"ds-heat\"><i data-on></i><i data-on></i><i></i></span><span class=\"ds-heatlabel\">default heat: medium</span></span>",
+      "css": ".ds-heatwrap { display: inline-flex; align-items: center; gap: 0.5rem; } .ds-heat { display: inline-flex; gap: 0.3rem; } .ds-heat i { width: 0.7rem; height: 0.7rem; border-radius: 50%; border: 1.5px solid #c93418; } .ds-heat i[data-on] { background: #c93418; } .ds-heatlabel { font: 500 0.82rem ui-monospace, monospace; color: #55524b; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Two Voices",
+    "overview": "The page is a conversation with two speakers and size is volume. The user's voice is Anton, uppercase, enormous, and tightly leaded; it is the headline of every section and the large lines of the transcript. The agent's voice is JetBrains Mono at body size, quiet and exact: replies, labels, commands, code. Pepper's whole product claim (a vague ticket versus a proper kickoff) is told by this contrast before any copy is read.\n\nThe material is black ink on white stock with hairline rules. There are no shadows, no gradients, no rounded corners, no filled decoration. Structure comes from 1px ink rules that form ruled cells, and from scale. One hot red-orange is rationed to the recommended answer, the primary action, the heat dots, and the agent's second-sentence echo in the hero. Dark mode inverts to off-white ink on near-black and lifts the red so it keeps contrast.\n\nDensity is editorial and generous: 80rem container, 6rem between sections, long measure capped at 65ch for prose and 48ch inside cells.",
+    "keyCharacteristics": [
+      "Anton uppercase for the user's voice; Hanken Grotesk for prose; JetBrains Mono for the agent, labels and code.",
+      "Hairline ink rules and ruled grid cells instead of shadows or boxes.",
+      "One red, used on the single most important thing in a region.",
+      "Square corners everywhere; the only circles are dots (logo mark, heat meter).",
+      "Light and dark are both first-class and follow the system."
+    ],
+    "rules": [
+      { "name": "The One Red Rule", "body": "Red marks the one thing to act on or notice in a region: the recommended answer, the primary action, the heat. Never use it for decoration, large fills, or more than one filled object per region.", "section": "colors" },
+      { "name": "The Ink Rule", "body": "Strong structure is 1px full-strength ink; soft structure is 1px Hairline. Neither is ever replaced by a shadow or a tint.", "section": "colors" },
+      { "name": "The Volume Rule", "body": "Size is the speaker. Anything the user says or the page asserts as a headline is Anton and large; anything the agent says is mono and small. Never set the agent's voice in the display face or the user's in mono.", "section": "typography" },
+      { "name": "The One Weight Rule", "body": "Anton is used at 400 only, uppercase, with balanced wrapping. Do not bold or lowercase it.", "section": "typography" },
+      { "name": "The No Shadow Rule", "body": "Nothing floats. A surface is either on the paper, ruled into a cell, or inverted to ink.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do let scale carry hierarchy: Anton uppercase for assertions, mono for the agent, Hanken for reading.",
+      "Do build structure from 1px ink or hairline rules and shared cell borders.",
+      "Do keep one Hot Red filled object per region and let it mean \"the answer\" or \"the action\".",
+      "Do keep 2.75rem minimum hit areas, a 3px offset focus ring (Focus Blue / Focus Yellow), and reduced-motion fallbacks that show everything.",
+      "Do keep copy in a plain, short, mono-friendly voice and design for light and dark together."
+    ],
+    "donts": [
+      "Don't add shadows, gradients, rounded corners, glass or tinted fills; the world is flat ink on paper.",
+      "Don't return to the comic-page language (halftone dots, thick keylines, process colors, panel-title bands) this system replaced.",
+      "Don't set the agent in the display face or bold and lowercase Anton.",
+      "Don't use red for decoration, large areas, or text on body copy.",
+      "Don't use a centred hero over a row of identical feature cards; the hero is the two-sentence stage with the agent reply beside the install."
+    ]
+  }
+}
