@@ -132,8 +132,7 @@ export default function Home() {
         <h2 id="h-install">Install</h2>
         <InstallTabs commands={INSTALL} />
         <p className="lede">
-          Works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex and Cursor. The skills are the same on every agent.
-          Then type <code>pepper me</code>. <Link href="/skills/pepper-me">Usage and options</Link>.
+          Then type <code>pepper me</code>. Works in Claude Code, Gemini CLI, GitHub Copilot CLI, Codex and Cursor. <Link href="/skills/pepper-me">Usage and options</Link>.
         </p>
       </section>
 
