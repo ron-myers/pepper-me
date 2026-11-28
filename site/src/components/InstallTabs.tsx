@@ -1,6 +1,7 @@
 'use client'
 import { useId, useRef, useState } from 'react'
 import { CopyButton } from './CopyButton'
+import { EVENTS } from '@/lib/events'
 import { track } from '@/lib/track'
 
 const TABS = [
@@ -17,7 +18,7 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
   function pick(id: (typeof TABS)[number]['id']) {
     if (id === active) return
     setActive(id)
-    track(`install tab: ${id}`)
+    track(EVENTS.installTab(id))
   }
 
   function onKey(e: React.KeyboardEvent, i: number) {
@@ -59,7 +60,7 @@ export function InstallTabs({ commands }: { commands: Record<string, string> }) 
         <div className="code">
           <div className="codebar">
             <span>{active === 'manual' ? 'shell' : 'terminal'}</span>
-            <CopyButton text={commands[active]} event={`copy: install ${active}`} />
+            <CopyButton text={commands[active]} event={EVENTS.copyInstall(active)} />
           </div>
           <pre tabIndex={0}>
             <code>{commands[active]}</code>

@@ -1,4 +1,5 @@
 import { CopyButton } from './CopyButton'
+import { EVENTS } from '@/lib/events'
 
 export function HeroInstall({ text }: { text: string }) {
   return (
@@ -6,7 +7,7 @@ export function HeroInstall({ text }: { text: string }) {
       <pre aria-label="Install command">
         <code>{text}</code>
       </pre>
-      <CopyButton text={text} label="Copy install" event="copy: hero install" />
+      <CopyButton text={text} label="Copy install" event={EVENTS.copyHeroInstall} />
     </div>
   )
 }

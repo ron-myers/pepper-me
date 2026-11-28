@@ -3,6 +3,7 @@ import { Anton, Hanken_Grotesk, JetBrains_Mono } from 'next/font/google'
 import Link from 'next/link'
 import Script from 'next/script'
 import { LinkTracker } from '@/components/LinkTracker'
+import { EVENTS } from '@/lib/events'
 import { getVersion, REPO_URL, SITE_URL } from '@/lib/site'
 import './globals.css'
 
@@ -41,7 +42,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {FATHOM_SITE_ID && (
           <>
-            <Script src="https://cdn.usefathom.com/script.js" data-site={FATHOM_SITE_ID} strategy="afterInteractive" />
+            <Script
+              src="https://cdn.usefathom.com/script.js"
+              data-site={FATHOM_SITE_ID}
+              data-spa="auto"
+              strategy="afterInteractive"
+            />
             <LinkTracker />
           </>
         )}
@@ -57,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/skills/pepper-me">pepper-me</Link>
             <Link href="/skills/pepper-me-init">pepper-me-init</Link>
             <Link href="/changelog">Changelog</Link>
-            <a href={REPO_URL} data-track="github: header">
+            <a href={REPO_URL} data-track={EVENTS.githubHeader}>
               GitHub
             </a>
           </nav>
@@ -68,12 +74,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <p className="foot-mark">Pepper Me</p>
             <ul>
               <li>
-                <a href={REPO_URL} data-track="github: footer">
+                <a href={REPO_URL} data-track={EVENTS.githubFooter}>
                   Repo
                 </a>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/LICENSE`} data-track="github: license">
+                <a href={`${REPO_URL}/blob/stable/LICENSE`} data-track={EVENTS.githubLicense}>
                   MIT license
                 </a>
               </li>
@@ -81,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/changelog">Changelog</Link>
               </li>
               <li>
-                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`} data-track="github: contributing">
+                <a href={`${REPO_URL}/blob/stable/CONTRIBUTING.md`} data-track={EVENTS.githubContributing}>
                   Contributing
                 </a>
               </li>
@@ -93,10 +99,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </li>
             </ul>
             <p className="fine">
-              Version {version}. Built by <a href="https://github.com/ron-myers" data-track="outbound: author">
+              Version {version}. Built by <a href="https://github.com/ron-myers" data-track={EVENTS.outboundAuthor}>
                 Ron Myers
               </a> at Fritter Factory.
             </p>
+            {FATHOM_SITE_ID && (
+              <p className="fine">
+                This site uses Fathom Analytics to count page views and clicks on copy buttons and links.
+              </p>
+            )}
           </div>
         </footer>
       </body>
