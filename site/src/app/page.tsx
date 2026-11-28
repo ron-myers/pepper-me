@@ -30,6 +30,8 @@ export default function Home() {
               <a href={REPO_URL} data-track={EVENTS.githubHero}>
                 See it on GitHub
               </a>
+              {' · '}
+              <Link href="/#install">Other agents</Link>
             </p>
           </div>
           <ChatWindow />

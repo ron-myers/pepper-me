@@ -14,7 +14,7 @@ const TABS = [
   { id: 'manual', label: 'Manual', note: 'Copy any folder from skills/ into ~/.claude/skills/ for Claude Code, or ~/.agents/skills/ for Codex.' },
 ] as const
 
-export function InstallTabs({ commands }: { commands: Record<string, string> }) {
+export function InstallTabs({ commands }: { commands: Record<(typeof TABS)[number]['id'], string> }) {
   const [active, setActive] = useState<(typeof TABS)[number]['id']>('plugin')
   const base = useId()
   const refs = useRef<(HTMLButtonElement | null)[]>([])
